@@ -1,0 +1,81 @@
+﻿//Page Header 
+@import 'variables';
+@import 'mixins';
+@import 'placeholders';
+
+.main-header {
+    background-color: $primary-dark;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: $col-offset;
+
+    &__brand {
+        border-bottom: 1px solid $primary;
+    }
+
+    &__user {
+        @include padding-tb($col-offset);
+
+        .user {
+            &__label, &__name {
+                display: block;
+            }
+
+            &__image {
+                padding: $text-offset;
+                max-width: 55px;
+            }
+
+            &__label {
+                font-size: $font-size-small;
+                color: $secondary;
+            }
+
+            &__name {
+                font-size: $font-size-large;
+                color: $tetriary;
+                font-weight: $font-weight-bolder;
+                white-space: nowrap;
+            }
+        }
+    }
+
+    &__links {
+        @include margin-lr(-$col-offset);
+        ul {
+            list-style-type: none;
+            padding: 0;
+
+            li > a {
+                color: $white;
+
+                &:hover, &:focus {
+                    color: darken($white, 10%);
+                }
+            }
+        }
+
+        > ul {
+            > li {
+                > a {
+                    background-color: $primary;
+                    display: block;
+                    padding: $col-offset;
+                    font-weight: $font-weight-bold;
+
+                    &:hover, &:focus {
+                        background-color: $primary-light;
+                    }
+                }
+
+                &.active {
+                    > a {
+                        background-color: $primary-light;
+                    }
+                }
+            }
+        }
+    }
+}

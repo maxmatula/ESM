@@ -1,0 +1,21 @@
+﻿@import 'variables';
+@import 'mixins';
+@import 'placeholders';
+
+body {
+    font: $font-weight-base $font-size-base $font-family-base;
+    line-height: $line-height-base;
+    min-width: 320px;
+    min-height: 400px;
+    position: relative;
+    height: 100vh;
+    color: $white;
+    background-color: $primary;
+}
+
+a,button{
+    transition: 0.3s;
+    &:hover, &:focus{
+        text-decoration: none;
+    }
+}
