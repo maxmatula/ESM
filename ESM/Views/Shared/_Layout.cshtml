@@ -6,14 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title — Employees System Managament</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700,900&amp;subset=latin-ext" rel="stylesheet">
+    @Styles.Render("~/Content/font-awesome/fa-solid.min.css")
+    @Styles.Render("~/Content/font-awesome/fontawesome.min.css")
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    @Scripts.Render("~/Scripts/fontawesome-all.min.js");
 </head>
 <body>
     <div class="container-fluid">
         <div class="row">
-            <header class="main-header col-2">
+            <header class="main-header col-2 d-flex flex-column justify-content-between">
                 <div class="main-header__brand">
                     <img src="~/Images/esm logo.png" alt="ESM" class="img-fluid" />
                 </div>
@@ -27,22 +28,32 @@
                     
                 <nav class="main-header__links">
                     <ul>
-                        <li><a href="@Url.Action("Index","Home")"><i class="fas fa-user"></i> Pracownicy</a></li>
-                        
+                        <li class="active parent">
+                            <a href="#"><i class="fas fa-user"></i> Pracownicy</a>
+                            <ul class="child">
+                                <li><a href="@Url.Action("Index","Employees")">Wszyscy pracownicy</a></li>
+                                <li><a href="@Url.Action("Create","Employees")">Dodaj pracownika</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#"><i class="fas fa-calendar"></i> Wydarzenia</a></li>
+                        <li><a href="#"><i class="fas fa-calculator"></i> Kalkulator wynagrodzenia</a></li>
+                        <li><a href="#"><i class="fas fa-cog"></i> Ustawienia</a></li>
+                        <li><a href="#"><i class="fas fa-power-off"></i> Wyloguj</a></li>
+
                     </ul>
                 </nav>
-                <div class="main-header__footer">
-                    <p>&copy; @DateTime.Now.Year — MM&GW Solutions</p>
+                <div class="main-header__footer text-center">
+                    <img src="~/Images/esm logo.png" alt="ESM" class="img-fluid"/>
+                    <p>MM&GW Solutions &copy; @DateTime.Now.Year</p>
                 </div>
             </header>
-            <main class="col-8 offset-2">
-                <div class="container body-content">
-                    @RenderBody()
-                    <hr />
+            <main class="col-8 offset-2 main-content">
+                <div class="container">
+                        @RenderBody()
                 </div>
             </main>
-            <aside class="sidebar col-2">
-                siemka
+            <aside class="main-sidebar col-2">
+               
             </aside>
         </div>
     </div>
@@ -50,6 +61,7 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Scripts/scripts.js");
     @RenderSection("scripts", required: false)
 </body>
 </html>

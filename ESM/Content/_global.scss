@@ -19,3 +19,13 @@ a,button{
         text-decoration: none;
     }
 }
+a{
+    color: $secondary;
+    &:hover, &:focus{
+        color: $tetriary;
+    }
+}
+
+.main-content{
+    padding: $col-offset;
+}

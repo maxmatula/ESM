@@ -13,6 +13,14 @@ a, button {
   a:hover, a:focus, button:hover, button:focus {
     text-decoration: none; }
 
+a {
+  color: #deb144; }
+  a:hover, a:focus {
+    color: #ef6b94; }
+
+.main-content {
+  padding: 15px; }
+
 .main-header {
   background-color: #392f45;
   height: 100vh;
@@ -48,20 +56,65 @@ a, button {
         color: #fff; }
         .main-header__links ul li > a:hover, .main-header__links ul li > a:focus {
           color: #e6e6e6; }
-    .main-header__links > ul > li > a {
-      background-color: #41344e;
-      display: block;
-      padding: 15px;
-      font-weight: 700; }
-      .main-header__links > ul > li > a:hover, .main-header__links > ul > li > a:focus {
+    .main-header__links > ul > li {
+      margin-bottom: 10px; }
+      .main-header__links > ul > li > a {
+        background-color: #41344e;
+        display: block;
+        padding: 15px;
+        font-weight: 700; }
+        .main-header__links > ul > li > a:hover, .main-header__links > ul > li > a:focus {
+          background-color: #5e4370; }
+      .main-header__links > ul > li.active > a {
         background-color: #5e4370; }
-    .main-header__links > ul > li.active > a {
-      background-color: #5e4370; }
+    .main-header__links .child {
+      padding: 15px;
+      margin-left: 20%;
+      display: none; }
+    .main-header__links .separator {
+      border-bottom: 1px solid #41344e;
+      margin-top: 5px;
+      margin-bottom: 5px; }
+    .main-header__links .parent > a {
+      position: relative; }
+      .main-header__links .parent > a:first-child:before {
+        content: "\f078";
+        font-family: "Font Awesome 5 Free";
+        position: absolute;
+        top: 50%;
+        right: 15px;
+        transform: translateY(-50%);
+        z-index: 0; }
+  .main-header__footer {
+    background-color: #201a27;
+    font-size: 10px;
+    color: #aaa;
+    margin: -15px;
+    margin-top: 0;
+    padding: 15px; }
+    .main-header__footer img {
+      width: 150px;
+      height: auto; }
+    .main-header__footer p {
+      margin-bottom: 0; }
 
-.sidebar {
+.main-sidebar {
   background-color: #392f45;
   height: 100vh;
   position: fixed;
   top: 0;
   right: 0; }
+
+.form-control {
+  background-color: transparent;
+  border-bottom: solid #aaa;
+  border-width: 0 0 2px 0;
+  border-radius: 0;
+  color: #e6e6e6; }
+  .form-control:focus {
+    border-color: #ef6b94;
+    background-color: transparent;
+    outline: none;
+    box-shadow: none;
+    color: #fff; }
 

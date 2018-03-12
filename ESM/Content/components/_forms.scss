@@ -1,0 +1,16 @@
+﻿@import '../variables';
+
+.form-control {
+    background-color: transparent;
+    border-bottom: solid $gray;
+    border-width: 0 0 2px 0;
+    border-radius: 0;
+    color: darken($white, 10%);
+    &:focus {
+        border-color: $tetriary;
+        background-color: transparent;
+        outline: none;
+        box-shadow: none;
+        color: $white;
+    }
+}

@@ -44,6 +44,7 @@
 
     &__links {
         @include margin-lr(-$col-offset);
+
         ul {
             list-style-type: none;
             padding: 0;
@@ -59,6 +60,7 @@
 
         > ul {
             > li {
+                margin-bottom: $block-offset;
                 > a {
                     background-color: $primary;
                     display: block;
@@ -76,6 +78,50 @@
                     }
                 }
             }
+        }
+
+        .child {
+            padding: $col-offset;
+            margin-left: 20%;
+            display: none;
+        }
+
+        .separator {
+            border-bottom: 1px solid $primary;
+            @include margin-tb($text-offset);
+        }
+
+        .parent {
+            > a {
+                position: relative;
+
+                &:first-child {
+                    &:before {
+                        content: "\f078";
+                        font-family: "Font Awesome 5 Free";
+                        position: absolute;
+                        top: 50%;
+                        right: $col-offset;
+                        transform: translateY(-50%);
+                        z-index: 0;
+                    }
+                }
+            }
+        }
+    }
+    &__footer{
+        background-color: darken($primary-dark, 10%);
+        font-size: 10px;
+        color: $gray;
+        margin: -$col-offset;
+        margin-top: 0;
+        padding: $col-offset;
+        img{
+            width: 150px;
+            height: auto;
+        }
+        p{
+            margin-bottom: 0;
         }
     }
 }
