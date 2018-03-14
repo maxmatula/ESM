@@ -6,6 +6,7 @@
     border-width: 0 0 2px 0;
     border-radius: 0;
     color: darken($white, 10%);
+    box-shadow: none;
     &:focus {
         border-color: $tetriary;
         background-color: transparent;

@@ -19,7 +19,12 @@ a {
     color: #ef6b94; }
 
 .main-content {
-  padding: 15px; }
+  padding: 15px;
+  display: none; }
+
+.fluid-content {
+  width: 100%;
+  height: 100%; }
 
 .main-header {
   background-color: #392f45;
@@ -27,7 +32,11 @@ a {
   position: fixed;
   top: 0;
   left: 0;
-  padding: 15px; }
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: space-between; }
   .main-header__brand {
     border-bottom: 1px solid #41344e; }
   .main-header__user {
@@ -105,12 +114,31 @@ a {
   top: 0;
   right: 0; }
 
+.login {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden; }
+  .login__content {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
+    transform: translate(-50%, -50%);
+    display: none; }
+  .login__video {
+    width: 100%;
+    min-height: 100vh;
+    object-fit: cover;
+    opacity: 0.3; }
+
 .form-control {
   background-color: transparent;
   border-bottom: solid #aaa;
   border-width: 0 0 2px 0;
   border-radius: 0;
-  color: #e6e6e6; }
+  color: #e6e6e6;
+  box-shadow: none; }
   .form-control:focus {
     border-color: #ef6b94;
     background-color: transparent;

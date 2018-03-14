@@ -152,15 +152,19 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="DAL\ESMContext.cs" />
     <Compile Include="DAL\ESMInitializer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\font-awesome\fa-solid.css">
@@ -179,6 +183,7 @@
       <DependentUpon>Site.css</DependentUpon>
     </Content>
     <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="ApplicationInsights.config">
@@ -189,8 +194,9 @@
     <Content Include="Content\webfonts\fa-brands-400.svg" />
     <Content Include="Content\webfonts\fa-regular-400.svg" />
     <Content Include="Content\webfonts\fa-solid-900.svg" />
-    <Content Include="Scripts\bootstrap.bundle.js" />
-    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Media\Office_Perks.jpg" />
+    <Content Include="Media\Office_Perks.mp4" />
+    <Content Include="Media\Office_Perks.webm" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
@@ -201,94 +207,6 @@
     <Content Include="Scripts\esm\popper.js.map" />
     <Content Include="Scripts\esm\popper-utils.min.js.map" />
     <Content Include="Scripts\esm\popper-utils.js.map" />
-    <Content Include="Scripts\bootstrap.min.js.map" />
-    <Content Include="Scripts\bootstrap.js.map" />
-    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
-    <Content Include="Scripts\bootstrap.bundle.js.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap\_variables.scss" />
-    <Content Include="Content\bootstrap\_utilities.scss" />
-    <Content Include="Content\bootstrap\_type.scss" />
-    <Content Include="Content\bootstrap\_transitions.scss" />
-    <Content Include="Content\bootstrap\_tooltip.scss" />
-    <Content Include="Content\bootstrap\_tables.scss" />
-    <Content Include="Content\bootstrap\_root.scss" />
-    <Content Include="Content\bootstrap\_reboot.scss" />
-    <Content Include="Content\bootstrap\_progress.scss" />
-    <Content Include="Content\bootstrap\_print.scss" />
-    <Content Include="Content\bootstrap\_popover.scss" />
-    <Content Include="Content\bootstrap\_pagination.scss" />
-    <Content Include="Content\bootstrap\_navbar.scss" />
-    <Content Include="Content\bootstrap\_nav.scss" />
-    <Content Include="Content\bootstrap\_modal.scss" />
-    <Content Include="Content\bootstrap\_mixins.scss" />
-    <Content Include="Content\bootstrap\_media.scss" />
-    <Content Include="Content\bootstrap\_list-group.scss" />
-    <Content Include="Content\bootstrap\_jumbotron.scss" />
-    <Content Include="Content\bootstrap\_input-group.scss" />
-    <Content Include="Content\bootstrap\_images.scss" />
-    <Content Include="Content\bootstrap\_grid.scss" />
-    <Content Include="Content\bootstrap\_functions.scss" />
-    <Content Include="Content\bootstrap\_forms.scss" />
-    <Content Include="Content\bootstrap\_dropdown.scss" />
-    <Content Include="Content\bootstrap\_custom-forms.scss" />
-    <Content Include="Content\bootstrap\_code.scss" />
-    <Content Include="Content\bootstrap\_close.scss" />
-    <Content Include="Content\bootstrap\_carousel.scss" />
-    <Content Include="Content\bootstrap\_card.scss" />
-    <Content Include="Content\bootstrap\_buttons.scss" />
-    <Content Include="Content\bootstrap\_button-group.scss" />
-    <Content Include="Content\bootstrap\_breadcrumb.scss" />
-    <Content Include="Content\bootstrap\_badge.scss" />
-    <Content Include="Content\bootstrap\_alert.scss" />
-    <Content Include="Content\bootstrap\utilities\_visibility.scss" />
-    <Content Include="Content\bootstrap\utilities\_text.scss" />
-    <Content Include="Content\bootstrap\utilities\_spacing.scss" />
-    <Content Include="Content\bootstrap\utilities\_sizing.scss" />
-    <Content Include="Content\bootstrap\utilities\_screenreaders.scss" />
-    <Content Include="Content\bootstrap\utilities\_position.scss" />
-    <Content Include="Content\bootstrap\utilities\_float.scss" />
-    <Content Include="Content\bootstrap\utilities\_flex.scss" />
-    <Content Include="Content\bootstrap\utilities\_embed.scss" />
-    <Content Include="Content\bootstrap\utilities\_display.scss" />
-    <Content Include="Content\bootstrap\utilities\_clearfix.scss" />
-    <Content Include="Content\bootstrap\utilities\_borders.scss" />
-    <Content Include="Content\bootstrap\utilities\_background.scss" />
-    <Content Include="Content\bootstrap\utilities\_align.scss" />
-    <Content Include="Content\bootstrap\mixins\_visibility.scss" />
-    <Content Include="Content\bootstrap\mixins\_transition.scss" />
-    <Content Include="Content\bootstrap\mixins\_text-truncate.scss" />
-    <Content Include="Content\bootstrap\mixins\_text-hide.scss" />
-    <Content Include="Content\bootstrap\mixins\_text-emphasis.scss" />
-    <Content Include="Content\bootstrap\mixins\_table-row.scss" />
-    <Content Include="Content\bootstrap\mixins\_size.scss" />
-    <Content Include="Content\bootstrap\mixins\_screen-reader.scss" />
-    <Content Include="Content\bootstrap\mixins\_resize.scss" />
-    <Content Include="Content\bootstrap\mixins\_reset-text.scss" />
-    <Content Include="Content\bootstrap\mixins\_pagination.scss" />
-    <Content Include="Content\bootstrap\mixins\_navbar-align.scss" />
-    <Content Include="Content\bootstrap\mixins\_nav-divider.scss" />
-    <Content Include="Content\bootstrap\mixins\_lists.scss" />
-    <Content Include="Content\bootstrap\mixins\_list-group.scss" />
-    <Content Include="Content\bootstrap\mixins\_image.scss" />
-    <Content Include="Content\bootstrap\mixins\_hover.scss" />
-    <Content Include="Content\bootstrap\mixins\_grid.scss" />
-    <Content Include="Content\bootstrap\mixins\_grid-framework.scss" />
-    <Content Include="Content\bootstrap\mixins\_gradients.scss" />
-    <Content Include="Content\bootstrap\mixins\_forms.scss" />
-    <Content Include="Content\bootstrap\mixins\_float.scss" />
-    <Content Include="Content\bootstrap\mixins\_clearfix.scss" />
-    <Content Include="Content\bootstrap\mixins\_caret.scss" />
-    <Content Include="Content\bootstrap\mixins\_buttons.scss" />
-    <Content Include="Content\bootstrap\mixins\_breakpoints.scss" />
-    <Content Include="Content\bootstrap\mixins\_box-shadow.scss" />
-    <Content Include="Content\bootstrap\mixins\_border-radius.scss" />
-    <Content Include="Content\bootstrap\mixins\_badge.scss" />
-    <Content Include="Content\bootstrap\mixins\_background-variant.scss" />
-    <Content Include="Content\bootstrap\mixins\_alert.scss" />
-    <Content Include="Content\bootstrap\bootstrap.scss" />
-    <Content Include="Content\bootstrap\bootstrap-reboot.scss" />
-    <Content Include="Content\bootstrap\bootstrap-grid.scss" />
     <Content Include="Content\Site.scss" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
@@ -329,6 +247,16 @@
     <Content Include="Content\webfonts\fa-solid-900.woff" />
     <Content Include="Content\webfonts\fa-solid-900.woff2" />
     <Content Include="Content\components\_forms.scss" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\_login.scss" />
+    <Content Include="Media\Office_Perks.ogv" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />
@@ -353,7 +281,9 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -381,6 +311,13 @@
     <Content Include="Views\Employees\Details.cshtml" />
     <Content Include="Views\Employees\Edit.cshtml" />
     <Content Include="Views\Employees\Index.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Users\Create.cshtml" />
+    <Content Include="Views\Users\Delete.cshtml" />
+    <Content Include="Views\Users\Details.cshtml" />
+    <Content Include="Views\Users\Edit.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Shared\_FluidLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
