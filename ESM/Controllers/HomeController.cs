@@ -33,11 +33,12 @@ namespace ESM.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(User objUser)
         {
+            ESMContext db = new ESMContext();
             try
             {
                 if (ModelState.IsValid)
                 {
-                    using (ESMContext db = new ESMContext())
+                    using (db)
                     {
                         var obj = db.Users.Where(a => a.Email.Equals(objUser.Email) && a.Password.Equals(objUser.Password)).FirstOrDefault();
                         if (obj != null)
