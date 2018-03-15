@@ -23,6 +23,12 @@ namespace ESM.Controllers
             
         }
 
+        public ActionResult Logout()
+        {
+            Session.Abandon();
+            return RedirectToAction("Login");
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Login(User objUser)
@@ -49,21 +55,19 @@ namespace ESM.Controllers
             {
 
             }
-            
-            return View(objUser);
+
+            return RedirectToAction("Login");
         }
 
         public ActionResult Index()
         {
             if(Session["UserId"] != null)
             {
-                ViewBag.UserName = Session["UserName"];
-                ViewBag.UserSurname = Session["UserSurname"];
                 return View();
             }
             else
             {
-                return View("Login", "_FluidLayout", User);
+                return RedirectToAction("Login");
             }
             
         }
