@@ -19,21 +19,19 @@ namespace ESM.Models
 {
     class Calculator
     {
-        // Deklaracja zmiennych kalkulatora
 
         public bool HomeWorker { get; set; } // czy pracownik miejscowy czy dojezdzajacy - potrzebne do kosztow uzyskania przychodów 
-        // true > pracownik miejscowy, false > dojeżdzający
-        public double Kup { get; set; } // koszt uzyskania przychodu
+                                             // true > pracownik miejscowy, false > dojeżdzający
+        public double Kup { get; set; }      // koszt uzyskania przychodu
 
-        public double Brutto { get; set; } //kwota brutto wynagrodzenia
+        public double Brutto { get; set; }   //kwota brutto wynagrodzenia
 
-        public double Netto { get; set; } //kwota netto wynagrodzenia
+        public double Netto { get; set; }    //kwota netto wynagrodzenia
 
         public double EmployeeCost { get; set; } //pełny koszt pracodawcy związany z zatrudnieniem pracownika
 
-        // Deklaracja metod
-
-        // Kalkulator obliczający kwotę netto
+      
+       
         public double CalcNetto()  //kalkulator obliczający kwotę netto z podanej kwoty brutto
         {
             //ustalanie zmiennej koszt uzyskania przychodów

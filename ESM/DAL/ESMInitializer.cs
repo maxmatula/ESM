@@ -14,8 +14,11 @@ namespace ESM.DAL
             var users = new List<User>{
                 new User{Name="Zbyszek", Surname="Kowalski", Email="admin@admin.pl", Password="1234"}
             };
-            var employees = new List<Employee>{
-                new Employee{Name="Zbyszek", Surname="Kowalski", BirthDate="2017-01-01", Title="Marketing Specialist", Picture="http://1.bp.blogspot.com/-BtCpds1720g/UIruddlUqTI/AAAAAAAAHis/aTC2tMLU8NU/s400/zjarany-zbyszek-10-guy-stoner-guy-oryginalne-zdjecia-2-mem.jpg" }
+            var employees = new List<Employee>
+            {
+                new Employee{Name = "Zbyszek", Surname = "Kowalski", Title =  "Marketing Specialist", Picture = "http://www.pngmart.com/files/3/Man-PNG-Pic.png"},
+                new Employee{Name = "Jacek", Surname = "Mak", Title =  "Project Manager", Picture = "https://static.pexels.com/photos/213117/pexels-photo-213117.jpeg"}
+               
             };
 
             employees.ForEach(s => context.Employees.Add(s)); context.SaveChanges();
