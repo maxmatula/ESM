@@ -47,7 +47,7 @@ namespace ESM.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Surname,BirthDate,Title,Picture")] Employee employee)
+        public ActionResult Create([Bind(Include = "Id,Name,Surname,Title,Picture")] Employee employee)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +79,7 @@ namespace ESM.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Surname,BirthDate,Title,Picture")] Employee employee)
+        public ActionResult Edit([Bind(Include = "Id,Name,Surname,Title,Picture")] Employee employee)
         {
             if (ModelState.IsValid)
             {
