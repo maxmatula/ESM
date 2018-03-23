@@ -170,6 +170,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\NinjectDependencyReslover.cs" />
     <Compile Include="Models\Calculator.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\EmployeeList.cs" />
