@@ -159,12 +159,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IEmployeeList.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="DAL\EFEmployeeRepository.cs" />
     <Compile Include="DAL\ESMContext.cs" />
     <Compile Include="DAL\ESMInitializer.cs" />
     <Compile Include="Global.asax.cs">
@@ -173,7 +176,6 @@
     <Compile Include="Infrastructure\NinjectDependencyReslover.cs" />
     <Compile Include="Models\Calculator.cs" />
     <Compile Include="Models\Employee.cs" />
-    <Compile Include="Models\EmployeeList.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

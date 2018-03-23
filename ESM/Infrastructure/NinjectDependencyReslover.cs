@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Ninject;
+using ESM.Abstract;
+using ESM.DAL;
 
 namespace ESM.Infrastructure
 {
@@ -29,7 +31,7 @@ namespace ESM.Infrastructure
 
         private void AddBindings()
         {
-            //tutaj wrzucamy wszystkie powiązania
+            kernel.Bind<IEmployeeList>().To<EFEmployeeRepository>();
         }
     }
 }
