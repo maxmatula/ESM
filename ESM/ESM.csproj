@@ -175,6 +175,7 @@
     </Compile>
     <Compile Include="Infrastructure\NinjectDependencyReslover.cs" />
     <Compile Include="Models\Calculator.cs" />
+    <Compile Include="Models\Company.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
