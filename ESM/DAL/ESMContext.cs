@@ -15,6 +15,11 @@ namespace ESM.DAL
         public DbSet<Employee> Employees { get; set; }
         public DbSet<User> Users { get; set; }
 
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder) { modelBuilder.Conventions.Remove<PluralizingTableNameConvention>(); }
+
+        public System.Data.Entity.DbSet<ESM.Models.Company> Companies { get; set; }
+
+        
     }
 }

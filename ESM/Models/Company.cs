@@ -8,7 +8,7 @@ namespace ESM.Models
 {
     public class Company
     {
-        public Guid Id { get; set; }
+        public Guid Id { get;  set; }
 
         [Required]
         [StringLength(128)]
