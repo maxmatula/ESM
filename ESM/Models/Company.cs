@@ -18,5 +18,14 @@ namespace ESM.Models
 
         public string Description { get; set; }
         public decimal TotalEarnings { get; set; }
+
+
+        public Company()
+        {
+            Id = Guid.NewGuid();
+        }
+
     }
+
+
 }
