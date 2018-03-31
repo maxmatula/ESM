@@ -9,8 +9,8 @@ namespace ESM.Models
     {
         public Guid ID { get; set; }
 
-        public Guid UserID { get; set; }
-        public Guid CompanyID { get; set; }
+        public string UserID { get; set; }
+        public string CompanyID { get; set; }
 
         public ReferenceUserCompany()
         {

@@ -20,6 +20,10 @@ namespace ESM.DAL
 
         public System.Data.Entity.DbSet<ESM.Models.Company> Companies { get; set; }
 
-        
+        public System.Data.Entity.DbSet<ESM.Models.ReferenceUserCompany> ReferenceUserCompanies { get; set; }
+
+
+
+
     }
 }
