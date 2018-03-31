@@ -1,15 +1,13 @@
-﻿//Page Header 
-@import 'variables';
-@import 'mixins';
-@import 'placeholders';
+﻿/// <reference path="../base/variables" /
+/// <reference path="../base/mixins" /
 
 .main-header {
-    background-color: $primary-dark;
+    background-color: $primary--dark;
     height: 100vh;
     position: fixed;
     top: 0;
     left: 0;
-    padding: $col-offset;
+    padding: $offset--medium;
     display: flex;
     flex-direction: column;
     align-content: center;
@@ -19,7 +17,7 @@
     }
 
     &__user {
-        @include padding-tb($col-offset);
+        @include padding-tb($offset--medium);
 
         .user {
             &__label, &__name {
@@ -27,26 +25,26 @@
             }
 
             &__image {
-                padding: $text-offset;
+                padding: $offset--small;
                 max-width: 55px;
             }
 
             &__label {
-                font-size: $font-size-small;
+                font-size: $font__size--small;
                 color: $secondary;
             }
 
             &__name {
-                font-size: $font-size-large;
+                font-size: $font__size--large;
                 color: $tetriary;
-                font-weight: $font-weight-bolder;
+                font-weight: $font__weight--bolder;
                 white-space: nowrap;
             }
         }
     }
 
     &__links {
-        @include margin-lr(-$col-offset);
+        @include margin-lr(-$offset--medium);
 
         ul {
             list-style-type: none;
@@ -63,36 +61,36 @@
 
         > ul {
             > li {
-                margin-bottom: $block-offset;
+                margin-bottom: $offset--medium;
 
                 > a {
                     background-color: $primary;
                     display: block;
-                    padding: $col-offset;
-                    font-weight: $font-weight-bold;
+                    padding: $offset--medium;
+                    font-weight: $font__weight--bold;
 
                     &:hover, &:focus {
-                        background-color: $primary-light;
+                        background-color: $primary--light;
                     }
                 }
 
                 &.active {
                     > a {
-                        background-color: $primary-light;
+                        background-color: $primary--light;
                     }
                 }
             }
         }
 
         .child {
-            padding: $col-offset;
+            padding: $offset--medium;
             margin-left: 20%;
             display: none;
         }
 
         .separator {
             border-bottom: 1px solid $primary;
-            @include margin-tb($text-offset);
+            @include margin-tb($offset--small);
         }
 
         .parent {
@@ -105,7 +103,7 @@
                         font-family: "Font Awesome 5 Free";
                         position: absolute;
                         top: 50%;
-                        right: $col-offset;
+                        right: $offset--medium;
                         transform: translateY(-50%);
                         z-index: 0;
                     }
@@ -115,12 +113,12 @@
     }
 
     &__footer {
-        background-color: darken($primary-dark, 10%);
+        background-color: darken($primary--dark, 10%);
         font-size: 10px;
         color: $gray;
-        margin: -$col-offset;
+        margin: -$offset--medium;
         margin-top: 0;
-        padding: $col-offset;
+        padding: $offset--medium;
 
         img {
             width: 150px;

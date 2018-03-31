@@ -1,0 +1,21 @@
+﻿@using ESM.Models;
+@using ESM.Controllers;
+@{
+    List<Employee> Employees = EmployeesController.GetEmployeesList();
+}
+
+<div class="col-xs-12">
+    <div class="row">
+        <ul class="employees-list">
+            @foreach (var item in Employees)
+            {
+            <li class="employees-list__item employee">
+                <img src="@item.Picture" alt="" class="employee__image img-circle img-responsive" />
+                <h4 class="employee__name"><span class="name">@item.Name</span> <span class="surname">@item.Surname</span></h4>
+                <h5 class="employee__title">@item.Title</h5>
+            </li>
+            }
+        </ul>
+    </div>
+</div>
+

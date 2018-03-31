@@ -12,7 +12,7 @@ namespace ESM.Controllers
     {
         public ActionResult Login()
         {
-            if(Session["UserId"] == null)
+            if (Session["UserId"] == null)
             {
                 return View();
             }
@@ -20,7 +20,7 @@ namespace ESM.Controllers
             {
                 return RedirectToAction("Index");
             }
-            
+
         }
 
         public ActionResult Logout()
@@ -62,7 +62,7 @@ namespace ESM.Controllers
 
         public ActionResult Index()
         {
-            if(Session["UserId"] != null)
+            if (Session["UserId"] != null)
             {
                 return View();
             }
@@ -70,7 +70,7 @@ namespace ESM.Controllers
             {
                 return RedirectToAction("Login");
             }
-            
+
         }
 
         public ActionResult About()
@@ -86,5 +86,6 @@ namespace ESM.Controllers
 
             return View();
         }
+
     }
 }

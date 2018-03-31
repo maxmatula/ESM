@@ -1,0 +1,21 @@
+﻿//Base
+@import "base/variables";
+@import "base/mixins";
+@import "base/placeholders";
+@import "base/functions";
+
+//Global
+@import "base/global";
+@import "base/typography";
+
+//Modules
+@import "modules/header";
+@import "modules/sidebar";
+@import "modules/search-form";
+@import "modules/employees-list";
+
+//Components
+@import "components/forms";
+
+//Pages
+@import "pages/login";

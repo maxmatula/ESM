@@ -16,3 +16,14 @@
     margin-left: $size;
     margin-right: $size;
 }
+
+@mixin button-reset(){
+    background: none;
+    border: none;
+    display: inline-block;
+}
+
+@mixin center-block() {
+    display: block;
+    margin: 0 auto;
+}

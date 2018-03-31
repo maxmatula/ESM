@@ -124,5 +124,11 @@ namespace ESM.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public static List<Employee> GetEmployeesList()
+        {
+            ESMContext db = new ESMContext();
+            return db.Employees.ToList();
+        }
     }
 }

@@ -181,10 +181,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\font-awesome\fa-solid.css">
       <DependentUpon>fa-solid.scss</DependentUpon>
     </Content>
@@ -197,13 +194,13 @@
     <Content Include="Content\font-awesome\fontawesome.min.css">
       <DependentUpon>fontawesome.css</DependentUpon>
     </Content>
-    <Content Include="Content\Site.min.css">
+    <Content Include="Content\css\Site.css" />
+    <Content Include="Content\css\Site.min.css">
       <DependentUpon>Site.css</DependentUpon>
     </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -225,17 +222,17 @@
     <Content Include="Scripts\esm\popper.js.map" />
     <Content Include="Scripts\esm\popper-utils.min.js.map" />
     <Content Include="Scripts\esm\popper-utils.js.map" />
-    <Content Include="Content\Site.scss" />
+    <Content Include="Content\sass\Site.scss" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
-    <Content Include="Content\_variables.scss" />
-    <Content Include="Content\_mixins.scss" />
-    <Content Include="Content\_placeholders.scss" />
-    <Content Include="Content\_header.scss" />
-    <Content Include="Content\_global.scss" />
-    <Content Include="Content\_sidebar.scss" />
+    <Content Include="Content\sass\base\_variables.scss" />
+    <Content Include="Content\sass\base\_mixins.scss" />
+    <Content Include="Content\sass\base\_placeholders.scss" />
+    <Content Include="Content\sass\modules\_header.scss" />
+    <Content Include="Content\sass\base\_global.scss" />
+    <Content Include="Content\sass\modules\_sidebar.scss" />
     <Content Include="Content\font-awesome\fa-brands.scss" />
     <Content Include="Content\font-awesome\fa-regular.scss" />
     <Content Include="Content\font-awesome\fa-solid.scss" />
@@ -264,17 +261,18 @@
     <Content Include="Content\webfonts\fa-solid-900.ttf" />
     <Content Include="Content\webfonts\fa-solid-900.woff" />
     <Content Include="Content\webfonts\fa-solid-900.woff2" />
-    <Content Include="Content\components\_forms.scss" />
+    <Content Include="Content\sass\components\_forms.scss" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
-    <Content Include="Content\_login.scss" />
+    <Content Include="Content\css\bootstrap.min.css.map" />
+    <Content Include="Content\sass\pages\_login.scss" />
     <Content Include="Media\Office_Perks.ogv" />
+    <Content Include="Content\sass\base\_functions.scss" />
+    <Content Include="Content\sass\base\_typography.scss" />
+    <Content Include="Content\sass\modules\_search-form.scss" />
+    <Content Include="Content\sass\modules\_employees-list.scss" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />
@@ -336,9 +334,12 @@
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Shared\_FluidLayout.cshtml" />
+    <Content Include="Views\Shared\Partials\SearchForm.cshtml" />
+    <Content Include="Views\Shared\Partials\EmployeesList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\sass\views\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

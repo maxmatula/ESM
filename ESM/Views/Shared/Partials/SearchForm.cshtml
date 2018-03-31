@@ -1,0 +1,11 @@
+﻿<div class="col-xs-12 col-sm-6 search-form">
+    @using (Html.BeginForm())
+    {
+        <div class="form-group search-form__wrapper">
+            @Html.TextBox("Search", null, new { @class = "form-control search-form__input", placeholder = "Search" })
+            <button class="search-form__submit"><i class="fa fa-search"></i></button>
+        </div>
+
+    }
+</div>
+<div class="clearfix"></div>

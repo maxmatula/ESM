@@ -1,0 +1,16 @@
+﻿.search-form{
+    &__wrapper{
+        position: relative;
+    }
+    &__submit{
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        @include button-reset;
+        color: $gray;
+    }
+    &__input{
+        padding-left: 30px;
+    }
+}

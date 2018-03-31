@@ -1,10 +1,8 @@
-﻿@import 'variables';
-@import 'mixins';
-@import 'placeholders';
+﻿/// <reference path="variables" /
 
 body {
-    font: $font-weight-base $font-size-base $font-family-base;
-    line-height: $line-height-base;
+    font: $font__weight--base $font__size--base $font__family--base;
+    line-height: $line__height--base;
     min-width: 320px;
     min-height: 400px;
     position: relative;
@@ -27,7 +25,7 @@ a{
 }
 
 .main-content{
-    padding: $col-offset;
+    padding: $offset--medium;
     display: none;
 }
 

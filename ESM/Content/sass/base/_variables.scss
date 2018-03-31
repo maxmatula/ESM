@@ -1,0 +1,40 @@
+﻿// Colors
+$primary: #41344e;
+$primary--light: #5e4370;
+$primary--dark: #392f45;
+$secondary: #deb144;
+$tetriary: #ef6b94;
+
+$white: #fff;
+$black: #24222b;
+
+$gray: #aaa;
+
+//Fonts
+$font__family--base: 'Roboto', sans-serif;
+
+//Font-sizes
+$_font__size: 16px;
+$font__size--base: $_font__size;
+$font__size--small: $_font__size*0.8;
+$font__size--large: $_font__size*1.5;
+
+//Font-weights
+$font__weight--base: 400;
+$font__weight--light: 300;
+$font__weight--bold: 700;
+$font__weight--bolder: 900;
+
+//Offsets
+$_offset: 5px;
+$offset--small: $_offset;
+$offset--medium: $_offset*3;
+$offset--large: $_offset*6;
+
+//Typography
+$line__height--small: 1.2;
+$line__height--base: 1.6;
+$line__height--large: 2;
+
+
+

@@ -1,0 +1,41 @@
+﻿.employees-list {
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    @include padding-lr($offset--large);
+
+    &__item {
+        padding: $offset--medium;
+        text-align: center;
+        transition: 0.3s;
+        margin: $offset--medium $offset--large;
+        width: calc(50% - #{$offset--large*2});
+
+        &:hover, &.active {
+            background-color: $primary--dark;
+        }
+    }
+
+    .employee {
+        &__image {
+            @include center-block;
+            margin-bottom: $offset--medium;
+        }
+
+        &__name, &__title {
+            font-weight: $font__weight--base;
+        }
+
+        &__name {
+            line-height: $line__height--small;
+            margin-bottom: $offset--medium;
+            .surname {
+                display: block;
+                text-transform: uppercase;
+            }
+        }
+        &__title{
+            text-transform: uppercase;
+        }
+    }
+}
