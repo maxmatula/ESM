@@ -11,7 +11,7 @@ namespace ESM.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
             ContextKey = "ESM.DAL.ESMContext";
         }
 
@@ -31,7 +31,7 @@ namespace ESM.Migrations
 
            );
 
-            context.Users.AddOrUpdate(x => x.UserId,
+            context.Users.AddOrUpdate(x => x.Id,
 
                 new User { Name = "Zbyszek", Surname = "Kowalski", Email = "admin@admin.pl", Password = "1234", IsActive = true}
             );

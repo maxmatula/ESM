@@ -18,6 +18,8 @@ namespace ESM.DAL
         public DbSet<Employee> Employees { get; set; }
         public DbSet<User> Users { get; set; }
 
+        public DbSet<UserCompanyReference> userCompanyReferences { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder) { modelBuilder.Conventions.Remove<PluralizingTableNameConvention>(); }
     }
 }

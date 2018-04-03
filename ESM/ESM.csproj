@@ -173,18 +173,19 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\NinjectDependencyReslover.cs" />
-    <Compile Include="Migrations\201803311845277_InitialCreate.cs" />
-    <Compile Include="Migrations\201803311845277_InitialCreate.Designer.cs">
-      <DependentUpon>201803311845277_InitialCreate.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Calculator.cs" />
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserCompanyReference.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\ESM.mdf" />
+    <Content Include="App_Data\ESM_log.ldf">
+      <DependentUpon>ESM.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\font-awesome\fa-solid.css">
       <DependentUpon>fa-solid.scss</DependentUpon>
@@ -342,7 +343,6 @@
     <Content Include="Views\Shared\Partials\EmployeesList.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Content\sass\views\" />
   </ItemGroup>
   <ItemGroup>
@@ -353,11 +353,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201803311845277_InitialCreate.resx">
-      <DependentUpon>201803311845277_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
