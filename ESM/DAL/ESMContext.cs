@@ -10,7 +10,10 @@ namespace ESM.DAL
 {
     public class ESMContext : DbContext
     {
-        public ESMContext() : base("ESMContext"){}
+        public ESMContext() : base("ESMContextConnectionString")
+        {
+            Database.SetInitializer<ESMContext>(new CreateDatabaseIfNotExists<ESMContext>());
+        }
 
         public DbSet<Employee> Employees { get; set; }
         public DbSet<User> Users { get; set; }

@@ -169,7 +169,6 @@
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="DAL\EFEmployeeRepository.cs" />
     <Compile Include="DAL\ESMContext.cs" />
-    <Compile Include="DAL\ESMInitializer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
