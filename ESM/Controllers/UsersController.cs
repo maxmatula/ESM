@@ -22,13 +22,15 @@ namespace ESM.Controllers
         }
 
         // GET: Users/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(Guid? id)
         {
-            if (id == null)
+
+
+            if (!id.HasValue)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.Users.Find(id);
+            var user = db.Users.Where(x => x.Id == id);
             if (user == null)
             {
                 return HttpNotFound();
