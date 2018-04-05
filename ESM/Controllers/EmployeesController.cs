@@ -16,9 +16,22 @@ namespace ESM.Controllers
         private ESMContext db = new ESMContext();
 
         // GET: Employees
-        public ActionResult Index()
+        public ActionResult Index(string searchString = null)
         {
-            return View(db.Employees.ToList());
+
+            if (!String.IsNullOrWhiteSpace(searchString))
+            {
+                var employees = db.Employees.ToList()
+                    .Where(x => x.Name.Contains(searchString) || x.Surname.Contains(searchString) || x.Title.Contains(searchString));
+                return View(employees.ToList());
+                
+            }
+            else
+            {
+                return View(db.Employees.ToList());
+            }
+
+            
         }
 
         // GET: Employees/Details/5

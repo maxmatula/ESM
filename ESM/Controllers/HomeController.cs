@@ -10,6 +10,7 @@ namespace ESM.Controllers
 {
     public class HomeController : Controller
     {
+        
         public ActionResult Login()
         {
             if (Session["UserId"] == null)
@@ -60,11 +61,28 @@ namespace ESM.Controllers
             return RedirectToAction("Login");
         }
 
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
+            
+
             if (Session["UserId"] != null)
             {
-                return View();
+                ESMContext db = new ESMContext();
+
+                var employees = from s in db.Employees select s;
+
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    employees = employees.Where(x => x.Name.Contains(searchString) 
+                        || x.Surname.Contains(searchString) 
+                        || x.Title.Contains(searchString));
+
+                }
+                
+                    return View(employees.ToList());
+                
+
+                
             }
             else
             {

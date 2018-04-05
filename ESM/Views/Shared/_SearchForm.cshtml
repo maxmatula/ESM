@@ -2,7 +2,7 @@
     @using (Html.BeginForm())
     {
         <div class="form-group search-form__wrapper">
-            @Html.TextBox("Search", null, new { @class = "form-control search-form__input", placeholder = "Search" })
+            @Html.TextBox("searchString", null, new { @class = "form-control search-form__input", placeholder = "Search" })
             <button class="search-form__submit"><i class="fa fa-search"></i></button>
         </div>
 
