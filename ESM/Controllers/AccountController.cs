@@ -10,6 +10,10 @@ namespace ESM.Controllers
 {
     public class AccountController : Controller
     {
+        public ActionResult Index()
+        {
+            return RedirectToAction("Login");
+        }
         public bool IsLogged()
         {
             return Session["Id"] != null;

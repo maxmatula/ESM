@@ -19,12 +19,12 @@ namespace ESM
                 defaults: new { controller = "Employees", id = UrlParameter.Optional.ToString() }
                 );
 
-            routes.MapRoute(
-               name: "HomeLogin",
-               url: "Home/Login/{id}",
+            /*routes.MapRoute(
+               name: "AccountLogin",
+               url: "Account/Login/{id}",
                defaults: new { controller = "Home", action = "Login", id = UrlParameter.Optional },
                constraints: new { controller = "Home", action = "Login"} 
-           );
+           );*/
 
 
             routes.MapRoute(

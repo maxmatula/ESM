@@ -10,8 +10,7 @@ namespace ESM.Controllers
 {
     public class HomeController : Controller
     {
-        
-        public ActionResult Login()
+        public ActionResult Index()
         {
             return View();
         }
@@ -23,54 +22,30 @@ namespace ESM.Controllers
             return View();
         }
 
-            }
-
-            return RedirectToAction("Login");
-        }
-
-        public ActionResult Index(string searchString = null)
+        public ActionResult Benefits()
         {
-            
-
-            if (Session["Id"] != null)
-            {
-                ESMContext db = new ESMContext();
-
-                var employees = from s in db.Employees select s;
-
-                if (!String.IsNullOrEmpty(searchString))
-                {
-                    employees = employees.Where(x => x.Name.Contains(searchString) 
-                        || x.Surname.Contains(searchString) 
-                        || x.Title.Contains(searchString));
-
-                }
+            ViewBag.Title = "Korzyści";
 
             return View();
         }
 
-                return View(employees.ToList());
-                
+        public ActionResult Team()
+        {
+            ViewBag.Title = "Zespół";
 
-                
-            }
-            else
-            {
-                return RedirectToAction("Login");
-            }
-
+            return View();
         }
 
-        public ActionResult About()
+        public ActionResult Cooperation()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Title = "Współpraca";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Title = "Kontakt";
 
             return View();
         }
