@@ -10,7 +10,7 @@ namespace ESM.Controllers
 {
     public class HomeController : Controller
     {
-        
+
         public ActionResult Login()
         {
             if (Session["Id"] == null)
@@ -63,7 +63,6 @@ namespace ESM.Controllers
 
         public ActionResult Index(string searchString = null)
         {
-            
 
             if (Session["Id"] != null)
             {
@@ -73,10 +72,9 @@ namespace ESM.Controllers
 
                 if (!String.IsNullOrEmpty(searchString))
                 {
-                    employees = employees.Where(x => x.Name.Contains(searchString) 
-                        || x.Surname.Contains(searchString) 
+                    employees = employees.Where(x => x.Name.Contains(searchString)
+                        || x.Surname.Contains(searchString)
                         || x.Title.Contains(searchString));
-
                 }
 
                 if (Request.IsAjaxRequest())
@@ -85,9 +83,8 @@ namespace ESM.Controllers
                 }
 
                 return View(employees.ToList());
-                
 
-                
+
             }
             else
             {
@@ -96,19 +93,6 @@ namespace ESM.Controllers
 
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
 
     }
 }

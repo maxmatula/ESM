@@ -1,6 +1,6 @@
 ﻿<div class="col-xs-12 col-sm-6 search-form">
 
-    <form id="search-form" method="get" data-ajax="true" data-ajax-target="#employeeslist-section" data-ajax-update="#employeeslist-section">
+    <form method="get" data-ajax="true" data-ajax-target="#employeeslist-section" data-ajax-update="#employeeslist-section">
         <div class="form-group search-form__wrapper">
             @Html.TextBox("searchString", null, new { @class = "form-control search-form__input", placeholder = "Search" })
             <button class="search-form__submit"><i class="fa fa-search"></i></button>
@@ -9,8 +9,5 @@
 
 
 </div>
-
-<script src="~/Scripts/jquery-3.3.1.js"></script>
-<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
 
 <div class="clearfix"></div>
