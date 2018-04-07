@@ -17,69 +17,69 @@ using System.Threading.Tasks;
 
 namespace ESM.Models
 {
-    class Calculator
+    public class Calculator
     {
 
-        public bool HomeWorker { get; set; } // czy pracownik miejscowy czy dojezdzajacy - potrzebne do kosztow uzyskania przychodów 
+        public string HomeWorker { get; set; } // czy pracownik miejscowy czy dojezdzajacy - potrzebne do kosztow uzyskania przychodów 
                                              // true > pracownik miejscowy, false > dojeżdzający
-        public double Kup { get; set; }      // koszt uzyskania przychodu
+        public decimal Kup { get; set; }      // koszt uzyskania przychodu
 
-        public double Brutto { get; set; }   //kwota brutto wynagrodzenia
+        public decimal Brutto { get; set; }   //kwota brutto wynagrodzenia
 
-        public double Netto { get; set; }    //kwota netto wynagrodzenia
+        public decimal Netto { get; set; }    //kwota netto wynagrodzenia
 
-        public double EmployeeCost { get; set; } //pełny koszt pracodawcy związany z zatrudnieniem pracownika
+        public decimal EmployeeCost { get; set; } //pełny koszt pracodawcy związany z zatrudnieniem pracownika
 
       
        
-        public double CalcNetto()  //kalkulator obliczający kwotę netto z podanej kwoty brutto
+        public decimal CalcNetto()  //kalkulator obliczający kwotę netto z podanej kwoty brutto
         {
             //ustalanie zmiennej koszt uzyskania przychodów
-            if (HomeWorker == true)
+            if (HomeWorker == "Tak")
             {
-                Kup = 111.25;
+                Kup = 111.25M;
             }
             else
             {
-                Kup = 139.06;
+                Kup = 139.06M;
             }
 
-            double wynik = 0;
-            double suSpol = 0; //składki na ubezpieczenie społeczne
-            double suZdrow = 0; //składki na ubezpieczenie zdrowotne
-            double kwop = 46.33; //kwota wolna od podatku
-            double znpd = 0; //zaliczka na podatek dochodowy
-            double znpdpo = 0; //zaliczka na podatek dochowowy przed odliczeniem 
-            double znpdWlasciwa = 0; //wlasciwa zaliczka na podatek dochodowy
+            decimal wynik = 0;
+            decimal suSpol = 0; //składki na ubezpieczenie społeczne
+            decimal suZdrow = 0; //składki na ubezpieczenie zdrowotne
+            decimal kwop = 46.33M; //kwota wolna od podatku
+            decimal znpd = 0; //zaliczka na podatek dochodowy
+            decimal znpdpo = 0; //zaliczka na podatek dochowowy przed odliczeniem 
+            decimal znpdWlasciwa = 0; //wlasciwa zaliczka na podatek dochodowy
 
             // poboczne skladki
-            double emerytalna = 0;
-            double rentowa = 0;
-            double chorobowa = 0;
+            decimal emerytalna = 0;
+            decimal rentowa = 0;
+            decimal chorobowa = 0;
 
             // obliczenie skladek na ubezpieczenie spoleczne
 
-            emerytalna = Brutto * 0.0976;
-            rentowa = Brutto * 0.015;
-            chorobowa = Brutto * 0.0245;
+            emerytalna = Brutto * 0.0976M;
+            rentowa = Brutto * 0.015M;
+            chorobowa = Brutto * 0.0245M;
 
             suSpol = (emerytalna + rentowa + chorobowa);
 
             //obliczanie skladek na obezpieczenia zdrowotne
 
             suZdrow = (Brutto - suSpol);
-            suZdrow *= 0.09;
+            suZdrow *= 0.09M;
 
             //obliczanie zaliczki na podatek dochodowy
 
             znpd = (Brutto - suSpol - Kup);
-            znpd *= 0.18;
+            znpd *= 0.18M;
             znpd -= kwop;
 
             //obliczanie zaliczki na podatek dochodowy przed odliczeniem
 
             znpdpo = (Brutto - suSpol);
-            znpdpo *= 0.0775;
+            znpdpo *= 0.0775M;
 
             //obliczanie zaliczki własciwej
 
@@ -92,34 +92,34 @@ namespace ESM.Models
 
             Netto = wynik;
 
-            return wynik;
+            return Math.Round(wynik, 2);
         }
 
-        public double CalcEmployeeCost() //kalkulator obliczający pełne koszty pracodawcy z podanej kwoty brutto
+        public decimal CalcEmployeeCost() //kalkulator obliczający pełne koszty pracodawcy z podanej kwoty brutto
         {
-            double wynik = 0;
+            decimal wynik = 0;
 
             //deklaracja zmiennych
 
-            double emerytalna = 0;
-            double rentowa = 0;
-            double chorobowa = 0;
-            double snfp = 0; //skladka na fundusz pracy
-            double fgsp = 0; //składka na FGŚP
+            decimal emerytalna = 0;
+            decimal rentowa = 0;
+            decimal chorobowa = 0;
+            decimal snfp = 0; //skladka na fundusz pracy
+            decimal fgsp = 0; //składka na FGŚP
 
             //obliczamy
 
-            emerytalna = Brutto * 0.0976;
-            rentowa = Brutto * 0.065;
-            chorobowa = Brutto * 0.018;
-            snfp = Brutto * 0.0245;
-            fgsp = Brutto * 0.001;
+            emerytalna = Brutto * 0.0976M;
+            rentowa = Brutto * 0.065M;
+            chorobowa = Brutto * 0.018M;
+            snfp = Brutto * 0.0245M;
+            fgsp = Brutto * 0.001M;
 
             wynik = Brutto + emerytalna + rentowa + chorobowa + snfp + fgsp;
 
             EmployeeCost = wynik;
 
-            return wynik;
+            return Math.Round(wynik, 2);
         }
     }
 
