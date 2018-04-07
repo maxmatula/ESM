@@ -78,8 +78,13 @@ namespace ESM.Controllers
                         || x.Title.Contains(searchString));
 
                 }
-                
-                    return View(employees.ToList());
+
+                if (Request.IsAjaxRequest())
+                {
+                    return PartialView("_EmployeesList", employees.ToList());
+                }
+
+                return View(employees.ToList());
                 
 
                 

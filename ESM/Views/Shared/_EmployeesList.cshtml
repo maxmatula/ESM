@@ -1,6 +1,6 @@
-﻿@model List<ESM.Models.Employee>
+﻿@model IEnumerable<ESM.Models.Employee>
 
-<div class="col-xs-12">
+<div id="employeeslist-section" class="col-xs-12">
     <div class="row">
         <ul class="employees-list">
             @foreach (var item in Model)
