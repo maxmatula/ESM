@@ -130,3 +130,17 @@
         }
     }
 }
+
+.home-navbar{
+    background-color: $primary--dark;
+    .navbar-nav{
+        li{
+            > a{
+                color: $white;
+                &:hover,&:focus{
+                    color: $tetriary;
+                }
+            }
+        }
+    }
+}

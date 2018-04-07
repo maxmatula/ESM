@@ -10,12 +10,15 @@
 
 //Modules
 @import "modules/header";
+@import "modules/footer";
 @import "modules/sidebar";
 @import "modules/search-form";
 @import "modules/employees-list";
 
 //Components
 @import "components/forms";
+@import "components/jumbotron";
+@import "components/buttons";
 
 //Pages
 @import "pages/login";

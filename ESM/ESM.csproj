@@ -164,8 +164,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UserPanelController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="DAL\EFEmployeeRepository.cs" />
     <Compile Include="DAL\ESMContext.cs" />
@@ -214,6 +216,8 @@
     <Content Include="Content\webfonts\fa-brands-400.svg" />
     <Content Include="Content\webfonts\fa-regular-400.svg" />
     <Content Include="Content\webfonts\fa-solid-900.svg" />
+    <Content Include="Media\Home_work.mp4" />
+    <Content Include="Media\Home_work.webm" />
     <Content Include="Media\Office_Perks.jpg" />
     <Content Include="Media\Office_Perks.mp4" />
     <Content Include="Media\Office_Perks.webm" />
@@ -278,6 +282,10 @@
     <Content Include="Content\sass\base\_typography.scss" />
     <Content Include="Content\sass\modules\_search-form.scss" />
     <Content Include="Content\sass\modules\_employees-list.scss" />
+    <Content Include="Content\sass\modules\_footer.scss" />
+    <Content Include="Content\sass\components\_jumbotron.scss" />
+    <Content Include="Content\sass\components\_buttons.scss" />
+    <Content Include="Media\Home_work.ogv" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -334,7 +342,7 @@
     <Content Include="Views\Employees\Details.cshtml" />
     <Content Include="Views\Employees\Edit.cshtml" />
     <Content Include="Views\Employees\Index.cshtml" />
-    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Users\Create.cshtml" />
     <Content Include="Views\Users\Delete.cshtml" />
     <Content Include="Views\Users\Details.cshtml" />
@@ -343,6 +351,15 @@
     <Content Include="Views\Shared\_FluidLayout.cshtml" />
     <Content Include="Views\Shared\_SearchForm.cshtml" />
     <Content Include="Views\Shared\_EmployeesList.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Shared\_HomeLayout.cshtml" />
+    <Content Include="Views\Home\Benefits.cshtml" />
+    <Content Include="Views\Home\Cooperation.cshtml" />
+    <Content Include="Views\Home\Team.cshtml" />
+    <Content Include="Views\Account\_ViewStart.cshtml" />
+    <Content Include="Views\UserPanel\Index.cshtml" />
+    <Content Include="Views\Home\_ViewStart.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\sass\views\" />
