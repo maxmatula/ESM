@@ -13,7 +13,7 @@ namespace ESM.Controllers
         
         public ActionResult Login()
         {
-            if (Session["UserId"] == null)
+            if (Session["Id"] == null)
             {
                 return View();
             }
@@ -44,7 +44,7 @@ namespace ESM.Controllers
                         var obj = db.Users.Where(a => a.Email.Equals(objUser.Email) && a.Password.Equals(objUser.Password)).FirstOrDefault();
                         if (obj != null)
                         {
-                            Session["UserId"] = obj.Id.ToString();
+                            Session["Id"] = obj.Id.ToString();
                             Session["UserName"] = obj.Name.ToString();
                             Session["UserSurname"] = obj.Surname.ToString();
                             Session["UserAvatarPath"] = obj.AvatarPath.ToString();
@@ -61,11 +61,11 @@ namespace ESM.Controllers
             return RedirectToAction("Login");
         }
 
-        public ActionResult Index(string searchString)
+        public ActionResult Index(string searchString = null)
         {
             
 
-            if (Session["UserId"] != null)
+            if (Session["Id"] != null)
             {
                 ESMContext db = new ESMContext();
 

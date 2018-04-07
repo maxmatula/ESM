@@ -49,7 +49,7 @@ namespace ESM.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "UserId,Nickname,Name,Surname,Email,Password,AvatarPath,IsActive")] User user)
+        public ActionResult Create([Bind(Include = "Id,Nickname,Name,Surname,Email,Password,AvatarPath,IsActive")] User user)
         {
             if (ModelState.IsValid)
             {
@@ -81,7 +81,7 @@ namespace ESM.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "UserId,Nickname,Name,Surname,Email,Password,AvatarPath,IsActive")] User user)
+        public ActionResult Edit([Bind(Include = "Id,Nickname,Name,Surname,Email,Password,AvatarPath,IsActive")] User user)
         {
             if (ModelState.IsValid)
             {

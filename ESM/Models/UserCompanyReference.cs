@@ -9,7 +9,7 @@ namespace ESM.Models
     public class UserCompanyReference
     {
         [Key]
-        public Guid ID { get; set; }
+        public Guid Id { get; set; }
 
         public string UserId { get; set; }
         public string CompanyId { get; set; }
@@ -20,7 +20,7 @@ namespace ESM.Models
 
         public UserCompanyReference()
         {
-            ID = Guid.NewGuid();
+            Id = Guid.NewGuid();
         }
     }
 }
