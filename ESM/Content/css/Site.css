@@ -85,9 +85,77 @@ h6, .h6 {
   .main-header__links {
     margin-left: -15px;
     margin-right: -15px; }
-    .main-header__links ul {
-      list-style-type: none;
-      padding: 0; }
+
+.main-header__buttonadd {
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+    .main-header__buttonadd ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+        .main-header__buttonadd ul li > a {
+            color: #fff;
+        }
+
+            .main-header__buttonadd ul li > a:hover, .main-header__buttonadd ul li > a:focus {
+                color: #e6e6e6;
+            }
+
+    .main-header__buttonadd > ul > li {
+        margin-bottom: 15px;
+    }
+
+        .main-header__buttonadd > ul > li > a {
+            background-color: #392f45;
+            display: block;
+            text-align: center;
+            padding: 15px;
+            font-weight: 700;
+            font-size: 24px;
+        }
+
+            .main-header__buttonadd > ul > li > a:hover, .main-header__buttonadd > ul > li > a:focus {
+                background-color: #5e4370;
+                color: #deb144;
+            }
+
+        .main-header__buttonadd > ul > li.active > a {
+            background-color: #5e4370;
+        }
+
+    .main-header__buttonadd .child {
+        padding: 15px;
+        margin-left: 20%;
+        display: none;
+    }
+
+    .main-header__buttonadd .separator {
+        border-bottom: 1px solid #41344e;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
+    .main-header__buttonadd .parent > a {
+        position: relative;
+    }
+
+        .main-header__buttonadd .parent > a:first-child:before {
+            content: "\f078";
+            font-family: "Font Awesome 5 Free";
+            position: absolute;
+            top: 50%;
+            right: 15px;
+            transform: translateY(-50%);
+            z-index: 0;
+        }
+
+.main-header__links ul {
+    list-style-type: none;
+    padding: 0;
+}
       .main-header__links ul li > a {
         color: #fff; }
         .main-header__links ul li > a:hover, .main-header__links ul li > a:focus {

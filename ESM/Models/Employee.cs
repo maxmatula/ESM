@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -8,13 +10,17 @@ namespace ESM.Models
 {
     public class Employee
     {
-  
+        [Key]
         public Guid Id { get; protected set; } //Guid to zmienna typu General Identity Number
-        public string Name { get;  set; }
+        public string Name { get; set; }
         public string Surname { get; set; }
-        public string BirthDate { get;  set; }
-        public string Title { get;  set; }
+        public string BirthDate { get; set; }
+        public string Title { get; set; }
         public string Picture { get; set; }
+
+        //klucz obcy odwołanie do tabeli Company
+        public string CompanyId { get; set; }
+        public Company Company { get; set; }
 
 
         public Employee()

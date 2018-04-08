@@ -11,129 +11,114 @@ using ESM.Models;
 
 namespace ESM.Controllers
 {
-    public class EmployeesController : Controller
+    public class CompaniesController : Controller
     {
         private ESMContext db = new ESMContext();
 
-        // GET: Employees
-        public ActionResult Index(string searchString = null)
-        {
-            ViewBag.Title = "Panel użytkownika";
-            ESMContext db = new ESMContext();
+       
 
-            string currentCompany = Session["CompanyId"].ToString();
-            var employees = db.Employees.Where(x => x.CompanyId.ToString().Equals(currentCompany));
-
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                employees = employees.Where(x => x.Name.Contains(searchString)
-                    || x.Surname.Contains(searchString)
-                    || x.Title.Contains(searchString));
-
-            }
-
-            if (Request.IsAjaxRequest())
-            {
-                return PartialView("_EmployeesList", employees.ToList());
-            }
-
-            return View(employees.ToList());
-        }
-
-        // GET: Employees/Details/5
+        // GET: Companies/Details/5
         public ActionResult Details(Guid? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employee employee = db.Employees.Find(id);
-            if (employee == null)
+            Company company = db.Companies.Find(id);
+            Session["CompanyId"] = company.Id.ToString();
+            if (company == null)
             {
                 return HttpNotFound();
             }
-            return View(employee);
+
+            return RedirectToAction("Index", "Employees");
         }
 
-        // GET: Employees/Create
+        // GET: Companies/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Employees/Create
+        // POST: Companies/Create
         // Aby zapewnić ochronę przed atakami polegającymi na przesyłaniu dodatkowych danych, włącz określone właściwości, z którymi chcesz utworzyć powiązania.
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Surname,Title,Picture")] Employee employee)
+        public ActionResult Create([Bind(Include = "Id,Name,Logo,Description")] Company company, UserCompanyReference reference)
         {
             if (ModelState.IsValid)
             {
-                employee.CompanyId = Session["CompanyId"].ToString();
-                db.Employees.Add(employee);
+                company.Id = Guid.NewGuid();
+                reference.Id = Guid.NewGuid();
+                reference.UserId = Session["UserId"].ToString();
+                reference.CompanyId = company.Id.ToString();
+                db.Companies.Add(company);
+                db.userCompanyReferences.Add(reference);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "UserPanel");
             }
 
-            return View(employee);
+            return View(company);
         }
 
-        // GET: Employees/Edit/5
+        // GET: Companies/Edit/5
         public ActionResult Edit(Guid? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employee employee = db.Employees.Find(id);
-            if (employee == null)
+            Company company = db.Companies.Find(id);
+            if (company == null)
             {
                 return HttpNotFound();
             }
-            return View(employee);
+            return View(company);
         }
 
-        // POST: Employees/Edit/5
+        // POST: Companies/Edit/5
         // Aby zapewnić ochronę przed atakami polegającymi na przesyłaniu dodatkowych danych, włącz określone właściwości, z którymi chcesz utworzyć powiązania.
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Surname,Title,Picture")] Employee employee)
+        public ActionResult Edit([Bind(Include = "Id,Name,Logo,Description")] Company company, UserCompanyReference reference)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(employee).State = EntityState.Modified;
+                db.Entry(company).State = EntityState.Modified;
+                db.Entry(reference).State = EntityState.Unchanged;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "UserPanel");
             }
-            return View(employee);
+       
+            return View(company);
         }
 
-        // GET: Employees/Delete/5
+        // GET: Companies/Delete/5
         public ActionResult Delete(Guid? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employee employee = db.Employees.Find(id);
-            if (employee == null)
+            Company company = db.Companies.Find(id);
+            if (company == null)
             {
                 return HttpNotFound();
             }
-            return View(employee);
+            return View(company);
         }
 
-        // POST: Employees/Delete/5
+        // POST: Companies/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            Employee employee = db.Employees.Find(id);
-            db.Employees.Remove(employee);
+            Company company = db.Companies.Find(id);
+            db.Companies.Remove(company);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "UserPanel");
         }
 
         protected override void Dispose(bool disposing)
@@ -143,12 +128,6 @@ namespace ESM.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
-        }
-
-        public static List<Employee> GetEmployeesList()
-        {
-            ESMContext db = new ESMContext();
-            return db.Employees.ToList();
         }
     }
 }

@@ -166,6 +166,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CalculatorController.cs" />
+    <Compile Include="Controllers\CompaniesController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserPanelController.cs" />
@@ -217,6 +218,7 @@
     <Content Include="Content\webfonts\fa-brands-400.svg" />
     <Content Include="Content\webfonts\fa-regular-400.svg" />
     <Content Include="Content\webfonts\fa-solid-900.svg" />
+    <Content Include="Images\esm200x200.jpg" />
     <Content Include="Media\Home_work.mp4" />
     <Content Include="Media\Home_work.webm" />
     <Content Include="Media\Office_Perks.jpg" />
@@ -364,6 +366,12 @@
     <Content Include="Views\Calculator\_Calculator.cshtml" />
     <Content Include="Views\Calculator\Index.cshtml" />
     <Content Include="Views\Calculator\_CalculatorCalc.cshtml" />
+    <Content Include="Views\Companies\Create.cshtml" />
+    <Content Include="Views\Companies\Delete.cshtml" />
+    <Content Include="Views\Companies\Details.cshtml" />
+    <Content Include="Views\Companies\Edit.cshtml" />
+    <Content Include="Views\Shared\_CompaniesList.cshtml" />
+    <Content Include="Views\Shared\_SearchFormCompanies.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\sass\views\" />

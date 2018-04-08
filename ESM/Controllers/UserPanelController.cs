@@ -16,23 +16,28 @@ namespace ESM.Controllers
             ViewBag.Title = "Panel użytkownika";
             ESMContext db = new ESMContext();
 
-            var employees = from s in db.Employees select s;
+            string currentUserId = Session["UserId"].ToString();
+
+            var companies = from company in db.Companies
+                            join reference in db.userCompanyReferences
+                            on company.Id.ToString() equals reference.CompanyId
+                            where reference.UserId == currentUserId
+                            select company;
+
+
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                employees = employees.Where(x => x.Name.Contains(searchString)
-                    || x.Surname.Contains(searchString)
-                    || x.Title.Contains(searchString));
-
+                companies = companies.Where(x => x.Name.Contains(searchString)
+                    || x.Description.Contains(searchString));
             }
 
             if (Request.IsAjaxRequest())
             {
-                return PartialView("_EmployeesList", employees.ToList());
+                return PartialView("_CompaniesList", companies.ToList());
             }
 
-            return View(employees.ToList());
+            return View(companies.ToList());
         }
-
     }
 }

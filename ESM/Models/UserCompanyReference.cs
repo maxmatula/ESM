@@ -11,12 +11,13 @@ namespace ESM.Models
         [Key]
         public Guid Id { get; set; }
 
+        //klucz obcy do tabeli User
         public string UserId { get; set; }
-        public string CompanyId { get; set; }
-        public int RoleId { get; set; }
+        public User User { get; set; }
 
-        public virtual User User { get; set; }
-        public virtual Company Company { get; set; }
+        //klucz obcy do tabeli Company
+        public string CompanyId { get; set; }
+        public Company Company { get; set; }
 
         public UserCompanyReference()
         {

@@ -16,7 +16,7 @@ namespace ESM.Controllers
         }
         public bool IsLogged()
         {
-            return Session["Id"] != null;
+            return Session["UserId"] != null;
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace ESM.Controllers
                         var obj = db.Users.Where(a => a.Email.Equals(objUser.Email) && a.Password.Equals(objUser.Password)).FirstOrDefault();
                         if (obj != null)
                         {
-                            Session["Id"] = obj.Id.ToString();
+                            Session["UserId"] = obj.Id.ToString();
                             Session["UserName"] = obj.Name.ToString();
                             Session["UserSurname"] = obj.Surname.ToString();
                             Session["UserAvatarPath"] = obj.AvatarPath.ToString();

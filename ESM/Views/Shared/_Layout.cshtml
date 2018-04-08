@@ -29,14 +29,8 @@
                     </div>
 
                     <nav class="main-header__links">
-                        <ul>
-                            <li class="active parent">
-                                <a href="#"><i class="fas fa-user"></i> Pracownicy</a>
-                                <ul class="child">
-                                    <li><a href="@Url.Action("Index","UserPanel")">Wszyscy pracownicy</a></li>
-                                    <li><a href="@Url.Action("Create","Employees")">Dodaj pracownika</a></li>
-                                </ul>
-                            </li>
+                        <ul> 
+                            <li><a href="@Url.Action("Index","UserPanel")"><i class="fas fa-company"></i> Firma</a></li>
                             <li><a href="#"><i class="fas fa-calendar"></i> Wydarzenia</a></li>
                             <li><a href="@Url.Action("Index","Calculator")"><i class="fas fa-calculator"></i> Kalkulator wynagrodzeń</a></li>
                             <li><a href="#"><i class="fas fa-cog"></i> Ustawienia</a></li>
