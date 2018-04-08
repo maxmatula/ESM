@@ -19,7 +19,7 @@ namespace ESM.Models
         public string Description { get; set; }
         public decimal TotalEarnings { get; set; }
 
-        
+        public virtual ICollection<UserCompanyReference> UserCompanyReferences { get; set; }
 
         public Company()
         {
