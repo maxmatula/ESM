@@ -52,10 +52,10 @@
         @using (Html.BeginForm()) {
             @Html.AntiForgeryToken()
     
-            <div class="form-actions no-color">
-                <input type="submit" value="Usuń" class="btn btn-default" /> |
-                @Html.ActionLink("Powrót do listy", "Index")
-            </div>
+        <div class="form-actions no-color">
+            <input type="submit" value="Usuń" class="btn btn-default" /> |
+            @Html.ActionLink("Powrót do listy", "Index", "UserPanel")
+        </div>
         }
     </div>
 </body>
