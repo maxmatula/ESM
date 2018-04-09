@@ -10,20 +10,16 @@ namespace ESM.DAL
 {
     public class ESMContext : DbContext
     {
-        public ESMContext() : base("ESMContext"){}
+        public ESMContext() : base("ESMContextConnectionString")
+        {
+            Database.SetInitializer<ESMContext>(new CreateDatabaseIfNotExists<ESMContext>());
+        }
 
         public DbSet<Employee> Employees { get; set; }
         public DbSet<User> Users { get; set; }
 
+        public DbSet<UserCompanyReference> userCompanyReferences { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder) { modelBuilder.Conventions.Remove<PluralizingTableNameConvention>(); }
-
-        public System.Data.Entity.DbSet<ESM.Models.Company> Companies { get; set; }
-
-        public System.Data.Entity.DbSet<ESM.Models.ReferenceUserCompany> ReferenceUserCompanies { get; set; }
-
-
-
-
     }
 }

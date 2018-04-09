@@ -1,0 +1,39 @@
+﻿/// <reference path="variables" /
+
+body {
+    font: $font__weight--base $font__size--base $font__family--base;
+    line-height: $line__height--base;
+    min-width: 320px;
+    min-height: 400px;
+    position: relative;
+    height: 100vh;
+    color: $white;
+    background-color: $primary;
+}
+
+a,button{
+    transition: 0.3s;
+    &:hover, &:focus{
+        text-decoration: none;
+    }
+}
+a{
+    color: $secondary;
+    &:hover, &:focus{
+        color: $tetriary;
+    }
+}
+
+.main-content{
+    padding: $offset--medium;
+    display: none;
+}
+
+.fluid-content{
+    width: 100%;
+    height: 100%;
+}
+
+.home-layout{
+    padding-top: 60px;
+}

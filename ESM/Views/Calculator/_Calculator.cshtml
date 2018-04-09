@@ -1,0 +1,22 @@
+﻿
+
+<h2>Kalkulator wynagrodzeń</h2>
+
+<div class="col-xs-12">
+    <form method="get" data-ajax="true" data-ajax-target="#calculator-section" data-ajax-update="#calculator-section">
+        <div class="form-group">
+            <h3>Praca w miejscu zamieszkania?</h3>
+            <div>
+                Tak: @Html.RadioButton("HomeWorker", "Tak") <br />
+                Nie: @Html.RadioButton("HomeWorker", "Nie")
+            </div>
+            <h3>Podaj kwotę brutto</h3>
+            <div class="search-form__wrapper">
+                @Html.TextBox("brutto", null, new { @class = "form-control", placeholder = "Brutto..." })
+                <button class="search-form__submit"></button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="clearfix"></div>

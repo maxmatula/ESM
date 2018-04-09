@@ -1,0 +1,11 @@
+﻿.home-footer{
+    background-color: $primary--dark;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    @include padding-tb($offset--medium);
+    &__copy{
+        margin: 0;
+    }
+}

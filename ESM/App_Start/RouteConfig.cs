@@ -14,9 +14,16 @@ namespace ESM
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "EmployeeDetails",
+                url: "Employee/{action}/{id}",
+                defaults: new { controller = "Employees", id = UrlParameter.Optional.ToString() }
+                );
+
+
+            routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                url: "{controller}/{action}/{searchString}",
+                defaults: new { controller = "Home", action = "Index", searchString = UrlParameter.Optional }
             );
         }
     }

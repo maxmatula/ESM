@@ -16,13 +16,26 @@ namespace ESM.Controllers
         private ESMContext db = new ESMContext();
 
         // GET: Employees
-        public ActionResult Index()
+        public ActionResult Index(string searchString = null)
         {
-            return View(db.Employees.ToList());
+
+            if (!String.IsNullOrWhiteSpace(searchString))
+            {
+                var employees = db.Employees.ToList()
+                    .Where(x => x.Name.Contains(searchString) || x.Surname.Contains(searchString) || x.Title.Contains(searchString));
+                return View(employees.ToList());
+                
+            }
+            else
+            {
+                return View(db.Employees.ToList());
+            }
+
+            
         }
 
         // GET: Employees/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(Guid? id)
         {
             if (id == null)
             {
@@ -60,7 +73,7 @@ namespace ESM.Controllers
         }
 
         // GET: Employees/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(Guid? id)
         {
             if (id == null)
             {
@@ -91,7 +104,7 @@ namespace ESM.Controllers
         }
 
         // GET: Employees/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(Guid? id)
         {
             if (id == null)
             {
@@ -108,7 +121,7 @@ namespace ESM.Controllers
         // POST: Employees/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(Guid id)
         {
             Employee employee = db.Employees.Find(id);
             db.Employees.Remove(employee);
@@ -123,6 +136,12 @@ namespace ESM.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public static List<Employee> GetEmployeesList()
+        {
+            ESMContext db = new ESMContext();
+            return db.Employees.ToList();
         }
     }
 }

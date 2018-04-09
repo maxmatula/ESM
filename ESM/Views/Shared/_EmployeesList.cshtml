@@ -1,0 +1,23 @@
+﻿@model IEnumerable<ESM.Models.Employee>
+
+<div id="employeeslist-section" class="col-xs-12">
+    <div class="row">
+
+        <ul class="employees-list">
+            @foreach (var item in Model)
+            {
+
+                <li class="employees-list__item employee">
+                    <a href="@Url.Action("Details", "Employees", new { id=item.Id })">
+                        <img src="@item.Picture" alt="" class="employee__image img-circle img-responsive" />
+                        <h4 class="employee__name"><span class="name">@item.Name</span> <span class="surname">@item.Surname</span></h4>
+                        <h5 class="employee__title">@item.Title</h5>
+                    </a>
+                </li>
+
+            }
+        </ul>
+
+    </div>
+</div>
+

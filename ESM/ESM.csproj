@@ -164,29 +164,32 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\CompaniesController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CalculatorController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UserPanelController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="DAL\EFEmployeeRepository.cs" />
     <Compile Include="DAL\ESMContext.cs" />
-    <Compile Include="DAL\ESMInitializer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\NinjectDependencyReslover.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Calculator.cs" />
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\Employee.cs" />
-    <Compile Include="Models\ReferenceUserCompany.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserCompanyReference.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="App_Data\ESM.mdf" />
+    <Content Include="App_Data\ESM_log.ldf">
+      <DependentUpon>ESM.mdf</DependentUpon>
+    </Content>
+    <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\font-awesome\fa-solid.css">
       <DependentUpon>fa-solid.scss</DependentUpon>
     </Content>
@@ -199,13 +202,13 @@
     <Content Include="Content\font-awesome\fontawesome.min.css">
       <DependentUpon>fontawesome.css</DependentUpon>
     </Content>
-    <Content Include="Content\Site.min.css">
+    <Content Include="Content\css\Site.css" />
+    <Content Include="Content\css\Site.min.css">
       <DependentUpon>Site.css</DependentUpon>
     </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -214,6 +217,8 @@
     <Content Include="Content\webfonts\fa-brands-400.svg" />
     <Content Include="Content\webfonts\fa-regular-400.svg" />
     <Content Include="Content\webfonts\fa-solid-900.svg" />
+    <Content Include="Media\Home_work.mp4" />
+    <Content Include="Media\Home_work.webm" />
     <Content Include="Media\Office_Perks.jpg" />
     <Content Include="Media\Office_Perks.mp4" />
     <Content Include="Media\Office_Perks.webm" />
@@ -227,17 +232,17 @@
     <Content Include="Scripts\esm\popper.js.map" />
     <Content Include="Scripts\esm\popper-utils.min.js.map" />
     <Content Include="Scripts\esm\popper-utils.js.map" />
-    <Content Include="Content\Site.scss" />
+    <Content Include="Content\sass\Site.scss" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
-    <Content Include="Content\_variables.scss" />
-    <Content Include="Content\_mixins.scss" />
-    <Content Include="Content\_placeholders.scss" />
-    <Content Include="Content\_header.scss" />
-    <Content Include="Content\_global.scss" />
-    <Content Include="Content\_sidebar.scss" />
+    <Content Include="Content\sass\base\_variables.scss" />
+    <Content Include="Content\sass\base\_mixins.scss" />
+    <Content Include="Content\sass\base\_placeholders.scss" />
+    <Content Include="Content\sass\modules\_header.scss" />
+    <Content Include="Content\sass\base\_global.scss" />
+    <Content Include="Content\sass\modules\_sidebar.scss" />
     <Content Include="Content\font-awesome\fa-brands.scss" />
     <Content Include="Content\font-awesome\fa-regular.scss" />
     <Content Include="Content\font-awesome\fa-solid.scss" />
@@ -266,25 +271,32 @@
     <Content Include="Content\webfonts\fa-solid-900.ttf" />
     <Content Include="Content\webfonts\fa-solid-900.woff" />
     <Content Include="Content\webfonts\fa-solid-900.woff2" />
-    <Content Include="Content\components\_forms.scss" />
+    <Content Include="Content\sass\components\_forms.scss" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
-    <Content Include="Content\_login.scss" />
+    <Content Include="Content\css\bootstrap.min.css.map" />
+    <Content Include="Content\sass\pages\_login.scss" />
     <Content Include="Media\Office_Perks.ogv" />
-    <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
-    <Content Include="Scripts\jquery-3.0.0.js" />
-    <Content Include="Scripts\jquery-3.0.0.min.js" />
-    <Content Include="Scripts\jquery-3.0.0.slim.js" />
-    <Content Include="Scripts\jquery-3.0.0.slim.min.js" />
-    <Content Include="Scripts\jquery-3.0.0.slim.min.map" />
-    <Content Include="Scripts\jquery-3.0.0.min.map" />
+    <Content Include="Content\sass\base\_functions.scss" />
+    <Content Include="Content\sass\base\_typography.scss" />
+    <Content Include="Content\sass\modules\_search-form.scss" />
+    <Content Include="Content\sass\modules\_employees-list.scss" />
+    <Content Include="Content\sass\modules\_footer.scss" />
+    <Content Include="Content\sass\components\_jumbotron.scss" />
+    <Content Include="Content\sass\components\_buttons.scss" />
+    <Content Include="Media\Home_work.ogv" />
+    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.3.1.js" />
+    <Content Include="Scripts\jquery-3.3.1.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.3.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -331,22 +343,30 @@
     <Content Include="Views\Employees\Details.cshtml" />
     <Content Include="Views\Employees\Edit.cshtml" />
     <Content Include="Views\Employees\Index.cshtml" />
-    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Users\Create.cshtml" />
     <Content Include="Views\Users\Delete.cshtml" />
     <Content Include="Views\Users\Details.cshtml" />
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Shared\_FluidLayout.cshtml" />
-    <Content Include="Views\Companies\Create.cshtml" />
-    <Content Include="Views\Companies\Delete.cshtml" />
-    <Content Include="Views\Companies\Details.cshtml" />
-    <Content Include="Views\Companies\Edit.cshtml" />
-    <Content Include="Views\Companies\Index.cshtml" />
+    <Content Include="Views\Shared\_SearchForm.cshtml" />
+    <Content Include="Views\Shared\_EmployeesList.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Shared\_HomeLayout.cshtml" />
+    <Content Include="Views\Home\Benefits.cshtml" />
+    <Content Include="Views\Home\Cooperation.cshtml" />
+    <Content Include="Views\Home\Team.cshtml" />
+    <Content Include="Views\Account\_ViewStart.cshtml" />
+    <Content Include="Views\UserPanel\Index.cshtml" />
+    <Content Include="Views\Home\_ViewStart.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Calculator\_Calculator.cshtml" />
+    <Content Include="Views\Calculator\Index.cshtml" />
+    <Content Include="Views\Calculator\_CalculatorCalc.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
-    <Folder Include="Views\ReferenceUserCompanies\" />
+    <Folder Include="Content\sass\views\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
