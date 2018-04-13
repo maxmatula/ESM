@@ -14,7 +14,7 @@ namespace ESM.DAL
 
     public class EFEmployeeRepository : IEmployeeList
     {
-        private ESMContext context = new ESMContext();
+        private ESMDbContext context = new ESMDbContext();
 
 
         public IEnumerable<Employee> Employees

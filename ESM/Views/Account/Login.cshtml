@@ -1,4 +1,4 @@
-﻿@model ESM.Models.User
+﻿@model ESM.ViewModels.LoginViewModel
 
 @{
     ViewBag.Title = "Login";
@@ -23,14 +23,21 @@
                         @Html.AntiForgeryToken()
                         @Html.ValidationSummary(true)
                         <div class="form-group col-xs-12">
+                            @Html.ValidationMessageFor(a => a.Email)
                             @Html.LabelFor(a => a.Email)
                             @Html.TextBoxFor(a => a.Email, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(a => a.Email)
+
                         </div>
                         <div class="col-xs-12 form-group">
                             @Html.LabelFor(a => a.Password)
-                            @Html.ValidationMessageFor(a => a.Password)
                             @Html.PasswordFor(a => a.Password, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(a => a.Password)
+
+                        </div>
+                        <div class="col-xs-12 form-group">
+                            @Html.LabelFor(a => a.RememberMe)
+                            @Html.CheckBoxFor(a => a.RememberMe, new { @class = "form-control" })
+
                         </div>
 
                         <p class="text-center">

@@ -6,30 +6,31 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using ESM.DAL;
 using ESM.Models;
 
 namespace ESM.Controllers
 {
     public class EmployeesController : Controller
     {
-        private ESMContext db = new ESMContext();
+        private ESMDbContext db = new ESMDbContext();
 
         // GET: Employees
         public ActionResult Index(string searchString = null)
         {
             ViewBag.Title = "Panel użytkownika";
-            ESMContext db = new ESMContext();
+            ESMDbContext db = new ESMDbContext();
 
-            string currentCompany = Session["CompanyId"].ToString();
-            var employees = db.Employees.Where(x => x.CompanyId.ToString().Equals(currentCompany));
+            string currentCompanyId = Session["currentCompanyId"].ToString();
+
+            var employees = from emp in db.Employees
+                            where emp.CompanyId.ToString() == currentCompanyId.ToString()
+                            select emp;
 
             if (!String.IsNullOrEmpty(searchString))
             {
                 employees = employees.Where(x => x.Name.Contains(searchString)
                     || x.Surname.Contains(searchString)
                     || x.Title.Contains(searchString));
-
             }
 
             if (Request.IsAjaxRequest())
@@ -38,6 +39,9 @@ namespace ESM.Controllers
             }
 
             return View(employees.ToList());
+
+
+
         }
 
         // GET: Employees/Details/5
@@ -147,7 +151,7 @@ namespace ESM.Controllers
 
         public static List<Employee> GetEmployeesList()
         {
-            ESMContext db = new ESMContext();
+            ESMDbContext db = new ESMDbContext();
             return db.Employees.ToList();
         }
     }

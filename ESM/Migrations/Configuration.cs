@@ -4,25 +4,19 @@ namespace ESM.Migrations
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
-    using ESM.DAL;
     using ESM.Models;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<ESM.DAL.ESMContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<ESMDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
-            ContextKey = "ESM.DAL.ESMContext";
+            ContextKey = "ESMDbContext";
         }
 
-        protected override void Seed(ESM.DAL.ESMContext context)
+        protected override void Seed(ESMDbContext context)
         {
-            context.Users.AddOrUpdate(x => x.Id,
-
-                new User { Id = Guid.Parse("37edaefb-429c-4642-8915-51c0e451c9ed"), Name = "Grzegorz", Surname = "Wójcik", Email = "gw@gw.pl", Password = "1234", IsActive = true },
-                new User { Id = Guid.Parse("b45998c2-6732-4c8a-a02c-ba0dce5215fb"), Name = "Maksymilian", Surname = "Matu³a", Email = "mm@mm.pl", Password = "1234", IsActive = true },
-                new User { Id = Guid.Parse("c199460d-9fe2-4ea6-8e29-9fea8e2efe79"), Name = "Alan", Surname = "Turing", Email = "at@at.pl", Password = "1234", IsActive = true }
-            );
+          
 
 
             context.Companies.AddOrUpdate(x => x.Id,
@@ -32,13 +26,13 @@ namespace ESM.Migrations
                 new Company { Id = Guid.Parse("2c4243a5-9133-4103-80a8-c9ad8bcd2947"), Name = "Cyberdyne Systems", Description = "Some kind of robots and cybernetics... Boring!", Logo = "https://botw-pd.s3.amazonaws.com/styles/logo-thumbnail/s3/0022/0350/brand.gif?itok=QaeqJuLk" }
                 );
 
-            context.userCompanyReferences.AddOrUpdate(x => x.Id,
-                
-                new UserCompanyReference { UserId = "c199460d-9fe2-4ea6-8e29-9fea8e2efe79", CompanyId = "2c4243a5-9133-4103-80a8-c9ad8bcd2947" },
-                new UserCompanyReference { UserId = "b45998c2-6732-4c8a-a02c-ba0dce5215fb", CompanyId = "a19d451a-0956-4b56-9a38-4e62b244678d" },
-                new UserCompanyReference { UserId = "37edaefb-429c-4642-8915-51c0e451c9ed", CompanyId = "a19d451a-0956-4b56-9a38-4e62b244678d" },
-                new UserCompanyReference { UserId = "c199460d-9fe2-4ea6-8e29-9fea8e2efe79", CompanyId = "c266df8c-8f91-4a5c-9595-1ec02ef72ef6" }
-            );
+            //    context.userCompanyReferences.AddOrUpdate(x => x.Id,
+
+            //        new UserCompanyReference { UserId = "c199460d-9fe2-4ea6-8e29-9fea8e2efe79", CompanyId = "2c4243a5-9133-4103-80a8-c9ad8bcd2947" },
+            //        new UserCompanyReference { UserId = "b45998c2-6732-4c8a-a02c-ba0dce5215fb", CompanyId = "a19d451a-0956-4b56-9a38-4e62b244678d" },
+            //        new UserCompanyReference { UserId = "37edaefb-429c-4642-8915-51c0e451c9ed", CompanyId = "a19d451a-0956-4b56-9a38-4e62b244678d" },
+            //        new UserCompanyReference { UserId = "c199460d-9fe2-4ea6-8e29-9fea8e2efe79", CompanyId = "c266df8c-8f91-4a5c-9595-1ec02ef72ef6" }
+            //    );
 
 
             context.Employees.AddOrUpdate(x => x.Id,

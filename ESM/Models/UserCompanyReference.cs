@@ -13,7 +13,7 @@ namespace ESM.Models
 
         //klucz obcy do tabeli User
         public string UserId { get; set; }
-        public User User { get; set; }
+        public AppUser User { get; set; }
 
         //klucz obcy do tabeli Company
         public string CompanyId { get; set; }

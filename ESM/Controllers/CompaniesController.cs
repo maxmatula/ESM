@@ -6,16 +6,17 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using ESM.DAL;
+
 using ESM.Models;
 
 namespace ESM.Controllers
 {
     public class CompaniesController : Controller
     {
-        private ESMContext db = new ESMContext();
+        private ESMDbContext db = new ESMDbContext();
 
-       
+
+
 
         // GET: Companies/Details/5
         public ActionResult Details(Guid? id)
@@ -25,11 +26,13 @@ namespace ESM.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Company company = db.Companies.Find(id);
-            Session["CompanyId"] = company.Id.ToString();
+            
             if (company == null)
             {
                 return HttpNotFound();
             }
+
+            Session["currentCompanyId"] = company.Id.ToString();
 
             return RedirectToAction("Index", "Employees");
         }
@@ -54,7 +57,7 @@ namespace ESM.Controllers
                 reference.UserId = Session["UserId"].ToString();
                 reference.CompanyId = company.Id.ToString();
                 db.Companies.Add(company);
-                db.userCompanyReferences.Add(reference);
+                db.UserCompanyReferences.Add(reference);
                 db.SaveChanges();
                 return RedirectToAction("Index", "UserPanel");
             }
