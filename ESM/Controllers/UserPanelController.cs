@@ -4,18 +4,27 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ESM.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace ESM.Controllers
 {
     public class UserPanelController : Controller
     {
+
+
         // GET: UserPanel
         public ActionResult Index(string searchString = null)
         {
             ViewBag.Title = "Panel użytkownika";
             ESMDbContext db = new ESMDbContext();
 
+            var currUserId = User.Identity.GetUserId();
+
             var companies = from company in db.Companies
+                            join reference in db.UserCompanyRefs
+                            on company.Id.ToString() equals reference.CompanyId.ToString()
+                            where reference.UserId.ToString() == currUserId.ToString() 
                             select company;
 
 

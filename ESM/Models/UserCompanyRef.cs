@@ -1,25 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
 namespace ESM.Models
 {
-    public class UserCompanyReference
+    public class UserCompanyRef
     {
-        [Key]
         public Guid Id { get; set; }
 
-        //klucz obcy do tabeli User
         public string UserId { get; set; }
-        public AppUser User { get; set; }
+        public virtual ICollection<AppUser> AppUsers { get; set; }
 
-        //klucz obcy do tabeli Company
         public string CompanyId { get; set; }
-        public Company Company { get; set; }
+        public virtual ICollection<Company> Companies { get; set; }
 
-        public UserCompanyReference()
+        public UserCompanyRef()
         {
             Id = Guid.NewGuid();
         }

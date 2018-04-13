@@ -20,9 +20,9 @@ namespace ESM.Models
         public string Description { get; set; }
         public decimal TotalEarnings { get; set; }
 
-        public virtual ICollection<Employee> Employees { get; set; }
+        public UserCompanyRef UserCompanyRef { get; set; }
 
-        public virtual ICollection<UserCompanyReference> UserCompanyReferences { get; set; }
+        public virtual ICollection<Employee> Employees { get; set; }
 
         public Company()
         {

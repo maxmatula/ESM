@@ -17,6 +17,7 @@ namespace ESM.Models
         public DateTime CreatedAt { get; set; }
         public string AvatarPath { get; set; }
         public bool IsActive { get; set; }
+        public UserCompanyRef UserCompanyRef { get; set; }
         public AppUser()
         {
             CreatedAt = DateTime.Now;

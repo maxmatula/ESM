@@ -20,7 +20,7 @@ namespace ESM.Controllers
             ViewBag.Title = "Panel użytkownika";
             ESMDbContext db = new ESMDbContext();
 
-            string currentCompanyId = Session["currentCompanyId"].ToString();
+            var currentCompanyId = Session["currentCompanyId"];
 
             var employees = from emp in db.Employees
                             where emp.CompanyId.ToString() == currentCompanyId.ToString()
@@ -74,7 +74,9 @@ namespace ESM.Controllers
         {
             if (ModelState.IsValid)
             {
-                employee.CompanyId = Session["CompanyId"].ToString();
+                
+
+                employee.CompanyId = Session["currentCompanyId"].ToString();
                 db.Employees.Add(employee);
                 db.SaveChanges();
                 return RedirectToAction("Index");

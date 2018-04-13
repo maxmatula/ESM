@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 
 using ESM.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace ESM.Controllers
 {
@@ -32,7 +34,7 @@ namespace ESM.Controllers
                 return HttpNotFound();
             }
 
-            Session["currentCompanyId"] = company.Id.ToString();
+            Session["currentCompanyId"] = id.ToString();
 
             return RedirectToAction("Index", "Employees");
         }
@@ -48,16 +50,16 @@ namespace ESM.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Logo,Description")] Company company, UserCompanyReference reference)
+        public ActionResult Create([Bind(Include = "Id,Name,Logo,Description")] Company company, UserCompanyRef userCompanyRef)
         {
             if (ModelState.IsValid)
             {
-                company.Id = Guid.NewGuid();
-                reference.Id = Guid.NewGuid();
-                reference.UserId = Session["UserId"].ToString();
-                reference.CompanyId = company.Id.ToString();
+
+                userCompanyRef.Id = Guid.NewGuid();
+                userCompanyRef.UserId = User.Identity.GetUserId().ToString();
+                userCompanyRef.CompanyId = company.Id.ToString();
+                db.UserCompanyRefs.Add(userCompanyRef);
                 db.Companies.Add(company);
-                db.UserCompanyReferences.Add(reference);
                 db.SaveChanges();
                 return RedirectToAction("Index", "UserPanel");
             }
@@ -85,12 +87,12 @@ namespace ESM.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Logo,Description")] Company company, UserCompanyReference reference)
+        public ActionResult Edit([Bind(Include = "Id,Name,Logo,Description")] Company company, UserCompanyRef userCompanyRef)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(company).State = EntityState.Modified;
-                db.Entry(reference).State = EntityState.Unchanged;
+                db.Entry(userCompanyRef).State = EntityState.Unchanged;
                 db.SaveChanges();
                 return RedirectToAction("Index", "UserPanel");
             }
@@ -119,7 +121,10 @@ namespace ESM.Controllers
         public ActionResult DeleteConfirmed(Guid id)
         {
             Company company = db.Companies.Find(id);
+            var refid = db.UserCompanyRefs.Where(x => x.CompanyId.Equals(company.Id)).Select(x => x.Id);
+            UserCompanyRef userCompanyRef = db.UserCompanyRefs.Find(refid);
             db.Companies.Remove(company);
+            db.UserCompanyRefs.Remove(userCompanyRef);
             db.SaveChanges();
             return RedirectToAction("Index", "UserPanel");
         }

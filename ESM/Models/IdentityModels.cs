@@ -19,7 +19,13 @@ namespace ESM.Models
 
         public DbSet<Company> Companies { get; set; }
         public DbSet<Employee> Employees { get; set; }
-        public DbSet<UserCompanyReference> UserCompanyReferences { get; set; }
+        public DbSet<UserCompanyRef> UserCompanyRefs { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+        }
 
 
         public static ESMDbContext Create()
