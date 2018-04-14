@@ -115,11 +115,15 @@ namespace ESM.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Logout()
+        public  ActionResult Logout()
         {
+       
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             Session.Abandon();
+            Response.Cookies.Clear();
+
             return RedirectToAction("Index", "Home");
+  
         }
 
         /// <summary>
