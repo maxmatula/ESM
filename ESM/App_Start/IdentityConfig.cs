@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using ESM.Models;
+using ESM.DAL;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
@@ -35,7 +36,6 @@ namespace ESM
             return manager;
         }
 
-        
     }
 
     public class ESMSignInManager : SignInManager<AppUser, string>
@@ -51,6 +51,4 @@ namespace ESM
             return new ESMSignInManager(context.GetUserManager<ESMUserManager>(), context.Authentication);
         }
     }
-
-
 }

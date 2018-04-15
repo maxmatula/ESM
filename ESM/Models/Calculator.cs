@@ -21,7 +21,7 @@ namespace ESM.Models
     {
 
         public string HomeWorker { get; set; } // czy pracownik miejscowy czy dojezdzajacy - potrzebne do kosztow uzyskania przychodów 
-                                             // true > pracownik miejscowy, false > dojeżdzający
+                                               // true > pracownik miejscowy, false > dojeżdzający
         public decimal Kup { get; set; }      // koszt uzyskania przychodu
 
         public decimal Brutto { get; set; }   //kwota brutto wynagrodzenia
@@ -30,8 +30,6 @@ namespace ESM.Models
 
         public decimal EmployeeCost { get; set; } //pełny koszt pracodawcy związany z zatrudnieniem pracownika
 
-      
-       
         public decimal CalcNetto()  //kalkulator obliczający kwotę netto z podanej kwoty brutto
         {
             //ustalanie zmiennej koszt uzyskania przychodów

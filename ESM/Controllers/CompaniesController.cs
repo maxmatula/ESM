@@ -6,8 +6,8 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-
 using ESM.Models;
+using ESM.DAL;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -17,9 +17,6 @@ namespace ESM.Controllers
     {
         private ESMDbContext db = new ESMDbContext();
 
-
-
-
         // GET: Companies/Details/5
         public ActionResult Details(Guid? id)
         {
@@ -28,14 +25,13 @@ namespace ESM.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Company company = db.Companies.Find(id);
-            
+
             if (company == null)
             {
                 return HttpNotFound();
             }
 
             Session["currentCompanyId"] = id.ToString();
-
             return RedirectToAction("Index", "Employees");
         }
 
@@ -54,7 +50,6 @@ namespace ESM.Controllers
         {
             if (ModelState.IsValid)
             {
-
                 userCompanyRef.Id = Guid.NewGuid();
                 userCompanyRef.UserId = User.Identity.GetUserId().ToString();
                 userCompanyRef.CompanyId = company.Id.ToString();
@@ -63,7 +58,6 @@ namespace ESM.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index", "UserPanel");
             }
-
             return View(company);
         }
 
@@ -96,7 +90,6 @@ namespace ESM.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index", "UserPanel");
             }
-       
             return View(company);
         }
 

@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ESM.Models;
+using ESM.DAL;
 
 namespace ESM.Controllers
 {
@@ -17,9 +18,6 @@ namespace ESM.Controllers
         // GET: Employees
         public ActionResult Index(string searchString = null)
         {
-            ViewBag.Title = "Panel użytkownika";
-            ESMDbContext db = new ESMDbContext();
-
             var currentCompanyId = Session["currentCompanyId"];
 
             var employees = from emp in db.Employees
@@ -37,11 +35,7 @@ namespace ESM.Controllers
             {
                 return PartialView("_EmployeesList", employees.ToList());
             }
-
             return View(employees.ToList());
-
-
-
         }
 
         // GET: Employees/Details/5
@@ -70,12 +64,10 @@ namespace ESM.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Surname,Title,Picture")] Employee employee)
+        public ActionResult Create([Bind(Include = "Id,Name,Surname,Title,Picture,CompanyId")] Employee employee)
         {
             if (ModelState.IsValid)
             {
-                
-
                 employee.CompanyId = Session["currentCompanyId"].ToString();
                 db.Employees.Add(employee);
                 db.SaveChanges();
@@ -105,7 +97,7 @@ namespace ESM.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Surname,Title,Picture")] Employee employee)
+        public ActionResult Edit([Bind(Include = "Id,Name,Surname,Title,Picture,Company_Id")] Employee employee)
         {
             if (ModelState.IsValid)
             {
@@ -151,10 +143,5 @@ namespace ESM.Controllers
             base.Dispose(disposing);
         }
 
-        public static List<Employee> GetEmployeesList()
-        {
-            ESMDbContext db = new ESMDbContext();
-            return db.Employees.ToList();
-        }
     }
 }

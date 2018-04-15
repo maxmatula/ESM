@@ -6,9 +6,8 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
 using ESM.Models;
+using ESM.DAL;
 using Microsoft.AspNet.Identity;
-
-
 
 
 namespace ESM
@@ -20,7 +19,6 @@ namespace ESM
             app.CreatePerOwinContext(ESMDbContext.Create);
             app.CreatePerOwinContext<ESMUserManager>(ESMUserManager.Create);
             app.CreatePerOwinContext<ESMSignInManager>(ESMSignInManager.Create);
-
         }
 	}
 }

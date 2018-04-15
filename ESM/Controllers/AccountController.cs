@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ESM.Models;
+using ESM.DAL;
 using ESM.ViewModels;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -51,8 +52,6 @@ namespace ESM.Controllers
             }
         }
 
-
-
         [AllowAnonymous]
         public ActionResult Index()
         {
@@ -78,7 +77,6 @@ namespace ESM.Controllers
             }
             ViewBag.ReturnUrl = returnUrl;
             return View();
-
         }
         /// <summary>
         /// POST: Obsługa procesu logowania
@@ -115,15 +113,11 @@ namespace ESM.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public  ActionResult Logout()
+        public ActionResult Logout()
         {
-       
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             Session.Abandon();
-            Response.Cookies.Clear();
-
             return RedirectToAction("Index", "Home");
-  
         }
 
         /// <summary>
@@ -158,9 +152,7 @@ namespace ESM.Controllers
             {
 
                 var user = new AppUser { UserName = model.Email, Email = model.Email };
-
                 UserStore<AppUser> Store = new UserStore<AppUser>(new ESMDbContext());
-
                 ESMUserManager userManager = new ESMUserManager(Store);
 
                 var result = await userManager.CreateAsync(user, model.Password);
@@ -175,7 +167,7 @@ namespace ESM.Controllers
 
         private void AddErrors(IdentityResult result)
         {
-            foreach(var error in result.Errors)
+            foreach (var error in result.Errors)
             {
                 ModelState.AddModelError("", error);
             }

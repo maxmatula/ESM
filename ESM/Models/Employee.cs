@@ -10,22 +10,20 @@ namespace ESM.Models
 {
     public class Employee
     {
-        [Key]
-        public Guid Id { get; protected set; } //Guid to zmienna typu General Identity Number
+
+        public Guid Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string BirthDate { get; set; }
         public string Title { get; set; }
         public string Picture { get; set; }
-
-        //klucz obcy odwołanie do tabeli Company
         public string CompanyId { get; set; }
-        public Company Company { get; set; }
+        public virtual Company Company { get; set; }
 
 
         public Employee()
         {
-            Id = Guid.NewGuid(); //Inicjacja unikalnego id Pracownika
+            Id = Guid.NewGuid();
         }
 
         //private string _identityNumber { get; set; } //pesel
