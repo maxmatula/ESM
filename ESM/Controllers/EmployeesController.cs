@@ -68,7 +68,7 @@ namespace ESM.Controllers
         {
             if (ModelState.IsValid)
             {
-                employee.CompanyId = Session["currentCompanyId"].ToString();
+                //employee.CompanyId = Session["currentCompanyId"].ToString();
                 db.Employees.Add(employee);
                 db.SaveChanges();
                 return RedirectToAction("Index");

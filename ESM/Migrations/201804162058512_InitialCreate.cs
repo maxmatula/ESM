@@ -16,11 +16,11 @@ namespace ESM.Migrations
                         Logo = c.String(),
                         Description = c.String(),
                         TotalEarnings = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        UserCompanyRef_Id = c.Guid(),
+                        ReferenceId = c.Guid(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.UserCompanyRefs", t => t.UserCompanyRef_Id)
-                .Index(t => t.UserCompanyRef_Id);
+                .ForeignKey("dbo.UserCompanyRefs", t => t.ReferenceId, cascadeDelete: true)
+                .Index(t => t.ReferenceId);
             
             CreateTable(
                 "dbo.Employees",
@@ -32,12 +32,11 @@ namespace ESM.Migrations
                         BirthDate = c.String(),
                         Title = c.String(),
                         Picture = c.String(),
-                        CompanyId = c.String(),
-                        Company_Id = c.Guid(),
+                        CompanyId = c.Guid(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Companies", t => t.Company_Id)
-                .Index(t => t.Company_Id);
+                .ForeignKey("dbo.Companies", t => t.CompanyId, cascadeDelete: true)
+                .Index(t => t.CompanyId);
             
             CreateTable(
                 "dbo.UserCompanyRefs",
@@ -60,6 +59,7 @@ namespace ESM.Migrations
                         CreatedAt = c.DateTime(nullable: false),
                         AvatarPath = c.String(),
                         IsActive = c.Boolean(nullable: false),
+                        ReferenceId = c.Guid(nullable: false),
                         Email = c.String(maxLength: 256),
                         EmailConfirmed = c.Boolean(nullable: false),
                         PasswordHash = c.String(),
@@ -71,12 +71,11 @@ namespace ESM.Migrations
                         LockoutEnabled = c.Boolean(nullable: false),
                         AccessFailedCount = c.Int(nullable: false),
                         UserName = c.String(nullable: false, maxLength: 256),
-                        UserCompanyRef_Id = c.Guid(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.UserCompanyRefs", t => t.UserCompanyRef_Id)
-                .Index(t => t.UserName, unique: true, name: "UserNameIndex")
-                .Index(t => t.UserCompanyRef_Id);
+                .ForeignKey("dbo.UserCompanyRefs", t => t.ReferenceId, cascadeDelete: true)
+                .Index(t => t.ReferenceId)
+                .Index(t => t.UserName, unique: true, name: "UserNameIndex");
             
             CreateTable(
                 "dbo.AspNetUserClaims",
@@ -131,21 +130,21 @@ namespace ESM.Migrations
         public override void Down()
         {
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
-            DropForeignKey("dbo.Companies", "UserCompanyRef_Id", "dbo.UserCompanyRefs");
-            DropForeignKey("dbo.AspNetUsers", "UserCompanyRef_Id", "dbo.UserCompanyRefs");
+            DropForeignKey("dbo.Companies", "ReferenceId", "dbo.UserCompanyRefs");
+            DropForeignKey("dbo.AspNetUsers", "ReferenceId", "dbo.UserCompanyRefs");
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
-            DropForeignKey("dbo.Employees", "Company_Id", "dbo.Companies");
+            DropForeignKey("dbo.Employees", "CompanyId", "dbo.Companies");
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
-            DropIndex("dbo.AspNetUsers", new[] { "UserCompanyRef_Id" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
-            DropIndex("dbo.Employees", new[] { "Company_Id" });
-            DropIndex("dbo.Companies", new[] { "UserCompanyRef_Id" });
+            DropIndex("dbo.AspNetUsers", new[] { "ReferenceId" });
+            DropIndex("dbo.Employees", new[] { "CompanyId" });
+            DropIndex("dbo.Companies", new[] { "ReferenceId" });
             DropTable("dbo.AspNetRoles");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetUserLogins");

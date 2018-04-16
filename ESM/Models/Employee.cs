@@ -8,19 +8,20 @@ using System.Web;
 
 namespace ESM.Models
 {
+    [Table("Employees")]
     public class Employee
     {
-
+        [Key]
         public Guid Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string BirthDate { get; set; }
         public string Title { get; set; }
         public string Picture { get; set; }
-        public string CompanyId { get; set; }
-        public virtual Company Company { get; set; }
-
-
+        [ForeignKey("Companies")]
+        public Guid CompanyId { get; set; }
+        public virtual Company Companies { get; set; }
+        
         public Employee()
         {
             Id = Guid.NewGuid();

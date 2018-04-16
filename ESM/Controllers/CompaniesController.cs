@@ -50,9 +50,9 @@ namespace ESM.Controllers
         {
             if (ModelState.IsValid)
             {
-                userCompanyRef.Id = Guid.NewGuid();
-                userCompanyRef.UserId = User.Identity.GetUserId().ToString();
-                userCompanyRef.CompanyId = company.Id.ToString();
+                //userCompanyRef.Id = Guid.NewGuid();
+                //userCompanyRef.UserId = User.Identity.GetUserId().ToString();
+                //userCompanyRef.CompanyId = company.Id.ToString();
                 db.UserCompanyRefs.Add(userCompanyRef);
                 db.Companies.Add(company);
                 db.SaveChanges();
@@ -113,11 +113,11 @@ namespace ESM.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            Company company = db.Companies.Find(id);
-            var refid = db.UserCompanyRefs.Where(x => x.CompanyId.Equals(company.Id)).Select(x => x.Id);
-            UserCompanyRef userCompanyRef = db.UserCompanyRefs.Find(refid);
-            db.Companies.Remove(company);
-            db.UserCompanyRefs.Remove(userCompanyRef);
+            //Company company = db.Companies.Find(id);
+            //var refid = db.UserCompanyRefs.Where(x => x.CompanyId.Equals(company.Id)).Select(x => x.Id);
+            //UserCompanyRef userCompanyRef = db.UserCompanyRefs.Find(refid);
+            //db.Companies.Remove(company);
+            //db.UserCompanyRefs.Remove(userCompanyRef);
             db.SaveChanges();
             return RedirectToAction("Index", "UserPanel");
         }

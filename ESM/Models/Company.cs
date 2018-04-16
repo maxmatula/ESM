@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ESM.Models
-{
+{   
+    [Table("Companies")]
     public class Company
     {
         [Key]
@@ -17,7 +19,9 @@ namespace ESM.Models
         public string Logo { get; set; }
         public string Description { get; set; }
         public decimal TotalEarnings { get; set; }
-        public UserCompanyRef UserCompanyRef { get; set; }
+        [ForeignKey("UserCompanyRefs")]
+        public Guid ReferenceId { get; set; }
+        public virtual UserCompanyRef UserCompanyRefs { get; set; }
         public virtual ICollection<Employee> Employees { get; set; }
 
         public Company()
