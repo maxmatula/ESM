@@ -11,7 +11,7 @@ namespace ESM.Models
     public class Company
     {
         [Key]
-        public Guid Id { get; set; }
+        public Guid CompanyId { get; set; }
         [Required]
         [StringLength(128)]
         public string Name { get; set; }

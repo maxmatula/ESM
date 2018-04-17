@@ -14,31 +14,30 @@ namespace ESM.Controllers
     {
 
 
-        //// GET: UserPanel
-        //public ActionResult Index(string searchString = null)
-        //{
-        //    //ViewBag.Title = "Panel użytkownika";
-        //    //ESMDbContext db = new ESMDbContext();
+        // GET: UserPanel
+        public ActionResult Index(string searchString = null)
+        {
+            ESMDbContext db = new ESMDbContext();
 
-        //    //var currUserId = User.Identity.GetUserId();
+            var currUserId = User.Identity.GetUserId();
 
-        //    //var companies = from company in db.Companies
-        //    //                join reference in db.UserCompanyRefs
-        //    //                on company.Id.ToString() equals reference.CompanyId.ToString()
-        //    //                where reference.UserId.ToString() == currUserId.ToString()
-        //    //                select company;
+            var companies = from company in db.Companies
+                            join reference in db.UserCompanyRefs
+                            on company.CompanyId.ToString() equals reference.CompanyId.ToString()
+                            where reference.UserId.ToString() == currUserId.ToString()
+                            select company;
 
-        //    //if (!String.IsNullOrEmpty(searchString))
-        //    //{
-        //    //    companies = companies.Where(x => x.Name.Contains(searchString)
-        //    //        || x.Description.Contains(searchString));
-        //    //}
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                companies = companies.Where(x => x.Name.Contains(searchString)
+                    || x.Description.Contains(searchString));
+            }
 
-        //    //if (Request.IsAjaxRequest())
-        //    //{
-        //    //    return PartialView("_CompaniesList", companies.ToList());
-        //    //}
-        //    return View(companies.ToList());
-        //}
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_CompaniesList", companies.ToList());
+            }
+            return View(companies.ToList());
+        }
     }
 }

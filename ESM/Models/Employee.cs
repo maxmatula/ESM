@@ -12,7 +12,7 @@ namespace ESM.Models
     public class Employee
     {
         [Key]
-        public Guid Id { get; set; }
+        public Guid EmployeeId { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string BirthDate { get; set; }

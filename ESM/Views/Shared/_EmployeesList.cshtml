@@ -8,7 +8,7 @@
             {
 
                 <li class="employees-list__item employee">
-                    <a href="@Url.Action("Details", "Employees", new { id=item.Id })">
+                    <a href="@Url.Action("Details", "Employees", new { id=item.EmployeeId })">
                         <img src="@item.Picture" alt="" class="employee__image img-circle img-responsive" />
                         <h4 class="employee__name"><span class="name">@item.Name</span> <span class="surname">@item.Surname</span></h4>
                         <h5 class="employee__title">@item.Title</h5>

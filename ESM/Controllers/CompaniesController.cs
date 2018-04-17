@@ -31,7 +31,7 @@ namespace ESM.Controllers
                 return HttpNotFound();
             }
 
-            Session["currentCompanyId"] = id.ToString();
+            Session["currentCompanyId"] = id;
             return RedirectToAction("Index", "Employees");
         }
 
@@ -46,15 +46,30 @@ namespace ESM.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Logo,Description")] Company company, UserCompanyRef userCompanyRef)
+        public ActionResult Create([Bind(Include = "CompanyId,Name,Logo,Description")] Company company, UserCompanyRef userCompanyRef)
         {
+            var newCompanyid = Guid.NewGuid();
+            var existingCompaniesId = db.Companies.Select(x => x.CompanyId);
+            if (existingCompaniesId.Contains(newCompanyid))
+            {
+                newCompanyid = Guid.NewGuid();
+            }
+            else
+            {
+                company.CompanyId = newCompanyid;
+            }
+            userCompanyRef.RefId = Guid.NewGuid();
+            userCompanyRef.UserId = User.Identity.GetUserId();
+            userCompanyRef.CompanyId = company.CompanyId;
+
             if (ModelState.IsValid)
             {
-                //userCompanyRef.Id = Guid.NewGuid();
-                //userCompanyRef.UserId = User.Identity.GetUserId().ToString();
-                //userCompanyRef.CompanyId = company.Id.ToString();
-                db.UserCompanyRefs.Add(userCompanyRef);
+                if(company.Logo == null)
+                {
+                    company.Logo = "http://placehold.jp/200x200.png";
+                }
                 db.Companies.Add(company);
+                db.UserCompanyRefs.Add(userCompanyRef);
                 db.SaveChanges();
                 return RedirectToAction("Index", "UserPanel");
             }
@@ -81,7 +96,7 @@ namespace ESM.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Logo,Description")] Company company, UserCompanyRef userCompanyRef)
+        public ActionResult Edit([Bind(Include = "CompanyId,Name,Logo,Description")] Company company, UserCompanyRef userCompanyRef)
         {
             if (ModelState.IsValid)
             {
@@ -113,11 +128,11 @@ namespace ESM.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            //Company company = db.Companies.Find(id);
-            //var refid = db.UserCompanyRefs.Where(x => x.CompanyId.Equals(company.Id)).Select(x => x.Id);
-            //UserCompanyRef userCompanyRef = db.UserCompanyRefs.Find(refid);
-            //db.Companies.Remove(company);
-            //db.UserCompanyRefs.Remove(userCompanyRef);
+            Company company = db.Companies.Find(id);
+            var refid = db.UserCompanyRefs.Where(x => x.CompanyId.Equals(company.CompanyId)).Select(x => x.RefId);
+            UserCompanyRef userCompanyRef = db.UserCompanyRefs.Find(refid);
+            db.Companies.Remove(company);
+            db.UserCompanyRefs.Remove(userCompanyRef);
             db.SaveChanges();
             return RedirectToAction("Index", "UserPanel");
         }

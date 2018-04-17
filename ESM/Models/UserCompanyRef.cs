@@ -11,12 +11,11 @@ namespace ESM.Models
     public class UserCompanyRef
     {
         [Key]
-        public Guid Id { get; set; }
-        [ForeignKey("IdentityUser")]
+        public Guid RefId { get; set; }
         public string UserId { get; set; }
+        public virtual AppUser User { get; set; }
         [ForeignKey("Companies")]
         public Guid CompanyId { get; set; }
-        public virtual AppUser AppUser { get; set; }
         public virtual Company Companies { get; set; }
     }
 }

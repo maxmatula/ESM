@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using ESM.Models;
 using ESM.DAL;
+using ESM.ViewModels;
 
 namespace ESM.Controllers
 {
@@ -19,7 +20,6 @@ namespace ESM.Controllers
         public ActionResult Index(string searchString = null)
         {
             var currentCompanyId = Session["currentCompanyId"];
-
             var employees = from emp in db.Employees
                             where emp.CompanyId.ToString() == currentCompanyId.ToString()
                             select emp;
@@ -64,11 +64,28 @@ namespace ESM.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Surname,Title,Picture,CompanyId")] Employee employee)
+        public ActionResult Create([Bind(Include = "EmployeeId,Name,Surname,Title,Picture,CompanyId")] Employee employee)
         {
+            var newEmployeeId = Guid.NewGuid();
+            var existingEmployeesId = db.Employees.Select(x => x.EmployeeId);
+            if (existingEmployeesId.Contains(newEmployeeId))
+            {
+                newEmployeeId = Guid.NewGuid();
+            }
+            else
+            {
+                employee.EmployeeId = newEmployeeId;
+            }
+            var currentCompanyId = Session["currentCompanyId"];
+            var company = db.Companies.Find(currentCompanyId);
+            employee.CompanyId = company.CompanyId;
+
             if (ModelState.IsValid)
             {
-                //employee.CompanyId = Session["currentCompanyId"].ToString();
+                if (employee.Picture == null)
+                {
+                    employee.Picture = "http://placehold.jp/200x200.png";
+                }
                 db.Employees.Add(employee);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -97,7 +114,7 @@ namespace ESM.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Surname,Title,Picture,Company_Id")] Employee employee)
+        public ActionResult Edit([Bind(Include = "EmployeeId,Name,Surname,Title,Picture,CompanyId")] Employee employee)
         {
             if (ModelState.IsValid)
             {
