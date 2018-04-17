@@ -18,9 +18,7 @@ namespace ESM.Models
         public DateTime CreatedAt { get; set; }
         public string AvatarPath { get; set; }
         public bool IsActive { get; set; }
-        [ForeignKey("UserCompanyRefs")]
-        public Guid ReferenceId { get; set; }
-        public virtual UserCompanyRef UserCompanyRefs { get; set; }
+        public virtual ICollection<UserCompanyRef> UserCompanyRefs { get; set; }
         public AppUser()
         {
             CreatedAt = DateTime.Now;

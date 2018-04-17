@@ -21,11 +21,6 @@ namespace ESM.Models
         [ForeignKey("Companies")]
         public Guid CompanyId { get; set; }
         public virtual Company Companies { get; set; }
-        
-        public Employee()
-        {
-            Id = Guid.NewGuid();
-        }
 
         //private string _identityNumber { get; set; } //pesel
         //private string _address { get; set; }
@@ -44,12 +39,5 @@ namespace ESM.Models
         //private string _taxOffice { get; set; }
         //private string _healthcareFund { get; set; } // kasa chorych
 
-        //private Employee(string name, string surname, string title, string picture)
-        //{
-        //    this.Name = name;
-        //    this.Surname = surname;
-        //    this.Title = title;
-        //    this.Picture = picture;
-        //}
     }
 }
