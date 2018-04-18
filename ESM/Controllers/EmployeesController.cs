@@ -9,12 +9,20 @@ using System.Web.Mvc;
 using ESM.Models;
 using ESM.DAL;
 using ESM.ViewModels;
+using ESM.Services;
 
 namespace ESM.Controllers
 {
     public class EmployeesController : Controller
     {
-        private ESMDbContext db = new ESMDbContext();
+        private readonly ESMDbContext db;
+        private readonly IEmployeesService employeesService;
+
+        public EmployeesController()
+        {
+            this.db = new ESMDbContext();
+            this.employeesService = new EmployeesService();
+        }
 
         // GET: Employees
         public ActionResult Index(string searchString = null)
@@ -66,28 +74,10 @@ namespace ESM.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "EmployeeId,Name,Surname,Title,Picture,CompanyId")] Employee employee)
         {
-            var newEmployeeId = Guid.NewGuid();
-            var existingEmployeesId = db.Employees.Select(x => x.EmployeeId);
-            if (existingEmployeesId.Contains(newEmployeeId))
-            {
-                newEmployeeId = Guid.NewGuid();
-            }
-            else
-            {
-                employee.EmployeeId = newEmployeeId;
-            }
-            var currentCompanyId = Session["currentCompanyId"];
-            var company = db.Companies.Find(currentCompanyId);
-            employee.CompanyId = company.CompanyId;
-
             if (ModelState.IsValid)
             {
-                if (employee.Picture == null)
-                {
-                    employee.Picture = "http://placehold.jp/200x200.png";
-                }
-                db.Employees.Add(employee);
-                db.SaveChanges();
+                string currentCompanyId = Session["currentCompanyId"].ToString();
+                var result = employeesService.Create(employee, currentCompanyId);
                 return RedirectToAction("Index");
             }
 
@@ -118,8 +108,7 @@ namespace ESM.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(employee).State = EntityState.Modified;
-                db.SaveChanges();
+                var result = employeesService.Edit(employee);
                 return RedirectToAction("Index");
             }
             return View(employee);
@@ -145,9 +134,7 @@ namespace ESM.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            Employee employee = db.Employees.Find(id);
-            db.Employees.Remove(employee);
-            db.SaveChanges();
+            var result = employeesService.Delete(id);
             return RedirectToAction("Index");
         }
 

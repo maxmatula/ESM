@@ -10,12 +10,21 @@ using ESM.Models;
 using ESM.DAL;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using ESM.Services;
 
 namespace ESM.Controllers
 {
     public class CompaniesController : Controller
     {
-        private ESMDbContext db = new ESMDbContext();
+
+        private readonly ESMDbContext db;
+        private readonly ICompaniesService companiesService;
+
+        public CompaniesController()
+        {
+            this.db = ESMDbContext.Create();
+            this.companiesService = new CompaniesService();
+        }
 
         // GET: Companies/Details/5
         public ActionResult Details(Guid? id)
@@ -48,29 +57,9 @@ namespace ESM.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "CompanyId,Name,Logo,Description")] Company company, UserCompanyRef userCompanyRef)
         {
-            var newCompanyid = Guid.NewGuid();
-            var existingCompaniesId = db.Companies.Select(x => x.CompanyId);
-            if (existingCompaniesId.Contains(newCompanyid))
-            {
-                newCompanyid = Guid.NewGuid();
-            }
-            else
-            {
-                company.CompanyId = newCompanyid;
-            }
-            userCompanyRef.RefId = Guid.NewGuid();
-            userCompanyRef.UserId = User.Identity.GetUserId();
-            userCompanyRef.CompanyId = company.CompanyId;
-
             if (ModelState.IsValid)
             {
-                if(company.Logo == null)
-                {
-                    company.Logo = "http://placehold.jp/200x200.png";
-                }
-                db.Companies.Add(company);
-                db.UserCompanyRefs.Add(userCompanyRef);
-                db.SaveChanges();
+                var result = companiesService.Create(company, userCompanyRef, User.Identity.GetUserId().ToString());
                 return RedirectToAction("Index", "UserPanel");
             }
             return View(company);
@@ -100,9 +89,7 @@ namespace ESM.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(company).State = EntityState.Modified;
-                db.Entry(userCompanyRef).State = EntityState.Unchanged;
-                db.SaveChanges();
+                var result = companiesService.Edit(company, userCompanyRef);
                 return RedirectToAction("Index", "UserPanel");
             }
             return View(company);
@@ -128,12 +115,7 @@ namespace ESM.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            Company company = db.Companies.Find(id);
-            var refid = db.UserCompanyRefs.Where(x => x.CompanyId.Equals(company.CompanyId)).Select(x => x.RefId);
-            UserCompanyRef userCompanyRef = db.UserCompanyRefs.Find(refid);
-            db.Companies.Remove(company);
-            db.UserCompanyRefs.Remove(userCompanyRef);
-            db.SaveChanges();
+            var result = companiesService.Delete(id);
             return RedirectToAction("Index", "UserPanel");
         }
 

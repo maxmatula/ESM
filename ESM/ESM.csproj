@@ -214,6 +214,10 @@
     <Compile Include="Models\AppUser.cs" />
     <Compile Include="Models\UserCompanyRef.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\CompaniesService.cs" />
+    <Compile Include="Services\EmployeesService.cs" />
+    <Compile Include="Services\ICompaniesService.cs" />
+    <Compile Include="Services\IEmployeesService.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
