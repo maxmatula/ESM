@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Ninject;
 using ESM.Abstract;
+using ESM.Services;
 using ESM.DAL;
 
 namespace ESM.Infrastructure
@@ -31,7 +32,9 @@ namespace ESM.Infrastructure
 
         private void AddBindings()
         {
-            kernel.Bind<IEmployeeList>().To<EFEmployeeRepository>();
+            kernel.Bind<ICompaniesService>().To<CompaniesService>();
+            kernel.Bind<IEmployeesService>().To<EmployeesService>();
+            kernel.Bind<ESMDbContext>().ToSelf();
         }
     }
 }

@@ -1,0 +1,13 @@
+﻿<div class="col-xs-12 col-sm-6 search-form">
+
+    <form method="get" data-ajax="true" data-ajax-target="#companieslist-section" data-ajax-update="#companieslist-section">
+        <div class="form-group search-form__wrapper">
+            @Html.TextBox("searchString", null, new { @class = "form-control search-form__input", placeholder = "Search" })
+            <button class="search-form__submit"><i class="fa fa-search"></i></button>
+        </div>
+    </form>
+
+
+</div>
+
+<div class="clearfix"></div>

@@ -6,19 +6,24 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using ESM.DAL;
 using ESM.Models;
+using ESM.DAL;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using ESM.Services;
 
 namespace ESM.Controllers
 {
     public class CompaniesController : Controller
     {
-        private ESMContext db = new ESMContext();
 
-        // GET: Companies
-        public ActionResult Index()
+        private readonly ESMDbContext db;
+        private readonly ICompaniesService companiesService;
+
+        public CompaniesController()
         {
-            return View(db.Companies.ToList());
+            this.db = ESMDbContext.Create();
+            this.companiesService = new CompaniesService();
         }
 
         // GET: Companies/Details/5
@@ -29,11 +34,14 @@ namespace ESM.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Company company = db.Companies.Find(id);
+
             if (company == null)
             {
                 return HttpNotFound();
             }
-            return View(company);
+
+            Session["currentCompanyId"] = id;
+            return RedirectToAction("Index", "Employees");
         }
 
         // GET: Companies/Create
@@ -47,16 +55,13 @@ namespace ESM.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Logo,Description,TotalEarnings")] Company company)
+        public ActionResult Create([Bind(Include = "CompanyId,Name,Logo,Description")] Company company, UserCompanyRef userCompanyRef)
         {
             if (ModelState.IsValid)
             {
-                company.Id = Guid.NewGuid();
-                db.Companies.Add(company);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                var result = companiesService.Create(company, userCompanyRef, User.Identity.GetUserId().ToString());
+                return RedirectToAction("Index", "UserPanel");
             }
-
             return View(company);
         }
 
@@ -80,13 +85,12 @@ namespace ESM.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Logo,Description,TotalEarnings")] Company company)
+        public ActionResult Edit([Bind(Include = "CompanyId,Name,Logo,Description")] Company company, UserCompanyRef userCompanyRef)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(company).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                var result = companiesService.Edit(company, userCompanyRef);
+                return RedirectToAction("Index", "UserPanel");
             }
             return View(company);
         }
@@ -111,10 +115,8 @@ namespace ESM.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            Company company = db.Companies.Find(id);
-            db.Companies.Remove(company);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            var result = companiesService.Delete(id);
+            return RedirectToAction("Index", "UserPanel");
         }
 
         protected override void Dispose(bool disposing)

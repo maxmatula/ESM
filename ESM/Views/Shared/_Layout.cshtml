@@ -17,55 +17,54 @@
             <header class="main-header col-lg-2">
                 <div class="main-header__brand">
                     <a href="@Url.Action("Index","UserPanel")">
-                    <img src="~/Images/esm logo.png" alt="ESM" class="img-responsive" />
+                        <img src="~/Images/esm logo.png" alt="ESM" class="img-responsive" />
                     </a>
                 </div>
-                    <div class="main-header__user">
-                        <img src="~/Images/avatar-placeholder.png" alt="User Avatar" class="img-circle pull-left img-fluid user__image" />
-                        <span class="user__label">
-                            Zalogowano jako:
-                        </span>
-                        <span class="user__name">@Session["UserName"] @Session["UserSurname"]</span>
-                    </div>
+                <div class="main-header__user">
+                    <img src="~/Images/avatar-placeholder.png" alt="User Avatar" class="img-circle pull-left img-fluid user__image" />
+                    <span class="user__label">
+                        Zalogowano jako:
+                    </span>
+                    <span class="user__name">@Session["UserName"] @Session["UserSurname"]</span>
+                </div>
 
-                    <nav class="main-header__links">
-                        <ul>
-                            <li class="active parent">
-                                <a href="#"><i class="fas fa-user"></i> Pracownicy</a>
-                                <ul class="child">
-                                    <li><a href="@Url.Action("Index","Employees")">Wszyscy pracownicy</a></li>
-                                    <li><a href="@Url.Action("Create","Employees")">Dodaj pracownika</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#"><i class="fas fa-calendar"></i> Wydarzenia</a></li>
-                            <li><a href="@Url.Action("Index","Calculator")"><i class="fas fa-calculator"></i> Kalkulator wynagrodzeń</a></li>
-                            <li><a href="#"><i class="fas fa-cog"></i> Ustawienia</a></li>
-                            <li><a href="@Url.Action("Logout","Account")"><i class="fas fa-power-off"></i> Wyloguj</a></li>
+                <nav class="main-header__links">
+                    <ul>
+                        <li><a href="@Url.Action("Index","UserPanel")"><i class="fas fa-company"></i> Firma</a></li>
+                        <li><a href="#"><i class="fas fa-calendar"></i> Wydarzenia</a></li>
+                        <li><a href="@Url.Action("Index","Calculator")"><i class="fas fa-calculator"></i> Kalkulator wynagrodzeń</a></li>
+                        <li><a href="#"><i class="fas fa-cog"></i> Ustawienia</a></li>
 
-                        </ul>
-                    </nav>
-                    <div class="main-header__footer text-center">
-                        <img src="~/Images/esm logo.png" alt="ESM" class="img-fluid"/>
-                        <p>MM&GW Solutions &copy; @DateTime.Now.Year</p>
-                    </div>
-                </header>
-                <main class="col-lg-7 col-lg-offset-2 main-content">
-                    <div class="row">
-                            @RenderBody()
-                    </div>
-                </main>
-                <aside class="main-sidebar col-lg-3">
+                        <li>
+                            @using (Html.BeginForm("Logout", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                            {
+                                @Html.AntiForgeryToken()
 
-                </aside>
-            </div>
+                                <a href="javascript:document.getElementById('logoutForm').submit()"><i class="fas fa-power-off "></i> Wyloguj</a>
+                            }
+                        </li>
+                    </ul>
+                </nav>
+                <div class="main-header__footer text-center">
+                    <img src="~/Images/esm logo.png" alt="ESM" class="img-fluid" />
+                    <p>MM&GW Solutions &copy; @DateTime.Now.Year</p>
+                </div>
+            </header>
+            <main class="col-lg-7 col-lg-offset-2 main-content">
+                <div class="row">
+                    @RenderBody()
+                </div>
+            </main>
+            <aside class="main-sidebar col-lg-3"></aside>
         </div>
+    </div>
 
 
-        @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.js")
-        @Scripts.Render("~/bundles/bootstrap")
-        @Scripts.Render("~/Scripts/scripts.js")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.js")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Scripts/scripts.js")
 
-        @RenderSection("scripts", required: false)
-    </body>
-    </html>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

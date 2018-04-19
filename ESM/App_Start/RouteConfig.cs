@@ -19,7 +19,6 @@ namespace ESM
                 defaults: new { controller = "Employees", id = UrlParameter.Optional.ToString() }
                 );
 
-
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{searchString}",
