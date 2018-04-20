@@ -195,6 +195,7 @@
     <Compile Include="Controllers\CalculatorController.cs" />
     <Compile Include="Controllers\CompaniesController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
+    <Compile Include="Controllers\FilesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserPanelController.cs" />
     <Compile Include="DAL\IdentityModels.cs" />
@@ -405,6 +406,8 @@
     <Content Include="Views\Companies\Edit.cshtml" />
     <Content Include="Views\Shared\_CompaniesList.cshtml" />
     <Content Include="Views\Shared\_SearchFormCompanies.cshtml" />
+    <Content Include="Views\Files\UploadFile.cshtml" />
+    <Content Include="Views\Files\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Abstract\" />

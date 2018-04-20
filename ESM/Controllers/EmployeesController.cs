@@ -72,7 +72,7 @@ namespace ESM.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EmployeeId,Name,Surname,Title,Picture,CompanyId")] Employee employee)
+        public ActionResult Create([Bind(Include = "EmployeeId,Name,Surname,Title,Picture,BirthDate,CompanyId")] Employee employee)
         {
             if (ModelState.IsValid)
             {
@@ -104,12 +104,11 @@ namespace ESM.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "EmployeeId,Name,Surname,Title,Picture,CompanyId")] Employee employee)
+        public ActionResult Edit([Bind(Include = "EmployeeId,Name,Surname,Title,Picture,BirthDate,CompanyId")] Employee employee)
         {
             if (ModelState.IsValid)
             {
                 var result = employeesService.Edit(employee);
-                return RedirectToAction("Index");
             }
             return View(employee);
         }
