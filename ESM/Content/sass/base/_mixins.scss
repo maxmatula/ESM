@@ -27,3 +27,15 @@
     display: block;
     margin: 0 auto;
 }
+
+@mixin content-icon($icon) {
+    content: $icon;
+    font-family: "Font Awesome 5 Free";
+}
+
+@mixin alert() {
+    padding: $offset--small $offset--medium;
+    margin: $offset--small 0;
+    border: 1px solid transparent;
+    border-radius: 0;
+}

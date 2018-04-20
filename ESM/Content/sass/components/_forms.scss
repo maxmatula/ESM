@@ -1,5 +1,32 @@
 ﻿/// <reference path="../base/variables" /
 
+.form {
+    .checkbox {
+        input {
+            display: none;
+        }
+
+        label {
+            padding-left: 25px;
+
+            &:before {
+                @include content-icon('\f0c8');
+                position: absolute;
+                top: 50%;
+                left: 0;
+                transform: translateY(-50%);
+                z-index: 0;
+                font-size: 20px;
+            }
+        }
+
+        input:checked ~ label {
+            &:before {
+                content: '\f14a';
+            }
+        }
+    }
+}
 .form-control {
     background-color: transparent;
     border-bottom: solid $gray;
@@ -14,4 +41,29 @@
         box-shadow: none;
         color: $white;
     }
+}
+.validation-summary-errors{
+    ul{
+        list-style-type: none;
+        padding: 0;
+    }
+}
+.validation-summary-errors li, .field-validation-error {
+    @include alert;
+    color: $gray;
+    display: block;
+    position: relative;
+    padding-left: 25px;
+    &:before {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        z-index: 0;
+        @include content-icon('\f057');
+        color: $white;
+    }
+}
+.input-validation-error {
+    border-bottom-color: $gray;
 }
