@@ -7,12 +7,18 @@ using ESM.Models;
 using ESM.DAL;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using ESM.Services;
 
 namespace ESM.Controllers
 {
     public class UserPanelController : Controller
     {
+        private readonly IDirectoriesService directoriesService;
 
+        public UserPanelController()
+        {
+            this.directoriesService = new DirectoriesService();
+        }
 
         // GET: UserPanel
         public ActionResult Index(string searchString = null)
@@ -20,6 +26,8 @@ namespace ESM.Controllers
             ESMDbContext db = new ESMDbContext();
 
             var currUserId = User.Identity.GetUserId();
+
+            var directoryResult = directoriesService.GetDirectory(currUserId);
 
             var companies = from company in db.Companies
                             join reference in db.UserCompanyRefs
