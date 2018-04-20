@@ -186,7 +186,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstract\IEmployeeList.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -215,8 +214,10 @@
     <Compile Include="Models\UserCompanyRef.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CompaniesService.cs" />
+    <Compile Include="Services\DirectoriesService.cs" />
     <Compile Include="Services\EmployeesService.cs" />
     <Compile Include="Services\ICompaniesService.cs" />
+    <Compile Include="Services\IDirectoriesService.cs" />
     <Compile Include="Services\IEmployeesService.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
@@ -406,6 +407,7 @@
     <Content Include="Views\Shared\_SearchFormCompanies.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Abstract\" />
     <Folder Include="Content\sass\views\" />
   </ItemGroup>
   <ItemGroup>

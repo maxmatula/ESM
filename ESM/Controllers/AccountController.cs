@@ -11,6 +11,7 @@ using Microsoft.Owin.Security;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using ESM.Services;
 
 namespace ESM.Controllers
 {

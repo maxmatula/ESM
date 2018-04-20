@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Ninject;
-using ESM.Abstract;
 using ESM.Services;
 using ESM.DAL;
 
@@ -34,6 +33,7 @@ namespace ESM.Infrastructure
         {
             kernel.Bind<ICompaniesService>().To<CompaniesService>();
             kernel.Bind<IEmployeesService>().To<EmployeesService>();
+            kernel.Bind<IDirectoriesService>().To<DirectoriesService>();
             kernel.Bind<ESMDbContext>().ToSelf();
         }
     }
