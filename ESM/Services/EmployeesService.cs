@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using ESM.DAL;
 using ESM.Models;
 
@@ -56,10 +57,11 @@ namespace ESM.Services
             }
         }
 
-        public bool Edit(Employee employee)
+        public bool Edit(Employee employee, string currentCompanyId)
         {
             try
             {
+                employee.CompanyId = Guid.Parse(currentCompanyId);
                 db.Entry(employee).State = EntityState.Modified;
                 db.SaveChanges();
                 return true;
