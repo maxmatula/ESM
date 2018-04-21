@@ -203,17 +203,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\NinjectDependencyReslover.cs" />
-    <Compile Include="Migrations\201804171831343_InitialCreate.cs" />
-    <Compile Include="Migrations\201804171831343_InitialCreate.Designer.cs">
-      <DependentUpon>201804171831343_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804210618205_AppUser AvatarPath get change.cs" />
-    <Compile Include="Migrations\201804210618205_AppUser AvatarPath get change.Designer.cs">
-      <DependentUpon>201804210618205_AppUser AvatarPath get change.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804210639376_AddUser setter AvatarPath try 3.cs" />
-    <Compile Include="Migrations\201804210639376_AddUser setter AvatarPath try 3.Designer.cs">
-      <DependentUpon>201804210639376_AddUser setter AvatarPath try 3.cs</DependentUpon>
+    <Compile Include="Migrations\201804211603261_InitialCreate.cs" />
+    <Compile Include="Migrations\201804211603261_InitialCreate.Designer.cs">
+      <DependentUpon>201804211603261_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Calculator.cs" />
@@ -431,14 +423,8 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201804171831343_InitialCreate.resx">
-      <DependentUpon>201804171831343_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804210618205_AppUser AvatarPath get change.resx">
-      <DependentUpon>201804210618205_AppUser AvatarPath get change.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804210639376_AddUser setter AvatarPath try 3.resx">
-      <DependentUpon>201804210639376_AddUser setter AvatarPath try 3.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201804211603261_InitialCreate.resx">
+      <DependentUpon>201804211603261_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -13,7 +13,7 @@ namespace ESM.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201804171831343_InitialCreate"; }
+            get { return "201804211603261_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source

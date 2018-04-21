@@ -15,8 +15,4 @@
         $('.main-content').fadeIn("slow");
     }, 100)
 
-    
-    $("#Email").val("admin@admin.pl");
-    $("#Password").val("123456");
-    
 });
