@@ -8,12 +8,12 @@ namespace ESM.Services
 {
     public class DirectoriesService : IDirectoriesService
     {
-        public string GetDirectory(string id)
+        public string GetDirectory(string userId)
         {
             try
             {
                 string userDirectory = "";
-                string userId = id + "\\";
+                userId = userId + "\\";
                 string physicalPath = HttpRuntime.AppDomainAppPath;
                 physicalPath = physicalPath.Replace("ESM\\", "UserFiles\\");
                 userDirectory = Path.Combine(physicalPath, userId);
@@ -27,9 +27,29 @@ namespace ESM.Services
             }
             catch
             {
-                throw new Exception("Directory error! Can't get user directory");
+                throw new Exception("Directory error! Can't get user directory!");
             }
-            
+
+        }
+
+        public string UploadFile(string userPath, HttpPostedFileBase file)
+        {
+            string returnPath = "";
+            try
+            {
+                if (file.ContentLength > 0)
+                {
+                    string _fileName = Path.GetFileName(file.FileName);
+                    returnPath = Path.Combine(userPath, _fileName);
+                    file.SaveAs(returnPath);
+                }
+                return returnPath;
+            }
+            catch
+            {
+                returnPath = "";
+                throw new Exception("File upload failed!");
+            }
         }
     }
 }
