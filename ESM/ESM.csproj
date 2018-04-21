@@ -206,6 +206,14 @@
     <Compile Include="Migrations\201804171831343_InitialCreate.Designer.cs">
       <DependentUpon>201804171831343_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804210618205_AppUser AvatarPath get change.cs" />
+    <Compile Include="Migrations\201804210618205_AppUser AvatarPath get change.Designer.cs">
+      <DependentUpon>201804210618205_AppUser AvatarPath get change.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804210639376_AddUser setter AvatarPath try 3.cs" />
+    <Compile Include="Migrations\201804210639376_AddUser setter AvatarPath try 3.Designer.cs">
+      <DependentUpon>201804210639376_AddUser setter AvatarPath try 3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Calculator.cs" />
     <Compile Include="Models\Company.cs" />
@@ -422,6 +430,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201804171831343_InitialCreate.resx">
       <DependentUpon>201804171831343_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804210618205_AppUser AvatarPath get change.resx">
+      <DependentUpon>201804210618205_AppUser AvatarPath get change.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804210639376_AddUser setter AvatarPath try 3.resx">
+      <DependentUpon>201804210639376_AddUser setter AvatarPath try 3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
