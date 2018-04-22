@@ -27,6 +27,11 @@
         }
     }
 }
+
+legend{
+    color: $white;
+    font-weight: $font__weight--light;
+}
 .form-control {
     background-color: transparent;
     border-bottom: solid $gray;

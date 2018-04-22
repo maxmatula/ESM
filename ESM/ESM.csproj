@@ -329,6 +329,10 @@
     <Content Include="Content\sass\components\_jumbotron.scss" />
     <Content Include="Content\sass\components\_buttons.scss" />
     <Content Include="Media\Home_work.ogv" />
+    <Content Include="Content\sass\pages\_dashboard.scss" />
+    <Content Include="Content\sass\pages\_employees.scss" />
+    <Content Include="Content\sass\views\_crud-index.scss" />
+    <Content Include="Content\sass\pages\_calculator.scss" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -411,7 +415,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Abstract\" />
-    <Folder Include="Content\sass\views\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -1,9 +1,11 @@
 ﻿@Html.Partial("_SearchFormCompanies")
-<nav class="main-header__buttonadd">
-    <ul>
-        <li><a href="@Url.Action("Create","Companies")">Dodaj firmę</a></li>
-    </ul>
-</nav>
-<br />
-@Html.Partial("_CompaniesList")
+<div class="dashboard col-xs-12">
+        <ul class="crud-index__navbar">
+            <li><a href="@Url.Action("Create","Companies")" class="btn btn-primary btn-lg">Dodaj firmę</a></li>
+        </ul>
+    @Html.Partial("_CompaniesList")
+</div>
+
+
+
 

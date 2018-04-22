@@ -1,10 +1,11 @@
 ﻿@model ESM.Models.Calculator
 
-<div id="calculator-section" class="col-xs-12">
-
-    <h3>Netto: @Model.Netto.ToString("c")</h3>
-    <h3>Brutto: @Model.Brutto.ToString("c")</h3>
-    <h3>Koszty pracodawcy: @Model.EmployeeCost.ToString("c")</h3>
+<div id="calculator-section" class="col-xs-12 col-sm-8 well">
+    <h3>Podsumowanie:</h3>
+    <hr />
+    <h4><b>Netto:</b> @Model.Netto.ToString("c")</h4>
+    <h4><b>Brutto:</b> @Model.Brutto.ToString("c")</h4>
+    <h3 class="text-success"><b>Koszty pracodawcy:</b> @Model.EmployeeCost.ToString("c")</h3>
 
 </div>
 

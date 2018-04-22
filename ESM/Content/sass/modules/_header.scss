@@ -12,14 +12,16 @@
     flex-direction: column;
     align-content: center;
     justify-content: space-between;
+
     &__brand {
         border-bottom: 1px solid $primary;
     }
 
     &__user {
         @include padding-tb($offset--medium);
-
+        
         .user {
+
             &__label, &__name {
                 display: block;
             }
@@ -38,7 +40,9 @@
                 font-size: $font__size--large;
                 color: $tetriary;
                 font-weight: $font__weight--bolder;
-                white-space: nowrap;
+                line-height: 1;
+                padding-bottom: $offset--small;
+                border-bottom: 2px solid $secondary;
             }
         }
     }
