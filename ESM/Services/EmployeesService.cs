@@ -57,10 +57,14 @@ namespace ESM.Services
             }
         }
 
-        public bool Edit(Employee employee, string currentCompanyId)
+        public bool Edit(Employee employee, string currentCompanyId, string avatarPath)
         {
             try
             {
+                if (avatarPath.Length > 0)
+                {
+                    employee.Picture = avatarPath;
+                }
                 employee.CompanyId = Guid.Parse(currentCompanyId);
                 db.Entry(employee).State = EntityState.Modified;
                 db.SaveChanges();

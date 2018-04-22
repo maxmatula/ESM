@@ -10,6 +10,7 @@ using ESM.Models;
 using ESM.DAL;
 using ESM.ViewModels;
 using ESM.Services;
+using Microsoft.AspNet.Identity;
 
 namespace ESM.Controllers
 {
@@ -17,11 +18,13 @@ namespace ESM.Controllers
     {
         private readonly ESMDbContext db;
         private readonly IEmployeesService employeesService;
+        private readonly IDirectoriesService directoriesService;
 
         public EmployeesController()
         {
             this.db = new ESMDbContext();
             this.employeesService = new EmployeesService();
+            this.directoriesService = new DirectoriesService();
         }
 
         // GET: Employees
@@ -74,9 +77,9 @@ namespace ESM.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "EmployeeId,Name,Surname,Title,Picture,BirthDate,CompanyId")] Employee employee)
         {
+            string currentCompanyId = Session["currentCompanyId"].ToString();
             if (ModelState.IsValid)
             {
-                string currentCompanyId = Session["currentCompanyId"].ToString();
                 var result = employeesService.Create(employee, currentCompanyId);
                 return RedirectToAction("Index");
             }
@@ -104,12 +107,15 @@ namespace ESM.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "EmployeeId,Name,Surname,BirthDate,Title,Picture")] Employee employee)
+        public ActionResult Edit([Bind(Include = "EmployeeId,Name,Surname,BirthDate,Title,Picture")] Employee employee, HttpPostedFileBase file)
         {
+            string currUser = User.Identity.GetUserId().ToString();
+            string userPath = directoriesService.GetDirectory(currUser);
+            string avatarPath = directoriesService.UploadFile(userPath, file);
+            string currentCompanyId = Session["currentCompanyId"].ToString();
             if (ModelState.IsValid)
             {
-                string currentCompanyId = Session["currentCompanyId"].ToString();
-                var result = employeesService.Edit(employee, currentCompanyId);
+                var result = employeesService.Edit(employee, currentCompanyId, avatarPath);
             }
 
             return View(employee);
