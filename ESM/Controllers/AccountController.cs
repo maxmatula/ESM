@@ -100,6 +100,7 @@ namespace ESM.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    InitCurrentUserSession(model);
                     return RedirectToAction("Index", "UserPanel");
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -172,6 +173,16 @@ namespace ESM.Controllers
             {
                 ModelState.AddModelError("", error);
             }
+        }
+        
+        private void InitCurrentUserSession(LoginViewModel user)
+        {
+            UserStore<AppUser> Store = new UserStore<AppUser>(new ESMDbContext());
+            ESMUserManager userManager = new ESMUserManager(Store);
+
+            AppUser currentUser = userManager.FindByEmail(user.Email);
+            Session["Name"] = currentUser.Name;
+            Session["Surname"] = currentUser.Surname;
         }
     }
 }
