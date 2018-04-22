@@ -207,6 +207,10 @@
     <Compile Include="Migrations\201804211603261_InitialCreate.Designer.cs">
       <DependentUpon>201804211603261_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804221911376_UpdateRegisterModel.cs" />
+    <Compile Include="Migrations\201804221911376_UpdateRegisterModel.Designer.cs">
+      <DependentUpon>201804221911376_UpdateRegisterModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Calculator.cs" />
     <Compile Include="Models\Company.cs" />
@@ -428,6 +432,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201804211603261_InitialCreate.resx">
       <DependentUpon>201804211603261_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804221911376_UpdateRegisterModel.resx">
+      <DependentUpon>201804221911376_UpdateRegisterModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
