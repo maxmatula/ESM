@@ -43,11 +43,21 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Picture)
+            Zdjęcie:
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Picture)
+
+            @if (Model.PictureData == null)
+            {
+                <div class="form-control-static">Brak zdjęcia</div>
+            }
+            else
+            {
+                <img class="image-thumbnail" width="200" height="200"
+                     src="@Url.Action("GetPicture", "Employees", new { Model.EmployeeId})" />
+            }
+
         </dd>
 
     </dl>

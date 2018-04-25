@@ -11,8 +11,8 @@ namespace ESM.Services
 {
     public interface IEmployeesService
     {
-        bool Create(Employee employee, string currentCompanyId);
-        bool Edit(Employee employee, string currentCompanyId, string avatarPath);
+        bool Create(Employee employee, string currentCompanyId, HttpPostedFileBase picture);
+        bool Edit(Employee employee, string currentCompanyId, HttpPostedFileBase picture);
         bool Delete(Guid id);
     }
 }

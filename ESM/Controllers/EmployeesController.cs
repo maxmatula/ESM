@@ -67,7 +67,7 @@ namespace ESM.Controllers
         // GET: Employees/Create
         public ActionResult Create()
         {
-            return View();
+            return View("Create", new Employee());
         }
 
         // POST: Employees/Create
@@ -75,12 +75,12 @@ namespace ESM.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EmployeeId,Name,Surname,Title,Picture,BirthDate,CompanyId")] Employee employee)
+        public ActionResult Create([Bind(Include = "EmployeeId,Name,Surname,Title,BirthDate,CompanyId,PictureData,PictureMimeType")] Employee employee, HttpPostedFileBase picture = null)
         {
             string currentCompanyId = Session["currentCompanyId"].ToString();
             if (ModelState.IsValid)
             {
-                var result = employeesService.Create(employee, currentCompanyId);
+                var result = employeesService.Create(employee, currentCompanyId, picture);
                 return RedirectToAction("Index");
             }
 
@@ -107,15 +107,14 @@ namespace ESM.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "EmployeeId,Name,Surname,BirthDate,Title,Picture")] Employee employee, HttpPostedFileBase file)
+        public ActionResult Edit([Bind(Include = "EmployeeId,Name,Surname,BirthDate,Title")] Employee employee, HttpPostedFileBase picture = null)
         {
-            string currUser = User.Identity.GetUserId().ToString();
-            string userPath = directoriesService.GetDirectory(currUser);
-            string avatarPath = directoriesService.UploadFile(userPath, file);
+            
             string currentCompanyId = Session["currentCompanyId"].ToString();
             if (ModelState.IsValid)
             {
-                var result = employeesService.Edit(employee, currentCompanyId, avatarPath);
+                var result = employeesService.Edit(employee, currentCompanyId, picture);
+                return RedirectToAction("Index");
             }
 
             return View(employee);
@@ -143,6 +142,19 @@ namespace ESM.Controllers
         {
             var result = employeesService.Delete(id);
             return RedirectToAction("Index");
+        }
+
+        public FileContentResult GetPicture(Guid employeeId)
+        {
+            Employee employee = db.Employees.FirstOrDefault(e => e.EmployeeId == employeeId);
+            if(employee != null)
+            {
+                return File(employee.PictureData, employee.PictureMimeType);
+            }
+            else
+            {
+                return null;
+            }
         }
 
         protected override void Dispose(bool disposing)

@@ -9,7 +9,9 @@
 
                 <li class="employees-list__item employee">
                     <a href="@Url.Action("Details", "Employees", new { id=item.EmployeeId })">
-                        <img src="@item.Picture" alt="" class="employee__image img-circle img-responsive" />
+                        <img  class="employee__image img-circle img-responsive" width="200" height="200"
+                             src="@Url.Action("GetPicture", "Employees", new { employeeId = item.EmployeeId})" 
+                             alt="" />
                         <h4 class="employee__name"><span class="name">@item.Name</span> <span class="surname">@item.Surname</span></h4>
                         <h5 class="employee__title">@item.Title</h5>
                     </a>

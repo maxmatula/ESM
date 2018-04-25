@@ -1,1 +1,0 @@
-To jest pierwszy plik zuploadowany do aplikacji ESM!

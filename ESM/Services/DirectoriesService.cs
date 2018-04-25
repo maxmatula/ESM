@@ -8,14 +8,13 @@ namespace ESM.Services
 {
     public class DirectoriesService : IDirectoriesService
     {
-        public string GetDirectory(string userId)
+        public string GetUserDirectory(string userId)
         {
             try
             {
                 string userDirectory = "";
                 userId = userId + "\\";
-                string physicalPath = HttpRuntime.AppDomainAppPath;
-                physicalPath = physicalPath.Replace("ESM\\", "UserFiles\\");
+                string physicalPath = HttpContext.Current.Server.MapPath("~/App_Data/UserFiles/");
                 userDirectory = Path.Combine(physicalPath, userId);
 
                 if (!Directory.Exists(userDirectory))

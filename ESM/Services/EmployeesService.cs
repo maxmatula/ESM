@@ -12,7 +12,7 @@ namespace ESM.Services
     public class EmployeesService : IEmployeesService
     {
         private ESMDbContext db = new ESMDbContext();
-        public bool Create(Employee employee, string currentCompanyId)
+        public bool Create(Employee employee, string currentCompanyId, HttpPostedFileBase picture)
         {
             try
             {
@@ -27,11 +27,13 @@ namespace ESM.Services
                     employee.EmployeeId = newEmployeeId;
                 }
                 employee.CompanyId = Guid.Parse(currentCompanyId);
-
-                if (employee.Picture == null)
+                if (picture != null)
                 {
-                    employee.Picture = "http://placehold.jp/200x200.png";
+                    employee.PictureMimeType = picture.ContentType;
+                    employee.PictureData = new byte[picture.ContentLength];
+                    picture.InputStream.Read(employee.PictureData, 0, picture.ContentLength);
                 }
+
                 db.Employees.Add(employee);
                 db.SaveChanges();
                 return true;
@@ -57,15 +59,18 @@ namespace ESM.Services
             }
         }
 
-        public bool Edit(Employee employee, string currentCompanyId, string avatarPath)
+        public bool Edit(Employee employee, string currentCompanyId, HttpPostedFileBase picture)
         {
+
             try
             {
-                if (avatarPath.Length > 0)
-                {
-                    employee.Picture = avatarPath;
-                }
                 employee.CompanyId = Guid.Parse(currentCompanyId);
+                if(picture != null)
+                {
+                    employee.PictureMimeType = picture.ContentType;
+                    employee.PictureData = new byte[picture.ContentLength];
+                    picture.InputStream.Read(employee.PictureData, 0, picture.ContentLength);
+                }
                 db.Entry(employee).State = EntityState.Modified;
                 db.SaveChanges();
                 return true;

@@ -17,7 +17,9 @@ namespace ESM.Models
         public string Surname { get; set; }
         public string BirthDate { get; set; }
         public string Title { get; set; }
-        public string Picture { get; set; }
+        public byte[] PictureData { get; set; }
+        [StringLength(50)]
+        public string PictureMimeType { get; set; }
         [ForeignKey("Companies")]
         public Guid CompanyId { get; set; }
         public virtual Company Companies { get; set; }

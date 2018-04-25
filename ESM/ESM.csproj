@@ -210,6 +210,10 @@
     <Compile Include="Migrations\201804221911376_UpdateRegisterModel.Designer.cs">
       <DependentUpon>201804221911376_UpdateRegisterModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804241504162_EmployeePictureEdit.cs" />
+    <Compile Include="Migrations\201804241504162_EmployeePictureEdit.Designer.cs">
+      <DependentUpon>201804241504162_EmployeePictureEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Calculator.cs" />
     <Compile Include="Models\Company.cs" />
@@ -416,6 +420,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Abstract\" />
+    <Folder Include="UserFiles\" />
     <Folder Include="Views\Files\" />
   </ItemGroup>
   <ItemGroup>
@@ -433,6 +438,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804221911376_UpdateRegisterModel.resx">
       <DependentUpon>201804221911376_UpdateRegisterModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804241504162_EmployeePictureEdit.resx">
+      <DependentUpon>201804241504162_EmployeePictureEdit.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
