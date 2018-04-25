@@ -11,7 +11,7 @@ namespace ESM.Services
     public class CompaniesService : ICompaniesService
     {
         private ESMDbContext db = new ESMDbContext();
-        public bool Create(Company company, UserCompanyRef userCompanyRef, string userId)
+        public bool Create(Company company, UserCompanyRef userCompanyRef, string userId, HttpPostedFileBase logo)
         {
             try
             {
@@ -36,13 +36,15 @@ namespace ESM.Services
                 {
                     userCompanyRef.RefId = newReferenceId;
                 }
-                
+
                 userCompanyRef.UserId = userId;
                 userCompanyRef.CompanyId = company.CompanyId;
 
-                if (company.Logo == null)
+                if (logo != null)
                 {
-                    company.Logo = "http://placehold.jp/200x200.png";
+                    company.LogoMimeType = logo.ContentType;
+                    company.LogoData = new byte[logo.ContentLength];
+                    logo.InputStream.Read(company.LogoData, 0, logo.ContentLength);
                 }
 
                 db.Companies.Add(company);
@@ -54,7 +56,7 @@ namespace ESM.Services
             {
                 return false;
             }
-            
+
         }
 
         public bool Delete(Guid id)
@@ -75,10 +77,16 @@ namespace ESM.Services
             }
         }
 
-        public bool Edit(Company company, UserCompanyRef userCompanyRef)
+        public bool Edit(Company company, UserCompanyRef userCompanyRef, HttpPostedFileBase logo)
         {
             try
             {
+                if (logo != null)
+                {
+                    company.LogoMimeType = logo.ContentType;
+                    company.LogoData = new byte[logo.ContentLength];
+                    logo.InputStream.Read(company.LogoData, 0, logo.ContentLength);
+                }
                 db.Entry(company).State = EntityState.Modified;
                 db.Entry(userCompanyRef).State = EntityState.Unchanged;
                 db.SaveChanges();
@@ -88,7 +96,7 @@ namespace ESM.Services
             {
                 return false;
             }
-            
+
 
         }
     }

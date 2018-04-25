@@ -47,7 +47,7 @@ namespace ESM.Controllers
         // GET: Companies/Create
         public ActionResult Create()
         {
-            return View();
+            return View("Create", new Company());
         }
 
         // POST: Companies/Create
@@ -55,11 +55,11 @@ namespace ESM.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CompanyId,Name,Logo,Description")] Company company, UserCompanyRef userCompanyRef)
+        public ActionResult Create([Bind(Include = "CompanyId,Name,LogoData,LogoMimeType,Description")] Company company, UserCompanyRef userCompanyRef, HttpPostedFileBase logo)
         {
             if (ModelState.IsValid)
             {
-                var result = companiesService.Create(company, userCompanyRef, User.Identity.GetUserId().ToString());
+                var result = companiesService.Create(company, userCompanyRef, User.Identity.GetUserId().ToString(), logo);
                 return RedirectToAction("Index", "UserPanel");
             }
             return View(company);
@@ -85,11 +85,11 @@ namespace ESM.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CompanyId,Name,Logo,Description")] Company company, UserCompanyRef userCompanyRef)
+        public ActionResult Edit([Bind(Include = "CompanyId,Name,LogoData,LogoMimeType,Description")] Company company, UserCompanyRef userCompanyRef, HttpPostedFileBase logo)
         {
             if (ModelState.IsValid)
             {
-                var result = companiesService.Edit(company, userCompanyRef);
+                var result = companiesService.Edit(company, userCompanyRef, logo);
                 return RedirectToAction("Index", "UserPanel");
             }
             return View(company);
@@ -117,6 +117,19 @@ namespace ESM.Controllers
         {
             var result = companiesService.Delete(id);
             return RedirectToAction("Index", "UserPanel");
+        }
+
+        public FileContentResult GetLogo(Guid companyId)
+        {
+            Company company = db.Companies.FirstOrDefault(e => e.CompanyId == companyId);
+            if (company != null)
+            {
+                return File(company.LogoData, company.LogoMimeType);
+            }
+            else
+            {
+                return null;
+            }
         }
 
         protected override void Dispose(bool disposing)
