@@ -19,8 +19,13 @@ namespace ESM.Models
         [StringLength(50)]
         public string LogoMimeType { get; set; }
         public string Description { get; set; }
-        public decimal TotalEarnings { get; set; }
+        public decimal? TotalEarnings { get; set; }
         public virtual ICollection<UserCompanyRef> UserCompanyRefs { get; set; }
         public virtual ICollection<Employee> Employees { get; set; }
+
+        public Company()
+        {
+            this.CompanyId = Guid.NewGuid();
+        }
     }
 }

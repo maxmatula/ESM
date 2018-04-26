@@ -55,7 +55,7 @@ namespace ESM.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CompanyId,Name,LogoData,LogoMimeType,Description")] Company company, UserCompanyRef userCompanyRef, HttpPostedFileBase logo)
+        public ActionResult Create([Bind(Include = "Name,LogoData,LogoMimeType,Description")] Company company, UserCompanyRef userCompanyRef, HttpPostedFileBase logo)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace ESM.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CompanyId,Name,LogoData,LogoMimeType,Description")] Company company, UserCompanyRef userCompanyRef, HttpPostedFileBase logo)
+        public ActionResult Edit([Bind(Include = "Name,LogoData,LogoMimeType,Description")] Company company, UserCompanyRef userCompanyRef, HttpPostedFileBase logo)
         {
             if (ModelState.IsValid)
             {

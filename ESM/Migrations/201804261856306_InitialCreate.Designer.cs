@@ -7,13 +7,13 @@ namespace ESM.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class CompanyModelUpdateForLogo : IMigrationMetadata
+    public sealed partial class InitialCreate : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(CompanyModelUpdateForLogo));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialCreate));
         
         string IMigrationMetadata.Id
         {
-            get { return "201804252138226_CompanyModelUpdateForLogo"; }
+            get { return "201804261856306_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source

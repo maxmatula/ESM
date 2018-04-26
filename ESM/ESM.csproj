@@ -194,6 +194,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CalculatorController.cs" />
     <Compile Include="Controllers\CompaniesController.cs" />
+    <Compile Include="Controllers\EarningsController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserPanelController.cs" />
@@ -202,27 +203,19 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\NinjectDependencyReslover.cs" />
-    <Compile Include="Migrations\201804211603261_InitialCreate.cs" />
-    <Compile Include="Migrations\201804211603261_InitialCreate.Designer.cs">
-      <DependentUpon>201804211603261_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804221911376_UpdateRegisterModel.cs" />
-    <Compile Include="Migrations\201804221911376_UpdateRegisterModel.Designer.cs">
-      <DependentUpon>201804221911376_UpdateRegisterModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804241504162_EmployeePictureEdit.cs" />
-    <Compile Include="Migrations\201804241504162_EmployeePictureEdit.Designer.cs">
-      <DependentUpon>201804241504162_EmployeePictureEdit.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804252138226_CompanyModelUpdateForLogo.cs" />
-    <Compile Include="Migrations\201804252138226_CompanyModelUpdateForLogo.Designer.cs">
-      <DependentUpon>201804252138226_CompanyModelUpdateForLogo.cs</DependentUpon>
+    <Compile Include="Migrations\201804261856306_InitialCreate.cs" />
+    <Compile Include="Migrations\201804261856306_InitialCreate.Designer.cs">
+      <DependentUpon>201804261856306_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Agreement.cs" />
     <Compile Include="Models\Calculator.cs" />
+    <Compile Include="Models\Certyfication.cs" />
     <Compile Include="Models\Company.cs" />
+    <Compile Include="Models\Earnings.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\AppUser.cs" />
+    <Compile Include="Models\RecruitmentDocument.cs" />
     <Compile Include="Models\UserCompanyRef.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CompaniesService.cs" />
@@ -425,6 +418,7 @@
   <ItemGroup>
     <Folder Include="Abstract\" />
     <Folder Include="UserFiles\" />
+    <Folder Include="Views\Earnings\" />
     <Folder Include="Views\Files\" />
   </ItemGroup>
   <ItemGroup>
@@ -437,17 +431,8 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201804211603261_InitialCreate.resx">
-      <DependentUpon>201804211603261_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804221911376_UpdateRegisterModel.resx">
-      <DependentUpon>201804221911376_UpdateRegisterModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804241504162_EmployeePictureEdit.resx">
-      <DependentUpon>201804241504162_EmployeePictureEdit.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804252138226_CompanyModelUpdateForLogo.resx">
-      <DependentUpon>201804252138226_CompanyModelUpdateForLogo.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201804261856306_InitialCreate.resx">
+      <DependentUpon>201804261856306_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

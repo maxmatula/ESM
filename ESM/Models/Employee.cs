@@ -23,6 +23,15 @@ namespace ESM.Models
         [ForeignKey("Companies")]
         public Guid CompanyId { get; set; }
         public virtual Company Companies { get; set; }
+        public virtual ICollection<Earning> Earnings { get; set; }
+        public virtual ICollection<RecruitmentDocument> RecruitmentDocuments { get; set; }
+        public virtual ICollection<Certyfication> Certyfications { get; set; }
+        public virtual ICollection<Agreement> Agreements { get; set; }
+
+        public Employee()
+        {
+            this.EmployeeId = Guid.NewGuid();
+        }
 
         //private string _identityNumber { get; set; } //pesel
         //private string _address { get; set; }

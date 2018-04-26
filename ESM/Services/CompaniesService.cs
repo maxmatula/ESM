@@ -15,28 +15,6 @@ namespace ESM.Services
         {
             try
             {
-                var newCompanyid = Guid.NewGuid();
-                var existingCompaniesId = db.Companies.Select(x => x.CompanyId);
-                if (existingCompaniesId.Contains(newCompanyid))
-                {
-                    newCompanyid = Guid.NewGuid();
-                }
-                else
-                {
-                    company.CompanyId = newCompanyid;
-                }
-
-                var newReferenceId = Guid.NewGuid();
-                var existingReferencesId = db.UserCompanyRefs.Select(x => x.RefId);
-                if (existingReferencesId.Contains(newReferenceId))
-                {
-                    newReferenceId = Guid.NewGuid();
-                }
-                else
-                {
-                    userCompanyRef.RefId = newReferenceId;
-                }
-
                 userCompanyRef.UserId = userId;
                 userCompanyRef.CompanyId = company.CompanyId;
 

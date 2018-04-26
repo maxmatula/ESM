@@ -16,16 +16,6 @@ namespace ESM.Services
         {
             try
             {
-                var newEmployeeId = Guid.NewGuid();
-                var existingEmployeesId = db.Employees.Select(x => x.EmployeeId);
-                if (existingEmployeesId.Contains(newEmployeeId))
-                {
-                    newEmployeeId = Guid.NewGuid();
-                }
-                else
-                {
-                    employee.EmployeeId = newEmployeeId;
-                }
                 employee.CompanyId = Guid.Parse(currentCompanyId);
                 if (picture != null)
                 {
@@ -65,7 +55,7 @@ namespace ESM.Services
             try
             {
                 employee.CompanyId = Guid.Parse(currentCompanyId);
-                if(picture != null)
+                if (picture != null)
                 {
                     employee.PictureMimeType = picture.ContentType;
                     employee.PictureData = new byte[picture.ContentLength];

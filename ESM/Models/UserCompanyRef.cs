@@ -17,5 +17,10 @@ namespace ESM.Models
         [ForeignKey("Companies")]
         public Guid CompanyId { get; set; }
         public virtual Company Companies { get; set; }
+
+        public UserCompanyRef()
+        {
+            this.RefId = Guid.NewGuid();
+        }
     }
 }
