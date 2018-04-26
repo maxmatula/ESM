@@ -14,7 +14,7 @@ namespace ESM.Models
         public Guid EarningId { get; set; }
         public decimal Ammount { get; set; }
         [DataType(DataType.DateTime)]
-        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy HH:mm:ss}", ApplyFormatInEditMode = true)]
         public DateTime AddDate { get; set; }
         [ForeignKey("Employee")]
         public Guid EmployeeId { get; set; }

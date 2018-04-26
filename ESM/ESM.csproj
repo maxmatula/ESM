@@ -207,6 +207,10 @@
     <Compile Include="Migrations\201804261856306_InitialCreate.Designer.cs">
       <DependentUpon>201804261856306_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804262050517_DateTimeUpdateForAddDate.cs" />
+    <Compile Include="Migrations\201804262050517_DateTimeUpdateForAddDate.Designer.cs">
+      <DependentUpon>201804262050517_DateTimeUpdateForAddDate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Agreement.cs" />
     <Compile Include="Models\Calculator.cs" />
@@ -414,11 +418,12 @@
     <Content Include="Views\Companies\Edit.cshtml" />
     <Content Include="Views\Shared\_CompaniesList.cshtml" />
     <Content Include="Views\Shared\_SearchFormCompanies.cshtml" />
+    <Content Include="Views\Earnings\AddEarning.cshtml" />
+    <Content Include="Views\Shared\_EarningsList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Abstract\" />
     <Folder Include="UserFiles\" />
-    <Folder Include="Views\Earnings\" />
     <Folder Include="Views\Files\" />
   </ItemGroup>
   <ItemGroup>
@@ -433,6 +438,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201804261856306_InitialCreate.resx">
       <DependentUpon>201804261856306_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804262050517_DateTimeUpdateForAddDate.resx">
+      <DependentUpon>201804262050517_DateTimeUpdateForAddDate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

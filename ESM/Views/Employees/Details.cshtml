@@ -62,6 +62,18 @@
 
     </dl>
 </div>
+<div>
+    <h3>Historia zarobków</h3>
+    <div>
+        <a class="btn">
+            @Html.ActionLink("Zmień zarobki","AddEarning", "Earnings", new { employeeId = Model.EmployeeId }, null)
+        </a>
+        
+    </div>
+    <div>
+        @Html.Partial("_EarningsList", Model.Earnings )
+    </div>
+</div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.EmployeeId }) |
     @Html.ActionLink("Back to List", "Index")

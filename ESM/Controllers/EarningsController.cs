@@ -17,6 +17,15 @@ namespace ESM.Controllers
             this.db = new ESMDbContext();
         }
 
+        public ActionResult EarningsList(Guid? employeeId)
+        {
+            var earnings = (from earning in db.Earnings
+                            where earning.EmployeeId.ToString() == employeeId.ToString()
+                            orderby earning.AddDate descending
+                            select earning).ToList();
+
+            return View(earnings);
+        }
         // GET: Earnings
         public ActionResult AddEarning(Guid? employeeId)
         {
@@ -26,11 +35,16 @@ namespace ESM.Controllers
             return View(earning);
         }
 
-        public ActionResult AddEarning([Bind(Include = "EarningId,Amount,AddDate,EmployeeId")] Earning earning)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddEarning([Bind(Include = "Ammount, EmployeeId")] Earning earning)
         {
+            var employeeId = earning.EmployeeId;
             if (ModelState.IsValid)
             {
-
+                db.Earnings.Add(earning);
+                db.SaveChanges();
+                return RedirectToAction("Details", "Employees", new { id = employeeId });
             }
             return View(earning);
         }
