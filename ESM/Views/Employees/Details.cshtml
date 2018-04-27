@@ -71,7 +71,7 @@
         
     </div>
     <div>
-        @Html.Partial("_EarningsList", Model.Earnings )
+        @Html.Action("EarningsList","Earnings", new { employeeId = Model.EmployeeId})
     </div>
 </div>
 <p>

@@ -19,11 +19,7 @@ namespace ESM.Controllers
 
         public ActionResult EarningsList(Guid? employeeId)
         {
-            var earnings = (from earning in db.Earnings
-                            where earning.EmployeeId.ToString() == employeeId.ToString()
-                            orderby earning.AddDate descending
-                            select earning).ToList();
-
+            var earnings = db.Earnings.Where(x => x.EmployeeId == employeeId).OrderByDescending(x => x.AddDate).ToList();
             return View(earnings);
         }
         // GET: Earnings

@@ -203,13 +203,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\NinjectDependencyReslover.cs" />
-    <Compile Include="Migrations\201804261856306_InitialCreate.cs" />
-    <Compile Include="Migrations\201804261856306_InitialCreate.Designer.cs">
-      <DependentUpon>201804261856306_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804262050517_DateTimeUpdateForAddDate.cs" />
-    <Compile Include="Migrations\201804262050517_DateTimeUpdateForAddDate.Designer.cs">
-      <DependentUpon>201804262050517_DateTimeUpdateForAddDate.cs</DependentUpon>
+    <Compile Include="Migrations\201804271550354_InitialCreate.cs" />
+    <Compile Include="Migrations\201804271550354_InitialCreate.Designer.cs">
+      <DependentUpon>201804271550354_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Agreement.cs" />
@@ -419,7 +415,7 @@
     <Content Include="Views\Shared\_CompaniesList.cshtml" />
     <Content Include="Views\Shared\_SearchFormCompanies.cshtml" />
     <Content Include="Views\Earnings\AddEarning.cshtml" />
-    <Content Include="Views\Shared\_EarningsList.cshtml" />
+    <Content Include="Views\Earnings\EarningsList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Abstract\" />
@@ -436,11 +432,8 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201804261856306_InitialCreate.resx">
-      <DependentUpon>201804261856306_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804262050517_DateTimeUpdateForAddDate.resx">
-      <DependentUpon>201804262050517_DateTimeUpdateForAddDate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201804271550354_InitialCreate.resx">
+      <DependentUpon>201804271550354_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
