@@ -17,6 +17,7 @@ namespace ESM
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
+            MapperInitialize();
 
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {

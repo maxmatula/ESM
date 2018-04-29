@@ -1,4 +1,4 @@
-﻿@model ESM.Models.Employee
+﻿@model ESM.ViewModels.Employees.EmployeeViewModel
 
 @{
     ViewBag.Title = "Details";
@@ -43,14 +43,46 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Picture)
+            Zdjęcie:
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Picture)
-        </dd>
 
+            @if (Model.PictureData == null || Model.PictureData.Length == 0)
+            {
+                <span class="form-control-static">Brak zdjęcia</span>
+            }
+            else
+            {
+                <img class="image-thumbnail" width="200" height="200"
+                     src="@Url.Action("GetPicture", "Employees", new { Model.EmployeeId})" />
+            }
+        </dd>
     </dl>
+</div>
+<div>
+    <h3>Historia zarobków</h3>
+    <div>
+        <a class="btn">
+            @Html.ActionLink("Zmień zarobki","AddEarning", "Earnings", new { employeeId = Model.EmployeeId }, null)
+        </a>
+        
+    </div>
+    <div>
+        @Html.Partial("_EarningsList", Model.Earnings)
+    </div>
+</div>
+<div>
+    <h3>Umowy</h3>
+    <div>
+        <a class="btn">
+            @Html.ActionLink("Dodaj umowę", "AddAgreement", "Agreements", new { employeeId = Model.EmployeeId }, null)
+        </a>
+
+    </div>
+    <div>
+        @Html.Partial("_AgreementsList", Model.Agreements)
+    </div>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.EmployeeId }) |

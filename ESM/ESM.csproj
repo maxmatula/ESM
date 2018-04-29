@@ -48,6 +48,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=6.2.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.2.2\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -100,6 +103,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -189,13 +193,15 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\MapperConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AgreementsController.cs" />
     <Compile Include="Controllers\CalculatorController.cs" />
     <Compile Include="Controllers\CompaniesController.cs" />
+    <Compile Include="Controllers\EarningsController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
-    <Compile Include="Controllers\FilesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserPanelController.cs" />
     <Compile Include="DAL\IdentityModels.cs" />
@@ -203,30 +209,37 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\NinjectDependencyReslover.cs" />
-    <Compile Include="Migrations\201804211603261_InitialCreate.cs" />
-    <Compile Include="Migrations\201804211603261_InitialCreate.Designer.cs">
-      <DependentUpon>201804211603261_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201804271550354_InitialCreate.cs" />
+    <Compile Include="Migrations\201804271550354_InitialCreate.Designer.cs">
+      <DependentUpon>201804271550354_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201804221911376_UpdateRegisterModel.cs" />
-    <Compile Include="Migrations\201804221911376_UpdateRegisterModel.Designer.cs">
-      <DependentUpon>201804221911376_UpdateRegisterModel.cs</DependentUpon>
+    <Compile Include="Migrations\201804291915548_DeleteSomeFileFeatures.cs" />
+    <Compile Include="Migrations\201804291915548_DeleteSomeFileFeatures.Designer.cs">
+      <DependentUpon>201804291915548_DeleteSomeFileFeatures.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Agreement.cs" />
     <Compile Include="Models\Calculator.cs" />
+    <Compile Include="Models\Certyfication.cs" />
     <Compile Include="Models\Company.cs" />
+    <Compile Include="Models\Earnings.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\AppUser.cs" />
+    <Compile Include="Models\RecruitmentDocument.cs" />
     <Compile Include="Models\UserCompanyRef.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\AgreementService.cs" />
     <Compile Include="Services\CompaniesService.cs" />
     <Compile Include="Services\DirectoriesService.cs" />
     <Compile Include="Services\EmployeesService.cs" />
+    <Compile Include="Services\IAgreementService.cs" />
     <Compile Include="Services\ICompaniesService.cs" />
     <Compile Include="Services\IDirectoriesService.cs" />
     <Compile Include="Services\IEmployeesService.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="ViewModels\LoginViewModel.cs" />
-    <Compile Include="ViewModels\RegisterViewModel.cs" />
+    <Compile Include="ViewModels\Employees\EmployeeViewModel.cs" />
+    <Compile Include="ViewModels\Account\LoginViewModel.cs" />
+    <Compile Include="ViewModels\Account\RegisterViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\ESM.mdf" />
@@ -414,11 +427,15 @@
     <Content Include="Views\Companies\Edit.cshtml" />
     <Content Include="Views\Shared\_CompaniesList.cshtml" />
     <Content Include="Views\Shared\_SearchFormCompanies.cshtml" />
-    <Content Include="Views\Files\UploadFile.cshtml" />
-    <Content Include="Views\Files\Index.cshtml" />
+    <Content Include="Views\Earnings\AddEarning.cshtml" />
+    <Content Include="Views\Employees\_EarningsList.cshtml" />
+    <Content Include="Views\Employees\_AgreementsList.cshtml" />
+    <Content Include="Views\Agreements\AddAgreement.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Abstract\" />
+    <Folder Include="UserFiles\" />
+    <Folder Include="Views\Files\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -430,11 +447,11 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201804211603261_InitialCreate.resx">
-      <DependentUpon>201804211603261_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201804271550354_InitialCreate.resx">
+      <DependentUpon>201804271550354_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804221911376_UpdateRegisterModel.resx">
-      <DependentUpon>201804221911376_UpdateRegisterModel.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201804291915548_DeleteSomeFileFeatures.resx">
+      <DependentUpon>201804291915548_DeleteSomeFileFeatures.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

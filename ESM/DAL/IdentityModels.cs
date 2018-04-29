@@ -20,6 +20,10 @@ namespace ESM.DAL
         public DbSet<Company> Companies { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<UserCompanyRef> UserCompanyRefs { get; set; }
+        public DbSet<Earning> Earnings { get; set; }
+        public DbSet<RecruitmentDocument> RecruitmentDocuments { get; set; }
+        public DbSet<Certyfication> Certyfications { get; set; }
+        public DbSet<Agreement> Agreements { get; set; }
 
         public static ESMDbContext Create()
         {

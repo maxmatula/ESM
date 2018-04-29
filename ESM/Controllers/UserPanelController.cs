@@ -26,9 +26,7 @@ namespace ESM.Controllers
             ESMDbContext db = new ESMDbContext();
 
             var currUserId = User.Identity.GetUserId();
-
-            var directoryResult = directoriesService.GetDirectory(currUserId);
-
+            var directoryResult = directoriesService.GetUserDirectory(currUserId);
             var companies = from company in db.Companies
                             join reference in db.UserCompanyRefs
                             on company.CompanyId.ToString() equals reference.CompanyId.ToString()

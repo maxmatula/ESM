@@ -8,16 +8,22 @@ namespace ESM.Migrations
         public override void Up()
         {
             CreateTable(
-                "dbo.Companies",
+                "dbo.Agreements",
                 c => new
                     {
-                        CompanyId = c.Guid(nullable: false),
-                        Name = c.String(nullable: false, maxLength: 128),
-                        Logo = c.String(),
+                        AgreementId = c.Guid(nullable: false),
                         Description = c.String(),
-                        TotalEarnings = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        StartDate = c.DateTime(nullable: false),
+                        EndDate = c.DateTime(nullable: false),
+                        AddDate = c.DateTime(nullable: false),
+                        FileName = c.String(),
+                        FileMimeType = c.String(),
+                        FilePath = c.String(),
+                        EmployeeId = c.Guid(nullable: false),
                     })
-                .PrimaryKey(t => t.CompanyId);
+                .PrimaryKey(t => t.AgreementId)
+                .ForeignKey("dbo.Employees", t => t.EmployeeId, cascadeDelete: true)
+                .Index(t => t.EmployeeId);
             
             CreateTable(
                 "dbo.Employees",
@@ -26,14 +32,44 @@ namespace ESM.Migrations
                         EmployeeId = c.Guid(nullable: false),
                         Name = c.String(),
                         Surname = c.String(),
-                        BirthDate = c.String(),
+                        BirthDate = c.DateTime(nullable: false),
                         Title = c.String(),
-                        Picture = c.String(),
+                        CurrentEarnings = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        PictureData = c.Binary(),
+                        PictureMimeType = c.String(maxLength: 50),
                         CompanyId = c.Guid(nullable: false),
                     })
                 .PrimaryKey(t => t.EmployeeId)
                 .ForeignKey("dbo.Companies", t => t.CompanyId, cascadeDelete: true)
                 .Index(t => t.CompanyId);
+            
+            CreateTable(
+                "dbo.Certyfications",
+                c => new
+                    {
+                        CertyficationId = c.Guid(nullable: false),
+                        FileName = c.String(),
+                        FileMimeType = c.String(),
+                        FilePath = c.String(),
+                        AddDate = c.DateTime(nullable: false),
+                        EmployeeId = c.Guid(nullable: false),
+                    })
+                .PrimaryKey(t => t.CertyficationId)
+                .ForeignKey("dbo.Employees", t => t.EmployeeId, cascadeDelete: true)
+                .Index(t => t.EmployeeId);
+            
+            CreateTable(
+                "dbo.Companies",
+                c => new
+                    {
+                        CompanyId = c.Guid(nullable: false),
+                        Name = c.String(nullable: false, maxLength: 128),
+                        LogoData = c.Binary(),
+                        LogoMimeType = c.String(maxLength: 50),
+                        Description = c.String(),
+                        TotalEarnings = c.Decimal(precision: 18, scale: 2),
+                    })
+                .PrimaryKey(t => t.CompanyId);
             
             CreateTable(
                 "dbo.UserCompanyRefs",
@@ -114,6 +150,34 @@ namespace ESM.Migrations
                 .Index(t => t.RoleId);
             
             CreateTable(
+                "dbo.Earnings",
+                c => new
+                    {
+                        EarningId = c.Guid(nullable: false),
+                        Ammount = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        AddDate = c.DateTime(nullable: false),
+                        EmployeeId = c.Guid(nullable: false),
+                    })
+                .PrimaryKey(t => t.EarningId)
+                .ForeignKey("dbo.Employees", t => t.EmployeeId, cascadeDelete: true)
+                .Index(t => t.EmployeeId);
+            
+            CreateTable(
+                "dbo.RecruitmentDocuments",
+                c => new
+                    {
+                        DocumentId = c.Guid(nullable: false),
+                        FileName = c.String(),
+                        FileMimeType = c.String(),
+                        FilePath = c.String(),
+                        AddDate = c.DateTime(nullable: false),
+                        EmployeeId = c.Guid(nullable: false),
+                    })
+                .PrimaryKey(t => t.DocumentId)
+                .ForeignKey("dbo.Employees", t => t.EmployeeId, cascadeDelete: true)
+                .Index(t => t.EmployeeId);
+            
+            CreateTable(
                 "dbo.AspNetRoles",
                 c => new
                     {
@@ -128,13 +192,19 @@ namespace ESM.Migrations
         public override void Down()
         {
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
+            DropForeignKey("dbo.Agreements", "EmployeeId", "dbo.Employees");
+            DropForeignKey("dbo.RecruitmentDocuments", "EmployeeId", "dbo.Employees");
+            DropForeignKey("dbo.Earnings", "EmployeeId", "dbo.Employees");
+            DropForeignKey("dbo.Employees", "CompanyId", "dbo.Companies");
             DropForeignKey("dbo.UserCompanyRefs", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.UserCompanyRefs", "CompanyId", "dbo.Companies");
-            DropForeignKey("dbo.Employees", "CompanyId", "dbo.Companies");
+            DropForeignKey("dbo.Certyfications", "EmployeeId", "dbo.Employees");
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
+            DropIndex("dbo.RecruitmentDocuments", new[] { "EmployeeId" });
+            DropIndex("dbo.Earnings", new[] { "EmployeeId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
@@ -142,15 +212,21 @@ namespace ESM.Migrations
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
             DropIndex("dbo.UserCompanyRefs", new[] { "CompanyId" });
             DropIndex("dbo.UserCompanyRefs", new[] { "UserId" });
+            DropIndex("dbo.Certyfications", new[] { "EmployeeId" });
             DropIndex("dbo.Employees", new[] { "CompanyId" });
+            DropIndex("dbo.Agreements", new[] { "EmployeeId" });
             DropTable("dbo.AspNetRoles");
+            DropTable("dbo.RecruitmentDocuments");
+            DropTable("dbo.Earnings");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
             DropTable("dbo.UserCompanyRefs");
-            DropTable("dbo.Employees");
             DropTable("dbo.Companies");
+            DropTable("dbo.Certyfications");
+            DropTable("dbo.Employees");
+            DropTable("dbo.Agreements");
         }
     }
 }

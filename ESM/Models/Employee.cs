@@ -15,12 +15,26 @@ namespace ESM.Models
         public Guid EmployeeId { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
-        public string BirthDate { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime BirthDate { get; set; }
         public string Title { get; set; }
-        public string Picture { get; set; }
+        public decimal CurrentEarnings { get; set; }
+        public byte[] PictureData { get; set; }
+        [StringLength(50)]
+        public string PictureMimeType { get; set; }
         [ForeignKey("Companies")]
         public Guid CompanyId { get; set; }
         public virtual Company Companies { get; set; }
+        public virtual ICollection<Earning> Earnings { get; set; }
+        public virtual ICollection<RecruitmentDocument> RecruitmentDocuments { get; set; }
+        public virtual ICollection<Certyfication> Certyfications { get; set; }
+        public virtual ICollection<Agreement> Agreements { get; set; }
+
+        public Employee()
+        {
+            this.EmployeeId = Guid.NewGuid();
+        }
 
         //private string _identityNumber { get; set; } //pesel
         //private string _address { get; set; }

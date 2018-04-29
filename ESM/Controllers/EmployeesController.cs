@@ -10,6 +10,7 @@ using ESM.Models;
 using ESM.DAL;
 using ESM.ViewModels;
 using ESM.Services;
+using Microsoft.AspNet.Identity;
 
 namespace ESM.Controllers
 {
@@ -17,11 +18,13 @@ namespace ESM.Controllers
     {
         private readonly ESMDbContext db;
         private readonly IEmployeesService employeesService;
+        private readonly IDirectoriesService directoriesService;
 
         public EmployeesController()
         {
             this.db = new ESMDbContext();
             this.employeesService = new EmployeesService();
+            this.directoriesService = new DirectoriesService();
         }
 
         // GET: Employees
@@ -53,7 +56,7 @@ namespace ESM.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employee employee = db.Employees.Find(id);
+            var employee = employeesService.GetById(id.Value);
             if (employee == null)
             {
                 return HttpNotFound();
@@ -64,7 +67,7 @@ namespace ESM.Controllers
         // GET: Employees/Create
         public ActionResult Create()
         {
-            return View();
+            return View("Create", new Employee());
         }
 
         // POST: Employees/Create
@@ -72,12 +75,12 @@ namespace ESM.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EmployeeId,Name,Surname,Title,Picture,BirthDate,CompanyId")] Employee employee)
+        public ActionResult Create([Bind(Include = "EmployeeId,Name,Surname,Title,BirthDate,CompanyId,PictureData,PictureMimeType")] Employee employee, HttpPostedFileBase picture = null)
         {
+            string currentCompanyId = Session["currentCompanyId"].ToString();
             if (ModelState.IsValid)
             {
-                string currentCompanyId = Session["currentCompanyId"].ToString();
-                var result = employeesService.Create(employee, currentCompanyId);
+                var result = employeesService.Create(employee, currentCompanyId, picture);
                 return RedirectToAction("Index");
             }
 
@@ -104,12 +107,14 @@ namespace ESM.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "EmployeeId,Name,Surname,BirthDate,Title,Picture")] Employee employee)
+        public ActionResult Edit([Bind(Include = "EmployeeId,Name,Surname,BirthDate,Title")] Employee employee, HttpPostedFileBase picture = null)
         {
+            
+            string currentCompanyId = Session["currentCompanyId"].ToString();
             if (ModelState.IsValid)
             {
-                string currentCompanyId = Session["currentCompanyId"].ToString();
-                var result = employeesService.Edit(employee, currentCompanyId);
+                var result = employeesService.Edit(employee, currentCompanyId, picture);
+                return RedirectToAction("Index");
             }
 
             return View(employee);
@@ -137,6 +142,19 @@ namespace ESM.Controllers
         {
             var result = employeesService.Delete(id);
             return RedirectToAction("Index");
+        }
+
+        public FileContentResult GetPicture(Guid employeeId)
+        {
+            Employee employee = db.Employees.FirstOrDefault(e => e.EmployeeId == employeeId);
+            if(employee != null && employee.PictureData != null)
+            {
+                return File(employee.PictureData, employee.PictureMimeType);
+            }
+            else
+            {
+                return null;
+            }
         }
 
         protected override void Dispose(bool disposing)

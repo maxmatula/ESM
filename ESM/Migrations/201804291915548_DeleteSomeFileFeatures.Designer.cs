@@ -7,13 +7,13 @@ namespace ESM.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class powrotdobase : IMigrationMetadata
+    public sealed partial class DeleteSomeFileFeatures : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(powrotdobase));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(DeleteSomeFileFeatures));
         
         string IMigrationMetadata.Id
         {
-            get { return "201804091824569_powrot do base"; }
+            get { return "201804291915548_DeleteSomeFileFeatures"; }
         }
         
         string IMigrationMetadata.Source
