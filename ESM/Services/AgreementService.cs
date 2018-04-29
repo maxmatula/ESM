@@ -1,9 +1,7 @@
 ﻿using ESM.DAL;
 using ESM.Models;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Web;
 
 namespace ESM.Services
@@ -55,8 +53,9 @@ namespace ESM.Services
                 if (file.ContentLength > 0)
                 {
                     string _fileName = Path.GetFileName(file.FileName);
-                    string _fileExtension = Path.GetExtension(file.ContentType);
-                    returnPath = Path.Combine(userPath, _fileName, _fileExtension);
+                    string _uniqueFileName = string.Format(@"{0}", DateTime.Now.Ticks);
+                    _fileName += _uniqueFileName;
+                    returnPath = Path.Combine(userPath, _fileName);
                     file.SaveAs(returnPath);
                 }
                 return returnPath;
@@ -66,6 +65,20 @@ namespace ESM.Services
             {
                 return returnPath = "";
                 throw new Exception("File upload failed!");
+            }
+        }
+
+        public bool UserIsFileOwner(Guid agreementId, string currentUserId)
+        {
+
+            var agreement = db.Agreements.Find(agreementId);
+            if (agreement.FilePath.Contains(currentUserId))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
     }

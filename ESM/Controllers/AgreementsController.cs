@@ -21,8 +21,17 @@ namespace ESM.Controllers
 
         public ActionResult GetFile(Guid agreementId)
         {
-            var filepath = agreementService.GetFile(agreementId);
-            return File(filepath, "application/pdf");
+            var owner = agreementService.UserIsFileOwner(agreementId, User.Identity.GetUserId());
+            if (owner == true)
+            {
+                var filepath = agreementService.GetFile(agreementId);
+                if (System.IO.File.Exists(filepath))
+                {
+                    return File(filepath, "application/pdf");
+                }
+                return HttpNotFound();
+            }
+            return View("Error");
         }
 
         //GET
@@ -32,7 +41,7 @@ namespace ESM.Controllers
             agreement.EmployeeId = employeeId;
             return View(agreement);
         }
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult AddAgreement(Agreement agreement, HttpPostedFileBase file)
@@ -45,7 +54,7 @@ namespace ESM.Controllers
                 var result = agreementService.SaveAgreementToDb(filePath, agreement);
                 return RedirectToAction("Details", "Employees", new { id = employeeId });
             }
-            
+
             return View(agreement);
         }
     }

@@ -213,6 +213,10 @@
     <Compile Include="Migrations\201804271550354_InitialCreate.Designer.cs">
       <DependentUpon>201804271550354_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804291915548_DeleteSomeFileFeatures.cs" />
+    <Compile Include="Migrations\201804291915548_DeleteSomeFileFeatures.Designer.cs">
+      <DependentUpon>201804291915548_DeleteSomeFileFeatures.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Agreement.cs" />
     <Compile Include="Models\Calculator.cs" />
@@ -445,6 +449,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201804271550354_InitialCreate.resx">
       <DependentUpon>201804271550354_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804291915548_DeleteSomeFileFeatures.resx">
+      <DependentUpon>201804291915548_DeleteSomeFileFeatures.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

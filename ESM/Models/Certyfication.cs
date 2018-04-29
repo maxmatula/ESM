@@ -12,8 +12,6 @@ namespace ESM.Models
     {
         [Key]
         public Guid CertyficationId { get; set; }
-        public string FileName { get; set; }
-        public string FileMimeType { get; set; }
         public string FilePath { get; set; }
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
