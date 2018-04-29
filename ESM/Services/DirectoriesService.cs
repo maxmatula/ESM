@@ -31,25 +31,5 @@ namespace ESM.Services
 
         }
 
-        public string UploadFile(string userPath, HttpPostedFileBase file)
-        {
-            string returnPath = "";
-            try
-            {
-                if (file.ContentLength > 0)
-                {
-                    string _fileName = Path.GetFileName(file.FileName);
-                    returnPath = Path.Combine(userPath, _fileName);
-                    file.SaveAs(returnPath);
-                }
-                return returnPath;
-            }
-            catch
-            {
-                returnPath = "";
-                throw new Exception("File upload failed!");
-            }
-        }
-
     }
 }

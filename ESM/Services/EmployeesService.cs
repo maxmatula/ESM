@@ -78,6 +78,7 @@ namespace ESM.Services
             var employee = db.Employees.Find(id);
             var model = Mapper.Map<EmployeeViewModel>(employee);
             model.Earnings = employee.Earnings.OrderByDescending(x => x.AddDate).ToList();
+            model.Agreements = employee.Agreements.OrderByDescending(x => x.AddDate).ToList();
             return model;
         }
     }

@@ -197,6 +197,7 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AgreementsController.cs" />
     <Compile Include="Controllers\CalculatorController.cs" />
     <Compile Include="Controllers\CompaniesController.cs" />
     <Compile Include="Controllers\EarningsController.cs" />
@@ -223,9 +224,11 @@
     <Compile Include="Models\RecruitmentDocument.cs" />
     <Compile Include="Models\UserCompanyRef.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\AgreementService.cs" />
     <Compile Include="Services\CompaniesService.cs" />
     <Compile Include="Services\DirectoriesService.cs" />
     <Compile Include="Services\EmployeesService.cs" />
+    <Compile Include="Services\IAgreementService.cs" />
     <Compile Include="Services\ICompaniesService.cs" />
     <Compile Include="Services\IDirectoriesService.cs" />
     <Compile Include="Services\IEmployeesService.cs" />
@@ -421,8 +424,9 @@
     <Content Include="Views\Shared\_CompaniesList.cshtml" />
     <Content Include="Views\Shared\_SearchFormCompanies.cshtml" />
     <Content Include="Views\Earnings\AddEarning.cshtml" />
-    <Content Include="Views\Earnings\EarningsList.cshtml" />
     <Content Include="Views\Employees\_EarningsList.cshtml" />
+    <Content Include="Views\Employees\_AgreementsList.cshtml" />
+    <Content Include="Views\Agreements\AddAgreement.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Abstract\" />

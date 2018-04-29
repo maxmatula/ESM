@@ -17,11 +17,6 @@ namespace ESM.Controllers
             this.db = new ESMDbContext();
         }
 
-        public ActionResult EarningsList(Guid? employeeId)
-        {
-            var earnings = db.Earnings.Where(x => x.EmployeeId == employeeId).OrderByDescending(x => x.AddDate).ToList();
-            return View(earnings);
-        }
         // GET: Earnings
         public ActionResult AddEarning(Guid? employeeId)
         {

@@ -10,6 +10,5 @@ namespace ESM.Services
     public interface IDirectoriesService
     {
         string GetUserDirectory(string userId);
-        string UploadFile(string userPath, HttpPostedFileBase file);
     }
 }
