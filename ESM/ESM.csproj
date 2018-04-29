@@ -434,7 +434,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Abstract\" />
-    <Folder Include="UserFiles\" />
     <Folder Include="Views\Files\" />
   </ItemGroup>
   <ItemGroup>
