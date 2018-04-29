@@ -26,7 +26,7 @@ namespace ESM.Models
         [ForeignKey("Companies")]
         public Guid CompanyId { get; set; }
         public virtual Company Companies { get; set; }
-        public virtual List<Earning> Earnings { get; set; }
+        public virtual ICollection<Earning> Earnings { get; set; }
         public virtual ICollection<RecruitmentDocument> RecruitmentDocuments { get; set; }
         public virtual ICollection<Certyfication> Certyfications { get; set; }
         public virtual ICollection<Agreement> Agreements { get; set; }

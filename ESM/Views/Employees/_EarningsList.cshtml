@@ -1,0 +1,25 @@
+﻿@model List<ESM.Models.Earning>
+
+<div>
+    @if (Model.Count().Equals(0))
+    {
+        <p>Brak zarobków</p>
+    }
+    else
+    {
+        <table>
+            <tr>
+                <th>Zarobki</th>
+                <th>Data zmiany</th>
+            </tr>
+            @foreach (var earning in Model)
+            {
+
+                <tr>
+                    <td>@earning.Ammount.ToString("c")</td>
+                    <td>@earning.AddDate</td>
+                </tr>
+            }
+        </table>
+    }
+</div>

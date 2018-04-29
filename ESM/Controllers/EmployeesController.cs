@@ -56,7 +56,7 @@ namespace ESM.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employee employee = db.Employees.Find(id);
+            var employee = employeesService.GetById(id.Value);
             if (employee == null)
             {
                 return HttpNotFound();
@@ -147,7 +147,7 @@ namespace ESM.Controllers
         public FileContentResult GetPicture(Guid employeeId)
         {
             Employee employee = db.Employees.FirstOrDefault(e => e.EmployeeId == employeeId);
-            if(employee != null)
+            if(employee != null && employee.PictureData != null)
             {
                 return File(employee.PictureData, employee.PictureMimeType);
             }

@@ -1,16 +1,13 @@
 ﻿using ESM.Models;
+using ESM.ViewModels.Employees;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web;
-using System.Web.Mvc;
 
 namespace ESM.Services
 {
     public interface IEmployeesService
-    {
+    { 
+        EmployeeViewModel GetById(Guid id);
         bool Create(Employee employee, string currentCompanyId, HttpPostedFileBase picture);
         bool Edit(Employee employee, string currentCompanyId, HttpPostedFileBase picture);
         bool Delete(Guid id);

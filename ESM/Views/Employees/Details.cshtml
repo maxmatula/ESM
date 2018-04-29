@@ -1,4 +1,4 @@
-﻿@model ESM.Models.Employee
+﻿@model ESM.ViewModels.Employees.EmployeeViewModel
 
 @{
     ViewBag.Title = "Details";
@@ -48,18 +48,16 @@
 
         <dd>
 
-            @if (Model.PictureData == null)
+            @if (Model.PictureData == null || Model.PictureData.Length == 0)
             {
-                <div class="form-control-static">Brak zdjęcia</div>
+                <span class="form-control-static">Brak zdjęcia</span>
             }
             else
             {
                 <img class="image-thumbnail" width="200" height="200"
                      src="@Url.Action("GetPicture", "Employees", new { Model.EmployeeId})" />
             }
-
         </dd>
-
     </dl>
 </div>
 <div>
@@ -71,7 +69,7 @@
         
     </div>
     <div>
-        @Html.Action("EarningsList","Earnings", new { employeeId = Model.EmployeeId})
+        @Html.Partial("_EarningsList", Model.Earnings)
     </div>
 </div>
 <p>

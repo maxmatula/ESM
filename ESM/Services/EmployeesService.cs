@@ -4,8 +4,10 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
 using ESM.DAL;
 using ESM.Models;
+using ESM.ViewModels.Employees;
 
 namespace ESM.Services
 {
@@ -69,6 +71,14 @@ namespace ESM.Services
             {
                 return false;
             }
+        }
+
+        public EmployeeViewModel GetById(Guid id)
+        {
+            var employee = db.Employees.Find(id);
+            var model = Mapper.Map<EmployeeViewModel>(employee);
+            model.Earnings = employee.Earnings.OrderByDescending(x => x.AddDate).ToList();
+            return model;
         }
     }
 }
