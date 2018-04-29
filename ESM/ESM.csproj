@@ -231,8 +231,8 @@
     <Compile Include="Services\IEmployeesService.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\Employees\EmployeeViewModel.cs" />
-    <Compile Include="ViewModels\LoginViewModel.cs" />
-    <Compile Include="ViewModels\RegisterViewModel.cs" />
+    <Compile Include="ViewModels\Account\LoginViewModel.cs" />
+    <Compile Include="ViewModels\Account\RegisterViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\ESM.mdf" />
