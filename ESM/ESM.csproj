@@ -199,6 +199,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AgreementsController.cs" />
     <Compile Include="Controllers\CalculatorController.cs" />
+    <Compile Include="Controllers\CertyficationsController.cs" />
     <Compile Include="Controllers\CompaniesController.cs" />
     <Compile Include="Controllers\EarningsController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
@@ -217,6 +218,10 @@
     <Compile Include="Migrations\201804291915548_DeleteSomeFileFeatures.Designer.cs">
       <DependentUpon>201804291915548_DeleteSomeFileFeatures.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804301206239_ModelUpdateDescription.cs" />
+    <Compile Include="Migrations\201804301206239_ModelUpdateDescription.Designer.cs">
+      <DependentUpon>201804301206239_ModelUpdateDescription.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Agreement.cs" />
     <Compile Include="Models\Calculator.cs" />
@@ -228,11 +233,13 @@
     <Compile Include="Models\RecruitmentDocument.cs" />
     <Compile Include="Models\UserCompanyRef.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\AgreementService.cs" />
+    <Compile Include="Services\AgreementsService.cs" />
+    <Compile Include="Services\CertyficationsService.cs" />
     <Compile Include="Services\CompaniesService.cs" />
     <Compile Include="Services\DirectoriesService.cs" />
     <Compile Include="Services\EmployeesService.cs" />
-    <Compile Include="Services\IAgreementService.cs" />
+    <Compile Include="Services\IAgreementsService.cs" />
+    <Compile Include="Services\ICertyficationsService.cs" />
     <Compile Include="Services\ICompaniesService.cs" />
     <Compile Include="Services\IDirectoriesService.cs" />
     <Compile Include="Services\IEmployeesService.cs" />
@@ -431,6 +438,8 @@
     <Content Include="Views\Employees\_EarningsList.cshtml" />
     <Content Include="Views\Employees\_AgreementsList.cshtml" />
     <Content Include="Views\Agreements\AddAgreement.cshtml" />
+    <Content Include="Views\Employees\_CertyficationsList.cshtml" />
+    <Content Include="Views\Certyfications\AddCertyfication.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Abstract\" />
@@ -451,6 +460,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804291915548_DeleteSomeFileFeatures.resx">
       <DependentUpon>201804291915548_DeleteSomeFileFeatures.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804301206239_ModelUpdateDescription.resx">
+      <DependentUpon>201804301206239_ModelUpdateDescription.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

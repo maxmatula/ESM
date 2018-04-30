@@ -261,3 +261,4 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+/ESM/App_Data/UserFiles/158047e8-f5bf-47d4-a13f-77bbac6c3904

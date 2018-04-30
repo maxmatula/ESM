@@ -9,6 +9,7 @@ namespace ESM.Models
     {
         [Key]
         public Guid AgreementId { get; set; }
+        [DataType(DataType.Text)]
         public string Description { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]

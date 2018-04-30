@@ -1,0 +1,25 @@
+﻿@model List<ESM.Models.Certyfication>
+
+<div>
+    @if (Model.Count().Equals(0))
+    {
+        <p>Brak certyfikatów</p>
+    }
+    else
+    {
+        <table class="table">
+            <tr>
+                <th>Opis</th>
+                <th>PDF</th>
+            </tr>
+            @foreach (var certyfication in Model)
+            {
+
+                <tr>
+                    <td>@certyfication.Description</td>
+                    <td><a href="@Url.Action("GetFile", "Certyfications", new { certyficationId = certyfication.CertyficationId })">Zobacz certyfikat</a></td>
+                </tr>
+            }
+        </table>
+    }
+</div>
