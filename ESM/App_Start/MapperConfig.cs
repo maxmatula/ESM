@@ -8,11 +8,13 @@ namespace ESM
     {
         public void MapperInitialize()
         {
-            Mapper.Initialize(cfg => {
+            Mapper.Initialize(cfg =>
+            {
                 cfg.CreateMap<Employee, EmployeeViewModel>()
                     .ForMember(m => m.Earnings, x => x.Ignore())
-                    .ForMember(g => g.Agreements, x => x.Ignore());
-
+                    .ForMember(g => g.Agreements, x => x.Ignore())
+                    .ForMember(f => f.RecruitmentDocuments, x => x.Ignore())
+                    .ForMember(o => o.Certyfications, x => x.Ignore());
             });
         }
     }
