@@ -6,7 +6,7 @@ using System.Web;
 
 namespace ESM.Services
 {
-    public class AgreementService : IAgreementService
+    public class AgreementsService : IAgreementsService
     {
         private ESMDbContext db = new ESMDbContext();
 
@@ -70,7 +70,6 @@ namespace ESM.Services
 
         public bool UserIsFileOwner(Guid agreementId, string currentUserId)
         {
-
             var agreement = db.Agreements.Find(agreementId);
             if (agreement.FilePath.Contains(currentUserId))
             {

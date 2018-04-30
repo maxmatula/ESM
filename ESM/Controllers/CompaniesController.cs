@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -9,14 +6,12 @@ using System.Web.Mvc;
 using ESM.Models;
 using ESM.DAL;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using ESM.Services;
 
 namespace ESM.Controllers
 {
     public class CompaniesController : Controller
     {
-
         private readonly ESMDbContext db;
         private readonly ICompaniesService companiesService;
 
@@ -131,7 +126,6 @@ namespace ESM.Controllers
                 return null;
             }
         }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)

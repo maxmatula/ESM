@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Web;
 using System.Web.Mvc;
 using ESM.Models;
 using ESM.DAL;
@@ -11,7 +8,6 @@ using Microsoft.Owin.Security;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using ESM.Services;
 
 namespace ESM.Controllers
 {
@@ -152,7 +148,6 @@ namespace ESM.Controllers
         {
             if (ModelState.IsValid)
             {
-
                 var user = new AppUser { UserName = model.Email, Email = model.Email, Name = model.Name, Surname = model.Surname };
                 UserStore<AppUser> Store = new UserStore<AppUser>(new ESMDbContext());
                 ESMUserManager userManager = new ESMUserManager(Store);
@@ -174,7 +169,7 @@ namespace ESM.Controllers
                 ModelState.AddModelError("", error);
             }
         }
-        
+
         private void InitCurrentUserSession(LoginViewModel user)
         {
             UserStore<AppUser> Store = new UserStore<AppUser>(new ESMDbContext());

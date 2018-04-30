@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ESM.Models;
 using ESM.DAL;
-using ESM.ViewModels;
 using ESM.Services;
-using Microsoft.AspNet.Identity;
 
 namespace ESM.Controllers
 {
@@ -144,7 +140,7 @@ namespace ESM.Controllers
             return RedirectToAction("Index");
         }
 
-        public FileContentResult GetPicture(Guid employeeId)
+        public ActionResult GetPicture(Guid employeeId)
         {
             Employee employee = db.Employees.FirstOrDefault(e => e.EmployeeId == employeeId);
             if(employee != null && employee.PictureData != null)

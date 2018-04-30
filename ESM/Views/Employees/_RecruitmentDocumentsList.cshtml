@@ -1,0 +1,25 @@
+﻿@model List<ESM.Models.RecruitmentDocument>
+
+<div>
+    @if (Model.Count().Equals(0))
+    {
+        <p>Brak dokumentów</p>
+    }
+    else
+    {
+        <table class="table">
+            <tr>
+                <th>Opis</th>
+                <th>PDF</th>
+            </tr>
+            @foreach (var recruitment in Model)
+            {
+
+                <tr>
+                    <td>@recruitment.Description</td>
+                    <td><a href="@Url.Action("GetFile", "RecruitmentDocuments", new { recruitmentId = recruitment.DocumentId})">Zobacz dokument</a></td>
+                </tr>
+            }
+        </table>
+    }
+</div>

@@ -84,6 +84,30 @@
         @Html.Partial("_AgreementsList", Model.Agreements)
     </div>
 </div>
+<div>
+    <h3>Certyfikaty</h3>
+    <div>
+        <a class="btn">
+            @Html.ActionLink("Dodaj certyfikat", "AddCertyfication", "Certyfications", new { employeeId = Model.EmployeeId }, null)
+        </a>
+
+    </div>
+    <div>
+        @Html.Partial("_CertyficationsList", Model.Certyfications)
+    </div>
+</div>
+<div>
+    <h3>Dokumenty rekrutacyjne</h3>
+    <div>
+        <a class="btn">
+            @Html.ActionLink("Dodaj dokument", "AddRecruitmentDocument", "RecruitmentDocuments", new { employeeId = Model.EmployeeId }, null)
+        </a>
+
+    </div>
+    <div>
+        @Html.Partial("_RecruitmentDocumentsList", Model.RecruitmentDocuments)
+    </div>
+</div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.EmployeeId }) |
     @Html.ActionLink("Back to List", "Index")

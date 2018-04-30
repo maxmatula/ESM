@@ -10,12 +10,12 @@ namespace ESM.Controllers
     public class AgreementsController : Controller
     {
 
-        private readonly AgreementService agreementService;
+        private readonly AgreementsService agreementService;
         private readonly DirectoriesService directoriesService;
 
         public AgreementsController()
         {
-            this.agreementService = new AgreementService();
+            this.agreementService = new AgreementsService();
             this.directoriesService = new DirectoriesService();
         }
 

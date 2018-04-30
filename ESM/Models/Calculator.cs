@@ -1,19 +1,4 @@
-﻿/// https://wynagrodzenia.pl/artykul/jak-obliczyc-wynagrodzenie-netto
-/// Artykuł odnośnie obliczania składek oraz wynagrodzenia
-/// ***************
-/// 
-/// Metoda Calculator do łatwego przeliczania wynagrodzeń pracowników
-/// 
-/// ***************
-
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-
+﻿using System;
 
 namespace ESM.Models
 {

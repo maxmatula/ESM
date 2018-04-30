@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Web;
 
 namespace ESM.Models
 {
@@ -12,6 +9,8 @@ namespace ESM.Models
     {
         [Key]
         public Guid CertyficationId { get; set; }
+        [DataType(DataType.Text)]
+        public string Description { get; set; }
         public string FilePath { get; set; }
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
