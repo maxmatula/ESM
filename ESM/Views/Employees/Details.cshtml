@@ -6,7 +6,7 @@
 
 <h2>Details</h2>
 
-<div>
+<div class="col-sm-8">
     <h4>Employee</h4>
     <hr />
     <dl class="dl-horizontal">
@@ -60,55 +60,76 @@
         </dd>
     </dl>
 </div>
-<div>
-    <h3>Historia zarobków</h3>
-    <div>
-        <a class="btn">
-            @Html.ActionLink("Zmień zarobki","AddEarning", "Earnings", new { employeeId = Model.EmployeeId }, null)
-        </a>
-        
-    </div>
-    <div>
-        @Html.Partial("_EarningsList", Model.Earnings)
+<div class="col-sm-4">
+    <div class="row">
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingOne">
+                    <h4 class="panel-title">
+                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseEarnings" aria-expanded="true" aria-controls="collapseEarnings">
+                            Historia zarobków
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseEarnings" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="panel-body">
+                        <a href="@Url.Action("AddEarning", "Earnings", new { employeeId = Model.EmployeeId }, null)"><i class="fa fa-pencil-alt"></i> Zmień zarobki</a>
+                        @Html.Partial("_EarningsList", Model.Earnings)
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingOne">
+                    <h4 class="panel-title">
+                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseAgreement" aria-expanded="true" aria-controls="collapseAgreement">
+                            Umowy
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseAgreement" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="panel-body">
+                        <a href="@Url.Action("AddAgreement", "Agreements", new { employeeId = Model.EmployeeId }, null)"><i class="fa fa-pencil-alt"></i> Dodaj umowę</a>
+                        @Html.Partial("_AgreementsList", Model.Agreements)
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingOne">
+                    <h4 class="panel-title">
+                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseCertyfications" aria-expanded="true" aria-controls="collapseCertyfications">
+                            Certyfikaty
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseCertyfications" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="panel-body">
+                        <a href="@Url.Action("AddCertyfication", "Certyfications", new { employeeId = Model.EmployeeId }, null)"><i class="fa fa-pencil-alt"></i> Dodaj certyfikat</a>
+                        @Html.Partial("_CertyficationsList", Model.Certyfications)
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingOne">
+                    <h4 class="panel-title">
+                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseRecruitmentDocuments" aria-expanded="true" aria-controls="ccollapseRecruitmentDocuments">
+                            Dokumenty rekrutacyjne
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseRecruitmentDocuments" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="panel-body">
+                        <a href="@Url.Action("AddRecruitmentDocument", "RecruitmentDocuments", new { employeeId = Model.EmployeeId }, null)"><i class="fa fa-pencil-alt"></i> Dodaj dokument</a>
+                        @Html.Partial("_RecruitmentDocumentsList", Model.RecruitmentDocuments)
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-<div>
-    <h3>Umowy</h3>
-    <div>
-        <a class="btn">
-            @Html.ActionLink("Dodaj umowę", "AddAgreement", "Agreements", new { employeeId = Model.EmployeeId }, null)
-        </a>
+<div class="col-xs-12">
+    <p>
+        @Html.ActionLink("Edytuj", "Edit", new { id = Model.EmployeeId }) |
+        @Html.ActionLink("Powrót", "Index")
+    </p>
+</div>
 
-    </div>
-    <div>
-        @Html.Partial("_AgreementsList", Model.Agreements)
-    </div>
-</div>
-<div>
-    <h3>Certyfikaty</h3>
-    <div>
-        <a class="btn">
-            @Html.ActionLink("Dodaj certyfikat", "AddCertyfication", "Certyfications", new { employeeId = Model.EmployeeId }, null)
-        </a>
-
-    </div>
-    <div>
-        @Html.Partial("_CertyficationsList", Model.Certyfications)
-    </div>
-</div>
-<div>
-    <h3>Dokumenty rekrutacyjne</h3>
-    <div>
-        <a class="btn">
-            @Html.ActionLink("Dodaj dokument", "AddRecruitmentDocument", "RecruitmentDocuments", new { employeeId = Model.EmployeeId }, null)
-        </a>
-
-    </div>
-    <div>
-        @Html.Partial("_RecruitmentDocumentsList", Model.RecruitmentDocuments)
-    </div>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.EmployeeId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

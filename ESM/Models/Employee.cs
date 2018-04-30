@@ -11,12 +11,16 @@ namespace ESM.Models
     {
         [Key]
         public Guid EmployeeId { get; set; }
+        [Display(Name="Imię")]
         public string Name { get; set; }
+        [Display(Name = "Nazwisko")]
         public string Surname { get; set; }
-        [DataType(DataType.Date)]
+        [DataType(DataType.Date),Display(Name = "Data urodzenia")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime BirthDate { get; set; }
+        [Display(Name = "Stanowisko")]
         public string Title { get; set; }
+        [Display(Name = "Obecne zarobki")]
         public decimal CurrentEarnings { get; set; }
         public byte[] PictureData { get; set; }
         [StringLength(50)]

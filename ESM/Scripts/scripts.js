@@ -15,9 +15,12 @@
         $('.main-content').fadeIn("slow");
     }, 100);
 
-    /* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
-    particlesJS.load('particles', '/Scripts/particlesjs-config.json', function () {
-        console.log('callback - particles.js config loaded');
-    });
+    if ($('#particles').lenght) {
+        /* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
+        particlesJS.load('particles', '/Scripts/particlesjs-config.json', function () {
+            console.log('callback - particles.js config loaded');
+        });
+    }
+    
 
 });
