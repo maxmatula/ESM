@@ -39,3 +39,17 @@
     border: 1px solid transparent;
     border-radius: 0;
 }
+
+@mixin btn-hover {
+    &:hover, &focus, &:active, &:active:hover, &:active:focus {
+        @content;
+    }
+}
+@mixin generate-btn($background, $color) {
+    background-color: $background;
+    color: $color;
+    @include btn-hover {
+        background-color: darken($background, 10%);
+        color: $color;
+    }
+}

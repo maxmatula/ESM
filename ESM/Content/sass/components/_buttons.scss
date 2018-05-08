@@ -1,3 +1,24 @@
-﻿.btn{
+﻿.btn {
     border-radius: 0;
+    border: none;
+    transition: 0.3s ease-in-out;
+    box-shadow: 1px 1px 5px rgba($black, 0.2);
+    padding: 10px 30px;
+    letter-spacing: 1px;
+
+    @include btn-hover {
+        transform: translateY(-2px);
+    }
+
+    &-success {
+        @include generate-btn(#009688, $white);
+    }
+
+    &-primary {
+        @include generate-btn($primary--light, $white);
+    }
+
+    &-danger {
+        @include generate-btn(#F44336, $white);
+    }
 }
