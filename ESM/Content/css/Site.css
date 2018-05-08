@@ -151,6 +151,8 @@ h6, .h6 {
 
 .home-navbar {
   background-color: rgba(57, 47, 69, 0.4); }
+  .home-navbar .navbar-brand img {
+    width: 65px; }
   .home-navbar .navbar-nav li > a {
     color: #fff; }
     .home-navbar .navbar-nav li > a:hover, .home-navbar .navbar-nav li > a:focus {
@@ -281,10 +283,31 @@ legend {
 .input-validation-error {
   border-bottom-color: #aaa; }
 
+input[type="file"] {
+  display: none; }
+
 .jumbotron {
   background: none; }
 
 .btn {
+  border-radius: 0; }
+
+.panel-default {
+  border: none;
+  border-radius: 0; }
+  .panel-default .panel-heading {
+    background-color: #392f45;
+    color: #fff;
+    border-radius: 0; }
+  .panel-default .panel-body {
+    background-color: #5e4370;
+    color: #fff;
+    border-top: none !important; }
+
+.well {
+  background-color: #392f45;
+  color: #fff;
+  border: none;
   border-radius: 0; }
 
 .login {
@@ -308,4 +331,7 @@ legend {
 .crud-index__navbar {
   list-style-type: none;
   padding: 0; }
+
+.image-thumbnail {
+  padding: 15px; }
 

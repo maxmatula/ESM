@@ -135,13 +135,21 @@
     }
 }
 
-.home-navbar{
+.home-navbar {
     background-color: rgba($primary--dark,0.4);
-    .navbar-nav{
-        li{
-            > a{
+
+    .navbar-brand {
+        img {
+            width: 65px;
+        }
+    }
+
+    .navbar-nav {
+        li {
+            > a {
                 color: $white;
-                &:hover,&:focus{
+
+                &:hover, &:focus {
                     color: $tetriary;
                 }
             }

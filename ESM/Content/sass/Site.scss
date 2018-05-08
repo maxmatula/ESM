@@ -19,6 +19,8 @@
 @import "components/forms";
 @import "components/jumbotron";
 @import "components/buttons";
+@import "components/panel";
+@import "components/well";
 
 //Pages
 @import "pages/login";
@@ -27,3 +29,4 @@
 
 //Views
 @import "views/crud-index";
+@import "views/crud-details";

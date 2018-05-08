@@ -72,3 +72,6 @@ legend{
 .input-validation-error {
     border-bottom-color: $gray;
 }
+input[type="file"]{
+    display: none;
+}

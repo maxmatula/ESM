@@ -356,6 +356,9 @@
     <Content Include="Content\sass\pages\_employees.scss" />
     <Content Include="Content\sass\views\_crud-index.scss" />
     <Content Include="Content\sass\pages\_calculator.scss" />
+    <Content Include="Content\sass\views\_crud-details.scss" />
+    <Content Include="Content\sass\components\_panel.scss" />
+    <Content Include="Content\sass\components\_well.scss" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
