@@ -1,0 +1,47 @@
+﻿.home {
+    &__top {
+        height: calc(100vh - #{$navbar-height});
+
+        .container, .row {
+            height: 100%;
+        }
+
+        img {
+            margin-top: -70px;
+            max-width: 600px;
+        }
+
+        p {
+            font-weight: 300;
+        }
+    }
+
+    &__features {
+        @include padding-tb(50px);
+
+        .fas {
+            background: linear-gradient(45deg, $tetriary, $secondary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    }
+
+    &__team {
+        @include padding-tb(50px);
+
+        ul {
+            list-style-type: none;
+            line-height: 2;
+        }
+
+        img {
+            margin-bottom: 20px;
+        }
+        .team{
+            &__heading{
+                @include margin-tb(20px);
+                letter-spacing: 2px;
+            }
+        }
+    }
+}

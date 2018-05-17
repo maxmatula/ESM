@@ -50,3 +50,25 @@ a{
     height: 100vh;
     opacity: 0.6;
 }
+
+.flex {
+    display: flex;
+
+    &--a-center {
+        align-items: center;
+    }
+    &--j-center{
+        justify-content: center;
+    }
+    &--center {
+        justify-content: center;
+        align-items: center;
+    }
+
+    &--wrap {
+        flex-wrap: wrap;
+    }
+    &--column{
+        flex-flow: column;
+    }
+}
