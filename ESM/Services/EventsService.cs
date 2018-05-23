@@ -12,11 +12,10 @@ namespace ESM.Services
     {
         private ESMDbContext db = new ESMDbContext();
 
-        public bool CreateCompanyEvent(Event esmevent, Guid companyId)
+        public bool CreateCompanyEvent(Event esmevent)
         {
             try
             {
-                esmevent.CompanyId = companyId;
                 db.Events.Add(esmevent);
                 db.SaveChanges();
                 return true;
@@ -28,12 +27,10 @@ namespace ESM.Services
             }
         }
 
-        public bool CreateEmployeeEvent(Event esmevent, Guid companyId, Guid employeeId)
+        public bool CreateEmployeeEvent(Event esmevent)
         {
             try
             {
-                esmevent.CompanyId = companyId;
-                esmevent.EmployeeId = employeeId;
                 db.Events.Add(esmevent);
                 db.SaveChanges();
                 return true;

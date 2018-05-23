@@ -203,6 +203,7 @@
     <Compile Include="Controllers\CompaniesController.cs" />
     <Compile Include="Controllers\EarningsController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
+    <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RecruitmentDocumentsController.cs" />
     <Compile Include="Controllers\UserPanelController.cs" />
@@ -461,6 +462,7 @@
   <ItemGroup>
     <Folder Include="Abstract\" />
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Events\" />
     <Folder Include="Views\Files\" />
   </ItemGroup>
   <ItemGroup>

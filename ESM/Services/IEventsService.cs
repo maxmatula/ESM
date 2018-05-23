@@ -12,8 +12,8 @@ namespace ESM.Services
         Event FindById(Guid eventId);
         List<Event> EventListCompany(Guid companyId);
         List<Event> EventListEmployee(Guid employeeId);
-        bool CreateCompanyEvent(Event esmevent,Guid companyId);
-        bool CreateEmployeeEvent(Event esmevent, Guid companyId, Guid employeeId);
+        bool CreateCompanyEvent(Event esmevent);
+        bool CreateEmployeeEvent(Event esmevent);
         bool DeleteEvent(Guid eventId);
         bool EditEvent(Event esmevent);
     }
