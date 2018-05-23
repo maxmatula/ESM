@@ -458,11 +458,16 @@
     <Content Include="Views\Employees\_RecruitmentDocumentsList.cshtml" />
     <Content Include="Views\RecruitmentDocuments\AddRecruitmentDocument.cshtml" />
     <Content Include="Scripts\particlesjs-config.json" />
+    <Content Include="Views\Events\_CompanyEvents.cshtml" />
+    <Content Include="Views\Events\_EmployeeEvents.cshtml" />
+    <Content Include="Views\Events\CreateEventCompany.cshtml" />
+    <Content Include="Views\Events\CreateEventEmployee.cshtml" />
+    <Content Include="Views\Events\EditEventEmployee.cshtml" />
+    <Content Include="Views\Events\EditEventCompany.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Abstract\" />
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Events\" />
     <Folder Include="Views\Files\" />
   </ItemGroup>
   <ItemGroup>

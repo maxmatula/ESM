@@ -39,12 +39,13 @@ namespace ESM.Controllers
         }
 
 
-        public ActionResult CreateEventCompany(Guid? companyId)
+        public ActionResult CreateEventCompany()
         {
+            var companyId = Session["currentCompanyId"].ToString();
             if (companyId != null)
             {
                 Event esmevent = new Event();
-                esmevent.CompanyId = companyId.Value;
+                esmevent.CompanyId = Guid.Parse(companyId);
                 return View(esmevent);
             }
             return HttpNotFound();
@@ -59,7 +60,7 @@ namespace ESM.Controllers
                 var result = eventsService.CreateCompanyEvent(esmevent);
                 if (result == true)
                 {
-                    return RedirectToAction("Index", "UserPanel");
+                    return RedirectToAction("Index", "Employees");
                 }
             }
             return View(esmevent);
@@ -138,7 +139,7 @@ namespace ESM.Controllers
                 var result = eventsService.EditEvent(esmevent);
                 if (result == true)
                 {
-                    return RedirectToAction("Index", "UserPanel");
+                    return RedirectToAction("Index", "Employees");
                 }
             }
             return View(esmevent);
@@ -150,8 +151,9 @@ namespace ESM.Controllers
         {
             if(eventId != null)
             {
+                var esmevent = eventsService.FindById(eventId.Value);
                 var result = eventsService.DeleteEvent(eventId.Value);
-                return RedirectToAction("Index", "UserPanel");
+                return RedirectToAction("Index", "Employees");
             }
             return HttpNotFound();
         }

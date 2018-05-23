@@ -14,5 +14,11 @@ namespace ESM.Models
         public Guid CompanyId { get; set; }
         public virtual Company Company { get; set; }
         public Guid? EmployeeId { get; set; }
+        public virtual Employee Employee { get; set; }
+
+        public Event()
+        {
+            EventId = Guid.NewGuid();
+        }
     }
 }
