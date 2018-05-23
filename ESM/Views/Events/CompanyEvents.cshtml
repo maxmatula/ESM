@@ -1,0 +1,23 @@
+﻿@model List<ESM.Models.Event>
+
+
+@foreach (var item in Model)
+{
+
+    <div>
+        @Html.DisplayFor(modelItem => item.Name)
+
+        @Html.DisplayFor(modelItem => item.Description)
+
+        @Html.DisplayFor(modelItem => item.EventDate)
+
+        @Html.DisplayFor(modelItem => item.Company.Name)
+
+        @Html.ActionLink("Edit", "EditEventCompany", new { eventId = item.EventId }) |
+        @Html.ActionLink("Delete", "DeleteEventCompany", new { eventId = item.EventId })
+    </div>
+
+
+}
+
+

@@ -18,11 +18,12 @@ namespace ESM.Controllers
         }
 
 
-        public ActionResult CompanyEvents(Guid? companyId)
+        public ActionResult CompanyEvents()
         {
+            var companyId = Session["currentCompanyId"].ToString();
             if (companyId != null)
             {
-                var model = eventsService.EventListCompany(companyId.Value);
+                var model = eventsService.EventListCompany(Guid.Parse(companyId));
                 return View(model);
             }
             return HttpNotFound();
