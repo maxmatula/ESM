@@ -13,8 +13,16 @@
 
         @Html.DisplayFor(modelItem => item.Company.Name)
 
+
+
         @Html.ActionLink("Edit", "EditEventCompany", new { eventId = item.EventId }) |
-        @Html.ActionLink("Delete", "DeleteEventCompany", new { eventId = item.EventId })
+        @using (Html.BeginForm("DeleteEventCompany", "Events", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.Hidden("eventId", item.EventId)
+            <input type="submit" value="Delete" />
+        }
+
     </div>
 
 

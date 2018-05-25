@@ -98,22 +98,22 @@ namespace ESM.Controllers
 
         public ActionResult EditEventEmployee(Guid? eventId)
         {
-            if(eventId != null)
+            if (eventId != null)
             {
                 var esmevent = eventsService.FindById(eventId.Value);
                 return View(esmevent);
             }
             return HttpNotFound();
         }
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult EditEventEmployee(Event esmevent)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 var result = eventsService.EditEvent(esmevent);
-                if(result == true)
+                if (result == true)
                 {
                     return RedirectToAction("Details", "Employees", new { id = esmevent.EmployeeId });
                 }
@@ -150,7 +150,7 @@ namespace ESM.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteEventCompany(Guid? eventId)
         {
-            if(eventId != null)
+            if (eventId != null)
             {
                 var esmevent = eventsService.FindById(eventId.Value);
                 var result = eventsService.DeleteEvent(eventId.Value);
@@ -166,8 +166,9 @@ namespace ESM.Controllers
             if (eventId != null)
             {
                 var esmevent = eventsService.FindById(eventId.Value);
+                var empId = esmevent.EmployeeId;
                 var result = eventsService.DeleteEvent(eventId.Value);
-                return RedirectToAction("Details", "Employees", new { id = esmevent.EmployeeId });
+                return RedirectToAction("Details", "Employees", new { id = empId });
             }
             return HttpNotFound();
         }
