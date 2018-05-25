@@ -71,7 +71,7 @@ namespace ESM.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EmployeeId,Name,Surname,Title,BirthDate,CompanyId,PictureData,PictureMimeType")] Employee employee, HttpPostedFileBase picture = null)
+        public ActionResult Create([Bind(Include = "EmployeeId,Name,Surname,Title,BirthDate,CompanyId,PictureData,PictureMimeType")] Employee employee, string picture)
         {
             string currentCompanyId = Session["currentCompanyId"].ToString();
             if (ModelState.IsValid)
@@ -103,7 +103,7 @@ namespace ESM.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "EmployeeId,Name,Surname,BirthDate,Title")] Employee employee, HttpPostedFileBase picture = null)
+        public ActionResult Edit([Bind(Include = "EmployeeId,Name,Surname,BirthDate,Title")] Employee employee, string picture)
         {
             
             string currentCompanyId = Session["currentCompanyId"].ToString();
