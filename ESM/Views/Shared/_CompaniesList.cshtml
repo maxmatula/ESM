@@ -2,20 +2,21 @@
 
 <div id="companieslist-section" class="col-xs-12">
     <div class="row">
-            <ul class="employees-list">
-                @foreach (var item in Model)
-                {
+        <ul class="employees-list">
+            @foreach (var item in Model)
+            {
 
-                    <li class="employees-list__item employee">
-                        <a href="@Url.Action("Details", "Companies", new { id = item.CompanyId })">
-                            <img src="@Url.Action("GetLogo", "Companies", new { companyId = item.CompanyId})" width="200" height="200"
-                                 alt="" class="employee__image img-circle img-responsive" />
-                            <h4 class="employee__name"><span class="name">@item.Name</span> </h4>
-                            <h5 class="employee__title">@item.Description</h5>
-                        </a>
-                    </li>
+                <li class="employees-list__item employee">
+                    <a href="@Url.Action("Details", "Companies", new { id = item.CompanyId })">
+                        <img src="@Url.Action("GetLogo", "Companies", new { companyId = item.CompanyId})" width="200" height="200"
+                             alt="" class="employee__image img-circle img-responsive" />
+                        <h4 class="employee__name"><span class="name">@item.Name</span> </h4>
+                        <h5 class="employee__title">@item.Description</h5>
+                    </a>
+                    <a href="@Url.Action("Edit", "Companies", new { id = item.CompanyId })" class="fa-pull-left btn btnfocus">Edytuj</a>
+                </li>
 
-                }
-            </ul>
+            }
+        </ul>
     </div>
 </div>
