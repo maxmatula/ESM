@@ -210,19 +210,23 @@ h6, .h6 {
   padding-left: 30px; }
 
 .employees-list {
-  list-style-type: none;
-  display: flex;
-  flex-wrap: wrap;
-  padding-left: 30px;
-  padding-right: 30px; }
-  .employees-list__item {
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 30px;
+    padding-right: 30px;
+    
+}
+.employees-list__item {
     padding: 15px;
     text-align: center;
     transition: 0.3s;
     margin: 15px 30px;
-    width: calc(50% - 60px); }
+    width: calc(50% - 60px);
+    background-color: #392f45;
+}
     .employees-list__item:hover, .employees-list__item.active {
-      background-color: #392f45; }
+      background-color: #201a27; }
   .employees-list .employee__image {
     display: block;
     margin: 0 auto;

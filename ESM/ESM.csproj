@@ -273,6 +273,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\croppie.css" />
     <Content Include="Content\font-awesome\fa-solid.css">
       <DependentUpon>fa-solid.scss</DependentUpon>
     </Content>
@@ -310,6 +311,8 @@
     <Content Include="Media\Office_Perks.webm" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\croppie.js" />
+    <Content Include="Scripts\croppie\croppie-round.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />

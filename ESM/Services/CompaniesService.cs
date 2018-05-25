@@ -11,7 +11,7 @@ namespace ESM.Services
     public class CompaniesService : ICompaniesService
     {
         private ESMDbContext db = new ESMDbContext();
-        public bool Create(Company company, UserCompanyRef userCompanyRef, string userId, HttpPostedFileBase logo)
+        public bool Create(Company company, UserCompanyRef userCompanyRef, string userId, string logo)
         {
             try
             {
@@ -20,9 +20,16 @@ namespace ESM.Services
 
                 if (logo != null)
                 {
-                    company.LogoMimeType = logo.ContentType;
-                    company.LogoData = new byte[logo.ContentLength];
-                    logo.InputStream.Read(company.LogoData, 0, logo.ContentLength);
+                    var extension = logo.Substring(logo.IndexOf(':') + 1);
+                    var extLength = extension.IndexOf(';');
+                    var allLength = extension.Length - extLength;
+                    extension = extension.Remove(extLength, allLength);
+
+                    var file = logo.Substring(logo.IndexOf(',') + 1);
+
+                    var bytes = Convert.FromBase64String(file);
+                    company.LogoMimeType = extension;
+                    company.LogoData = bytes;
                 }
 
                 db.Companies.Add(company);
@@ -55,18 +62,24 @@ namespace ESM.Services
             }
         }
 
-        public bool Edit(Company company, UserCompanyRef userCompanyRef, HttpPostedFileBase logo)
+        public bool Edit(Company company, string logo)
         {
             try
             {
                 if (logo != null)
                 {
-                    company.LogoMimeType = logo.ContentType;
-                    company.LogoData = new byte[logo.ContentLength];
-                    logo.InputStream.Read(company.LogoData, 0, logo.ContentLength);
+                    var extension = logo.Substring(logo.IndexOf(':') + 1);
+                    var extLength = extension.IndexOf(';');
+                    var allLength = extension.Length - extLength;
+                    extension = extension.Remove(extLength, allLength);
+
+                    var file = logo.Substring(logo.IndexOf(',') + 1);
+
+                    var bytes = Convert.FromBase64String(file);
+                    company.LogoMimeType = extension;
+                    company.LogoData = bytes;
                 }
                 db.Entry(company).State = EntityState.Modified;
-                db.Entry(userCompanyRef).State = EntityState.Unchanged;
                 db.SaveChanges();
                 return true;
             }

@@ -8,8 +8,8 @@ namespace ESM.Services
     public interface IEmployeesService
     { 
         EmployeeViewModel GetById(Guid id);
-        bool Create(Employee employee, string currentCompanyId, HttpPostedFileBase picture);
-        bool Edit(Employee employee, string currentCompanyId, HttpPostedFileBase picture);
+        bool Create(Employee employee, string currentCompanyId, string picture);
+        bool Edit(Employee employee, string currentCompanyId, string picture);
         bool Delete(Guid id);
     }
 }

@@ -14,16 +14,23 @@ namespace ESM.Services
     public class EmployeesService : IEmployeesService
     {
         private ESMDbContext db = new ESMDbContext();
-        public bool Create(Employee employee, string currentCompanyId, HttpPostedFileBase picture)
+        public bool Create(Employee employee, string currentCompanyId, string picture)
         {
             try
             {
                 employee.CompanyId = Guid.Parse(currentCompanyId);
                 if (picture != null)
                 {
-                    employee.PictureMimeType = picture.ContentType;
-                    employee.PictureData = new byte[picture.ContentLength];
-                    picture.InputStream.Read(employee.PictureData, 0, picture.ContentLength);
+                    var extension = picture.Substring(picture.IndexOf(':') + 1);
+                    var extLength = extension.IndexOf(';');
+                    var allLength = extension.Length - extLength;
+                    extension = extension.Remove(extLength, allLength);
+
+                    var file = picture.Substring(picture.IndexOf(',') + 1);
+
+                    var bytes = Convert.FromBase64String(file);
+                    employee.PictureMimeType = extension;
+                    employee.PictureData = bytes;
                 }
 
                 db.Employees.Add(employee);
@@ -51,7 +58,7 @@ namespace ESM.Services
             }
         }
 
-        public bool Edit(Employee employee, string currentCompanyId, HttpPostedFileBase picture)
+        public bool Edit(Employee employee, string currentCompanyId, string picture)
         {
 
             try
@@ -59,9 +66,16 @@ namespace ESM.Services
                 employee.CompanyId = Guid.Parse(currentCompanyId);
                 if (picture != null)
                 {
-                    employee.PictureMimeType = picture.ContentType;
-                    employee.PictureData = new byte[picture.ContentLength];
-                    picture.InputStream.Read(employee.PictureData, 0, picture.ContentLength);
+                    var extension = picture.Substring(picture.IndexOf(':') + 1);
+                    var extLength = extension.IndexOf(';');
+                    var allLength = extension.Length - extLength;
+                    extension = extension.Remove(extLength, allLength);
+
+                    var file = picture.Substring(picture.IndexOf(',') + 1);
+
+                    var bytes = Convert.FromBase64String(file);
+                    employee.PictureMimeType = extension;
+                    employee.PictureData = bytes;
                 }
                 db.Entry(employee).State = EntityState.Modified;
                 db.SaveChanges();

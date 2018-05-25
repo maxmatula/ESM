@@ -50,11 +50,11 @@ namespace ESM.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Name,LogoData,LogoMimeType,Description")] Company company, UserCompanyRef userCompanyRef, HttpPostedFileBase logo)
+        public ActionResult Create([Bind(Include = "Name,LogoData,LogoMimeType,Description")] Company company, UserCompanyRef userCompanyRef, string picture)
         {
             if (ModelState.IsValid)
             {
-                var result = companiesService.Create(company, userCompanyRef, User.Identity.GetUserId().ToString(), logo);
+                var result = companiesService.Create(company, userCompanyRef, User.Identity.GetUserId().ToString(), picture);
                 return RedirectToAction("Index", "UserPanel");
             }
             return View(company);
@@ -80,11 +80,11 @@ namespace ESM.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Name,LogoData,LogoMimeType,Description")] Company company, UserCompanyRef userCompanyRef, HttpPostedFileBase logo)
+        public ActionResult Edit([Bind(Include = "CompanyId,Name,LogoData,LogoMimeType,Description")] Company company, string picture)
         {
             if (ModelState.IsValid)
             {
-                var result = companiesService.Edit(company, userCompanyRef, logo);
+                var result = companiesService.Edit(company, picture);
                 return RedirectToAction("Index", "UserPanel");
             }
             return View(company);
