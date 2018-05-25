@@ -15,7 +15,7 @@ namespace ESM
 
             routes.MapRoute(
                 name: "EmployeeDetails",
-                url: "Employee/{action}/{id}",
+                url: "Employees/{action}/{id}",
                 defaults: new { controller = "Employees", id = UrlParameter.Optional.ToString() }
                 );
 

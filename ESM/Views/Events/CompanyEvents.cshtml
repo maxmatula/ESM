@@ -1,0 +1,31 @@
+﻿@model List<ESM.Models.Event>
+
+
+@foreach (var item in Model)
+{
+
+    <div>
+        @Html.DisplayFor(modelItem => item.Name)
+
+        @Html.DisplayFor(modelItem => item.Description)
+
+        @Html.DisplayFor(modelItem => item.EventDate)
+
+        @Html.DisplayFor(modelItem => item.Company.Name)
+
+
+
+        @Html.ActionLink("Edit", "EditEventCompany", new { eventId = item.EventId }) |
+        @using (Html.BeginForm("DeleteEventCompany", "Events", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.Hidden("eventId", item.EventId)
+            <input type="submit" value="Delete" />
+        }
+
+    </div>
+
+
+}
+
+

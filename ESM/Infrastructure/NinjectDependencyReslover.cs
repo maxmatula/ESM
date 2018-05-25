@@ -35,6 +35,7 @@ namespace ESM.Infrastructure
             kernel.Bind<IAgreementsService>().To<AgreementsService>();
             kernel.Bind<ICertyficationsService>().To<CertyficationsService>();
             kernel.Bind<IRecruitmentDocumentsService>().To<RecruitmentDocumentsService>();
+            kernel.Bind<IEventsService>().To<EventsService>();
             kernel.Bind<ESMDbContext>().ToSelf();
         }
     }

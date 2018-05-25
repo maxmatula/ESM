@@ -18,6 +18,7 @@ namespace ESM.DAL
         public DbSet<RecruitmentDocument> RecruitmentDocuments { get; set; }
         public DbSet<Certyfication> Certyfications { get; set; }
         public DbSet<Agreement> Agreements { get; set; }
+        public DbSet<Event> Events { get; set; }
 
         public static ESMDbContext Create()
         {

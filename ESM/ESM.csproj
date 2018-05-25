@@ -203,6 +203,7 @@
     <Compile Include="Controllers\CompaniesController.cs" />
     <Compile Include="Controllers\EarningsController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
+    <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RecruitmentDocumentsController.cs" />
     <Compile Include="Controllers\UserPanelController.cs" />
@@ -223,6 +224,22 @@
     <Compile Include="Migrations\201804301206239_ModelUpdateDescription.Designer.cs">
       <DependentUpon>201804301206239_ModelUpdateDescription.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805232028428_Event.cs" />
+    <Compile Include="Migrations\201805232028428_Event.Designer.cs">
+      <DependentUpon>201805232028428_Event.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805232146146_Events2.cs" />
+    <Compile Include="Migrations\201805232146146_Events2.Designer.cs">
+      <DependentUpon>201805232146146_Events2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805232149565_Events3.cs" />
+    <Compile Include="Migrations\201805232149565_Events3.Designer.cs">
+      <DependentUpon>201805232149565_Events3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805232209229_Events4.cs" />
+    <Compile Include="Migrations\201805232209229_Events4.Designer.cs">
+      <DependentUpon>201805232209229_Events4.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Agreement.cs" />
     <Compile Include="Models\Calculator.cs" />
@@ -231,6 +248,7 @@
     <Compile Include="Models\Earnings.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\AppUser.cs" />
+    <Compile Include="Models\Event.cs" />
     <Compile Include="Models\RecruitmentDocument.cs" />
     <Compile Include="Models\UserCompanyRef.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -239,11 +257,13 @@
     <Compile Include="Services\CompaniesService.cs" />
     <Compile Include="Services\DirectoriesService.cs" />
     <Compile Include="Services\EmployeesService.cs" />
+    <Compile Include="Services\EventsService.cs" />
     <Compile Include="Services\IAgreementsService.cs" />
     <Compile Include="Services\ICertyficationsService.cs" />
     <Compile Include="Services\ICompaniesService.cs" />
     <Compile Include="Services\IDirectoriesService.cs" />
     <Compile Include="Services\IEmployeesService.cs" />
+    <Compile Include="Services\IEventsService.cs" />
     <Compile Include="Services\IRecruitmentDocumentsService.cs" />
     <Compile Include="Services\RecruitmentDocumentsService.cs" />
     <Compile Include="Startup.cs" />
@@ -450,6 +470,12 @@
     <Content Include="Views\Employees\_RecruitmentDocumentsList.cshtml" />
     <Content Include="Views\RecruitmentDocuments\AddRecruitmentDocument.cshtml" />
     <Content Include="Scripts\particlesjs-config.json" />
+    <Content Include="Views\Events\CompanyEvents.cshtml" />
+    <Content Include="Views\Events\EmployeeEvents.cshtml" />
+    <Content Include="Views\Events\CreateEventCompany.cshtml" />
+    <Content Include="Views\Events\CreateEventEmployee.cshtml" />
+    <Content Include="Views\Events\EditEventEmployee.cshtml" />
+    <Content Include="Views\Events\EditEventCompany.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Abstract\" />
@@ -474,6 +500,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804301206239_ModelUpdateDescription.resx">
       <DependentUpon>201804301206239_ModelUpdateDescription.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805232028428_Event.resx">
+      <DependentUpon>201805232028428_Event.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805232146146_Events2.resx">
+      <DependentUpon>201805232146146_Events2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805232149565_Events3.resx">
+      <DependentUpon>201805232149565_Events3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805232209229_Events4.resx">
+      <DependentUpon>201805232209229_Events4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
