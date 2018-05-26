@@ -72,15 +72,17 @@ namespace ESM.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EmployeeId,Name,Surname,Title,BirthDate,CompanyId,PictureData,PictureMimeType")] Employee employee, string picture)
+        public ActionResult Create(Employee employee, string picture)
         {
             string currentCompanyId = Session["currentCompanyId"].ToString();
             if (ModelState.IsValid)
             {
                 var result = employeesService.Create(employee, currentCompanyId, picture);
-                return RedirectToAction("Index");
+                if (result == true)
+                {
+                    return RedirectToAction("Index");
+                }
             }
-
             return View(employee);
         }
 
@@ -104,16 +106,15 @@ namespace ESM.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "EmployeeId,Name,Surname,BirthDate,Title")] Employee employee, string picture)
+        public ActionResult Edit(Employee employee, string picture)
         {
-            
+
             string currentCompanyId = Session["currentCompanyId"].ToString();
             if (ModelState.IsValid)
             {
                 var result = employeesService.Edit(employee, currentCompanyId, picture);
                 return RedirectToAction("Index");
             }
-
             return View(employee);
         }
 
@@ -144,7 +145,7 @@ namespace ESM.Controllers
         public ActionResult GetPicture(Guid employeeId)
         {
             Employee employee = db.Employees.FirstOrDefault(e => e.EmployeeId == employeeId);
-            if(employee != null && employee.PictureData != null)
+            if (employee != null && employee.PictureData != null)
             {
                 return File(employee.PictureData, employee.PictureMimeType);
             }

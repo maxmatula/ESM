@@ -14,7 +14,13 @@ namespace ESM.ViewModels.Employees
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime BirthDate { get; set; }
         public string Title { get; set; }
-        public decimal CurrentEarnings { get; set; }
+        public int? IdentityNumber { get; set; } //pesel
+        public string Address { get; set; }
+        public string Phone { get; set; }
+        public string MaritalStatus { get; set; }
+        public string AdditionalInfo { get; set; } //notatki
+        public string BankName { get; set; }
+        public int? BankAccountNumber { get; set; }
         public byte[] PictureData { get; set; }
         public string PictureMimeType { get; set; }
         public Guid CompanyId { get; set; }
