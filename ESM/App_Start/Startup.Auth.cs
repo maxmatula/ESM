@@ -8,7 +8,7 @@ using Owin;
 using ESM.Models;
 using ESM.DAL;
 using Microsoft.AspNet.Identity;
-
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace ESM
 {
@@ -20,5 +20,26 @@ namespace ESM
             app.CreatePerOwinContext<ESMUserManager>(ESMUserManager.Create);
             app.CreatePerOwinContext<ESMSignInManager>(ESMSignInManager.Create);
         }
-	}
+
+        private void CreateRoles()
+        {
+            ESMDbContext db = new ESMDbContext();
+
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
+
+            if (!roleManager.RoleExists("Admin"))
+            {
+                var role = new IdentityRole();
+                role.Name = "Admin";
+                roleManager.Create(role);
+            }
+
+            if (!roleManager.RoleExists("User"))
+            {
+                var role = new IdentityRole();
+                role.Name = "User";
+                roleManager.Create(role);
+            }
+        }
+    }
 }
