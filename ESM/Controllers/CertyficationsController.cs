@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace ESM.Controllers
 {
+    [Authorize]
     public class CertyficationsController : Controller
     {
         private readonly DirectoriesService directoriesService;

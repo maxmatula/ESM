@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace ESM.Controllers
 {
+    [Authorize]
     public class AccountController : Controller
     {
 
@@ -53,10 +54,6 @@ namespace ESM.Controllers
         public ActionResult Index()
         {
             return RedirectToAction("Login");
-        }
-        public bool IsLogged()
-        {
-            return Session["UserId"] != null;
         }
 
         /// <summary>
@@ -155,6 +152,7 @@ namespace ESM.Controllers
                 var result = await userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    var resultRole = await UserManager.AddToRoleAsync(user.Id, "User");
                     return RedirectToAction("Login", "Account");
                 }
                 AddErrors(result);
@@ -178,6 +176,18 @@ namespace ESM.Controllers
             AppUser currentUser = userManager.FindByEmail(user.Email);
             Session["Name"] = currentUser.Name;
             Session["Surname"] = currentUser.Surname;
+        }
+
+        private bool IsLogged()
+        {
+            if (User.Identity.GetUserId() != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

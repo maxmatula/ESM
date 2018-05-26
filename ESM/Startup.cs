@@ -17,13 +17,13 @@ namespace ESM
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
+            CreateRoles();
             MapperInitialize();
 
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
                 LoginPath = new PathString("/Account/Login"),
-
             });
         }
     }

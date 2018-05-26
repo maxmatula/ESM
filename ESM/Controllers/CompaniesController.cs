@@ -10,6 +10,7 @@ using ESM.Services;
 
 namespace ESM.Controllers
 {
+    [Authorize]
     public class CompaniesController : Controller
     {
         private readonly ESMDbContext db;
