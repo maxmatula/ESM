@@ -2,13 +2,13 @@
 $element.croppie({
     enableExif: false,
     viewport: {
-        width: 200,
-        height: 200,
+        width: 300,
+        height: 300,
         type: 'circle'
     },
     boundary: {
-        width: 300,
-        height: 300
+        width: 400,
+        height: 400
     }
 });
 
