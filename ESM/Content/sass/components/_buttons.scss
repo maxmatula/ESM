@@ -11,7 +11,8 @@
     }
 
     &-success {
-        @include generate-btn(#009688, $white);
+        @include generate-btn($tetriary--light, $white);
+        background-image: $primary-gradient;
     }
 
     &-primary {
@@ -20,5 +21,24 @@
 
     &-danger {
         @include generate-btn(#F44336, $white);
+    }
+
+    &-link {
+        padding: 0;
+        display: inline;
+        color: $secondary;
+
+        &:hover, &:focus {
+            box-shadow: none;
+            outline: none;
+            color: $tetriary;
+            text-decoration: none;
+            transform: translate(0,0);
+            &:active {
+                box-shadow: none;
+                outline: none;
+                color: $tetriary;
+            }
+        }
     }
 }

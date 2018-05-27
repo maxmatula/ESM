@@ -1,0 +1,52 @@
+﻿$events-border: 1px solid $primary--dark;
+.events {
+    &__item {
+        background-color: darken($primary, 2.5%);
+        padding: $offset--small;
+        color: $white;
+    }
+
+    .item {
+        margin-bottom: $offset--medium;
+
+        > .row {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        &__date {
+            border-right: $events-border;
+            display: flex;
+            flex-flow: column;
+            justify-content: center;
+        }
+
+        &__info {
+        }
+
+        &__desc {
+            padding-bottom: $offset--small;
+            border-bottom: $events-border;
+            font-weight: $font__weight--light;
+            line-height: $line__height--base;
+        }
+
+        &__employee {
+            a, strong {
+                color: $tetriary;
+            }
+        }
+
+        &__action-btns {
+            display: inline-flex;
+            width: 100%;
+            justify-content: flex-end;
+            @include padding-lr($offset--medium);
+
+            a, form, form button {
+                padding-right: $offset--medium;
+                font-size: 1rem;
+            }
+        }
+    }
+}

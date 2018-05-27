@@ -10,7 +10,7 @@
         transition: 0.3s;
         margin: $offset--medium $offset--large;
         width: calc(50% - #{$offset--large*2});
-
+        background-color: darken($primary, 2.5%);
         &:hover, &.active {
             background-color: $primary--dark;
         }

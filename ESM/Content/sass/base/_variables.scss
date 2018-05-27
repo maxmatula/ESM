@@ -1,9 +1,12 @@
 ﻿// Colors
-$primary: #41344e;
+$primary: #2d2436;
 $primary--light: #5e4370;
-$primary--dark: #392f45;
+$primary--dark: darken($primary, 5%);
 $secondary: #deb144;
 $tetriary: #ef6b94;
+$tetriary--light: #c76cc2;
+
+$primary-gradient: linear-gradient(45deg,$tetriary--light, $tetriary);
 
 $white: #fff;
 $black: #24222b;

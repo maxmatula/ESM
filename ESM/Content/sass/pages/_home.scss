@@ -17,10 +17,9 @@
     }
 
     &__features {
-        @include padding-tb(50px);
-
+        @include padding-tb(100px);
         .fas {
-            background: linear-gradient(45deg, $tetriary, $secondary);
+            background-image: $primary-gradient;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
