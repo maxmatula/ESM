@@ -10,7 +10,8 @@
             <div class="item__date col-sm-4 text-center">
                 <h2>@Html.DisplayFor(modelItem => item.EventDate.Day)</h2>
                 <h5 class="text-uppercase">
-                @Html.DisplayFor(modelItem => item.EventDate.Month)</h5>
+                    @item.EventDate.ToString("MMMM - yyyy") 
+                </h5>
             </div>
             <div class="item_info col-sm-8">
                 <h5>@Html.DisplayFor(modelItem => item.Name)</h5>
