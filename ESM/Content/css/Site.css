@@ -1,6 +1,6 @@
 ﻿@charset "UTF-8";
 body {
-  font: 400 16px "Roboto", sans-serif;
+  font: 400 16px "Ubuntu", sans-serif;
   line-height: 1.6;
   min-width: 320px;
   min-height: 400px;
@@ -79,6 +79,9 @@ h5, .h5 {
 h6, .h6 {
   margin-top: 5px;
   margin-bottom: 5px; }
+
+legend {
+  border: none; }
 
 .main-header {
   background-color: #201a27;
@@ -273,6 +276,59 @@ h6, .h6 {
       padding-right: 15px;
       font-size: 1rem; }
 
+.js .preloader {
+  display: block; }
+
+.preloader {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  z-index: 9999;
+  background-color: #2d2436;
+  text-align: center;
+  top: 0;
+  left: 0;
+  display: none; }
+  .preloader:after {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -0.25em; }
+  .preloader .content {
+    box-sizing: border-box;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: left;
+    font-size: 0; }
+  .preloader .loader-circle {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+    margin-left: -60px;
+    margin-top: -60px; }
+  .preloader .loader-line-mask {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 60px;
+    height: 120px;
+    margin-left: -60px;
+    margin-top: -60px;
+    overflow: hidden;
+    transform-origin: 60px 60px;
+    -webkit-mask-image: -webkit-linear-gradient(top, black, transparent);
+    animation: rotate 1.2s infinite linear; }
+    .preloader .loader-line-mask .loader-line {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.5); }
+
 .form .checkbox input {
   display: none; }
 
@@ -392,9 +448,13 @@ input[type="file"] {
     color: #fff;
     border-radius: 0; }
   .panel-default .panel-body {
-    background-color: #5e4370;
+    background-color: #2d2436;
     color: #fff;
     border-top: none !important; }
+  .panel-default .panel-title a {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    display: block; }
 
 .well {
   background-color: #201a27;

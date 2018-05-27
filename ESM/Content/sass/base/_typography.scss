@@ -4,3 +4,6 @@
         @include margin-tb($offset--small);
     }
 }
+legend{
+    border: none;
+}

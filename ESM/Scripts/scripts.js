@@ -1,4 +1,8 @@
 ﻿$(function () {
+
+    setTimeout(function () {
+        $(".preloader").fadeOut();
+    }, 500);
     $(".main-header__links .parent").click(function () {
         $(this).toggleClass('active').children('.child').stop().slideToggle();
     });

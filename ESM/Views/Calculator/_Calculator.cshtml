@@ -1,21 +1,21 @@
 ﻿<div class="col-xs-12 col-sm-8">
-    <h2>Kalkulator wynagrodzeń</h2>
-    <form method="get" class="form" data-ajax="true" data-ajax-target="#calculator-section" data-ajax-update="#calculator-section">
-
+    <h2 class="page-header">Kalkulator wynagrodzeń</h2>
+    <form method="get" class="form" data-ajax="true" autocomplete="off" data-ajax-target="#calculator-section" data-ajax-update="#calculator-section">
+        <fieldset class="form-group">
+            <legend class="h3">Podaj kwotę brutto</legend>
+            @Html.TextBox("brutto", null, new { @class = "form-control input-lg", placeholder = "Brutto..." })
+            <button class="search-form__submit"></button>
+        </fieldset>
         <fieldset class="form-group">
             <legend>Praca w miejscu zamieszkania?</legend>
             <div class="radio">
-                <label>@Html.RadioButton("HomeWorker", "Tak") Tak</label>
+                <label>@Html.RadioButton("HomeWorker", "Tak", new { @checked = "checked" }) Tak</label>
             </div>
             <div class="radio">
                 <label>@Html.RadioButton("HomeWorker", "Nie") Nie</label>
             </div>
         </fieldset>
-        <fieldset class="form-group">
-            <legend>Podaj kwotę brutto</legend>
-            @Html.TextBox("brutto", null, new { @class = "form-control", placeholder = "Brutto..." })
-            <button class="search-form__submit"></button>
-        </fieldset>
+
     </form>
 </div>
 
