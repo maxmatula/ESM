@@ -14,7 +14,8 @@ namespace ESM
                     .ForMember(m => m.Earnings, x => x.Ignore())
                     .ForMember(g => g.Agreements, x => x.Ignore())
                     .ForMember(f => f.RecruitmentDocuments, x => x.Ignore())
-                    .ForMember(o => o.Certyfications, x => x.Ignore());
+                    .ForMember(o => o.Certyfications, x => x.Ignore())
+                    .ForMember(i => i.CurrentEarnings, x => x.Ignore());
             });
         }
     }
