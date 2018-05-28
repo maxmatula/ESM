@@ -10,7 +10,7 @@
             <div class="item__date col-sm-4 text-center">
                 <h2>@Html.DisplayFor(modelItem => item.EventDate.Day)</h2>
                 <h5 class="text-uppercase">
-                    @item.EventDate.ToString("MMMM - yyyy") 
+                    @item.EventDate.ToString("MMMM - yyyy")
                 </h5>
             </div>
             <div class="item_info col-sm-8">
@@ -22,25 +22,15 @@
                 <small class="item__action-btns">
                     <a href="@Url.Action("EditEventEmployee", "Events",  new { eventId = item.EventId })"><i class="fas fa-pencil-alt"></i> Edytuj</a>
                     @using (Html.BeginForm("DeleteEventEmployee", "Events", FormMethod.Post))
-    {
-                @Html.AntiForgeryToken()
-                @Html.Hidden("eventId", item.EventId)
-                <button type="submit" role="button" class="btn btn-link"><i class="fas fa-trash-alt"></i>  Usuń</button>
-}
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.Hidden("eventId", item.EventId)
+                        <button type="submit" role="button" class="btn btn-link"><i class="fas fa-trash-alt"></i>  Usuń</button>
+                    }
                 </small>
             </div>
 
         </div>
-
-
-
-
-
-
-
-
-
-
 
     </div>
 

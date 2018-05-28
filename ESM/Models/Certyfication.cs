@@ -10,9 +10,11 @@ namespace ESM.Models
         [Key]
         public Guid CertyficationId { get; set; }
         [DataType(DataType.Text)]
+        [Display(Name = "Opis")]
         public string Description { get; set; }
         public string FilePath { get; set; }
         [DataType(DataType.DateTime)]
+        [Display(Name = "Data dodania")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime AddDate { get; set; }
         [ForeignKey("Employee")]

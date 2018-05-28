@@ -10,10 +10,12 @@ namespace ESM.Models
         [Key]
         public Guid DocumentId { get; set; }
         [DataType(DataType.Text)]
+        [Display(Name = "Opis")]
         public string Description { get; set; }
         public string FilePath { get; set; }
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [Display(Name = "Data dodania")]
         public DateTime AddDate { get; set; }
         [ForeignKey("Employee")]
         public Guid EmployeeId { get; set; }

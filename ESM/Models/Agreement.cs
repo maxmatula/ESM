@@ -10,15 +10,19 @@ namespace ESM.Models
         [Key]
         public Guid AgreementId { get; set; }
         [DataType(DataType.Text)]
+        [Display(Name = "Opis")]
         public string Description { get; set; }
         [DataType(DataType.Date)]
+        [Display(Name = "Data rozpoczęcia")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime StartDate { get; set; }
         [DataType(DataType.Date)]
+        [Display(Name = "Data zakończenia")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? EndDate { get; set; }
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [DataType(DataType.DateTime)]
+        [Display(Name = "Data dodania")]
         public DateTime AddDate { get; set; }
         public string FilePath { get; set; }
         [ForeignKey("Employee")]
