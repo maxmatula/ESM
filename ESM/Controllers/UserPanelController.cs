@@ -11,6 +11,7 @@ using ESM.Services;
 
 namespace ESM.Controllers
 {
+    [Authorize]
     public class UserPanelController : Controller
     {
         private readonly IDirectoriesService directoriesService;

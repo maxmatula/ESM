@@ -3,6 +3,7 @@ using ESM.Models;
 
 namespace ESM.Controllers
 {
+    [Authorize]
     public class CalculatorController : Controller
     {
         public ActionResult Index(string homeWorker, decimal brutto = 0)

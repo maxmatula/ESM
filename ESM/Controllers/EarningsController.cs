@@ -5,6 +5,7 @@ using ESM.Models;
 
 namespace ESM.Controllers
 {
+    [Authorize]
     public class EarningsController : Controller
     {
         private readonly ESMDbContext db;

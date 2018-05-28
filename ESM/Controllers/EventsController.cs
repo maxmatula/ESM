@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace ESM.Controllers
 {
+    [Authorize]
     public class EventsController : Controller
     {
         private readonly IEventsService eventsService;

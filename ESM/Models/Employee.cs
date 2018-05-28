@@ -11,17 +11,41 @@ namespace ESM.Models
     {
         [Key]
         public Guid EmployeeId { get; set; }
-        [Display(Name="Imię")]
+        [Required]
+        [Display(Name = "Imię")]
+        [DataType(DataType.Text)]
         public string Name { get; set; }
+        [Required]
         [Display(Name = "Nazwisko")]
+        [DataType(DataType.Text)]
         public string Surname { get; set; }
-        [DataType(DataType.Date),Display(Name = "Data urodzenia")]
+        [Required]
+        [DataType(DataType.Date), Display(Name = "Data urodzenia")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime BirthDate { get; set; }
+        [Required]
         [Display(Name = "Stanowisko")]
+        [DataType(DataType.Text)]
         public string Title { get; set; }
-        [Display(Name = "Obecne zarobki")]
-        public decimal CurrentEarnings { get; set; }
+        [Display(Name = "PESEL")]
+        public int? IdentityNumber { get; set; } //pesel
+        [Display(Name = "Adres")]
+        [DataType(DataType.MultilineText)]
+        public string Address { get; set; }
+        [Display(Name = "Telefon")]
+        [DataType(DataType.PhoneNumber)]
+        public string Phone { get; set; }
+        [Display(Name = "Status związku")]
+        [DataType(DataType.Text)]
+        public string MaritalStatus { get; set; }
+        [Display(Name = "Notatki")]
+        [DataType(DataType.MultilineText)]
+        public string AdditionalInfo { get; set; } //notatki
+        [Display(Name = "Nazwa Banku")]
+        [DataType(DataType.Text)]
+        public string BankName { get; set; }
+        [Display(Name = "Numer konta bankowego")]
+        public int? BankAccountNumber { get; set; }
         public byte[] PictureData { get; set; }
         [StringLength(50)]
         public string PictureMimeType { get; set; }
@@ -35,25 +59,12 @@ namespace ESM.Models
 
         public Employee()
         {
-            this.EmployeeId = Guid.NewGuid();
+            EmployeeId = Guid.NewGuid();
         }
 
-        //private string _identityNumber { get; set; } //pesel
-        //private string _address { get; set; }
-        //private string _phone { get; set; }
-
-        //private string _maritalStatus { get; set; }
-        //private DateTime _employmentDate { get; set; } // data zatrudnienia
-        //private DateTime _dismissalDate { get; set; } // data wygasnięcia umowy
+        
 
         //private DateTime _exitDate { get; set; } // data zakończenia umowy
-        //private string _additionalInfo { get; set; } // informacje dodatkowe (osoba do kontaktu w razie wypadku... itp.)
-
-        //private decimal _earnings { get; set; }
-        //private string _bank_name { get; set; }
-        //private string _accountNumber { get; set; }
-        //private string _taxOffice { get; set; }
-        //private string _healthcareFund { get; set; } // kasa chorych
 
     }
 }

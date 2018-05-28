@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace ESM.Controllers
 {
+    [Authorize]
     public class AgreementsController : Controller
     {
 
