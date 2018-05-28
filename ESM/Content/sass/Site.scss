@@ -14,6 +14,8 @@
 @import "modules/sidebar";
 @import "modules/search-form";
 @import "modules/employees-list";
+@import "modules/events";
+@import "modules/preloader";
 
 //Components
 @import "components/forms";
@@ -27,6 +29,7 @@
 @import "pages/dashboard";
 @import "pages/calculator";
 @import "pages/home";
+@import "pages/employees";
 
 //Views
 @import "views/crud-index";

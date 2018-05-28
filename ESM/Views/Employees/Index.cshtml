@@ -2,16 +2,17 @@
 
 @Html.Partial("_SearchForm")
 
-<a class="btn" href="@Url.Action("CreateEventCompany", "Events")">Dodaj wydarzenie dla firmy</a>
-<div>
-    Wydarzenia firmy
-    @Html.Action("CompanyEvents", "Events")
-</div>
-
-
-<div class="employees col-xs-12">
+<div class="employees col-sm-9">
     <ul class="crud-index__navbar">
         <li><a href="@Url.Action("Create","Employees")" class="btn btn-primary btn-lg">Dodaj pracownika</a></li>
     </ul>
     @Html.Partial("_EmployeesList")
 </div>
+
+<aside class="main-sidebar col-sm-3">
+    <a class="btn btn-primary btn-lg" href="@Url.Action("CreateEventCompany", "Events")"><i class="fas fa-plus"></i> Dodaj wydarzenie dla firmy</a>
+    <div class="col-xs-12 events">
+        <h4 class="page-header">Wydarzenia firmy</h4>
+        @Html.Action("CompanyEvents", "Events")
+    </div>
+</aside>

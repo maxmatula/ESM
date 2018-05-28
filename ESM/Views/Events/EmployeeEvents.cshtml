@@ -1,24 +1,36 @@
 ﻿@model List<ESM.Models.Event>
-
+@{
+    Layout = null;
+}
 
 @foreach (var item in Model)
 {
-    <div>
-        @Html.DisplayFor(modelItem => item.Name)
+    <div class="events__item item col-xs-12">
+        <div class="row">
+            <div class="item__date col-sm-4 text-center">
+                <h2>@Html.DisplayFor(modelItem => item.EventDate.Day)</h2>
+                <h5 class="text-uppercase">
+                    @item.EventDate.ToString("MMMM - yyyy")
+                </h5>
+            </div>
+            <div class="item_info col-sm-8">
+                <h5>@Html.DisplayFor(modelItem => item.Name)</h5>
+                <h6 class="item__desc">@Html.DisplayFor(modelItem => item.Description)</h6>
+                <span class="text-uppercase item__employee"><h6>Pracownik: <strong>@Html.DisplayFor(modelItem => item.Employee.Name) @Html.DisplayFor(modelItem => item.Employee.Surname)</strong></h6></span>
+            </div>
+            <div class="col-xs-12">
+                <small class="item__action-btns">
+                    <a href="@Url.Action("EditEventEmployee", "Events",  new { eventId = item.EventId })"><i class="fas fa-pencil-alt"></i> Edytuj</a>
+                    @using (Html.BeginForm("DeleteEventEmployee", "Events", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.Hidden("eventId", item.EventId)
+                        <button type="submit" role="button" class="btn btn-link"><i class="fas fa-trash-alt"></i>  Usuń</button>
+                    }
+                </small>
+            </div>
 
-        @Html.DisplayFor(modelItem => item.Description)
-
-        @Html.DisplayFor(modelItem => item.EventDate)
-
-        @Html.DisplayFor(modelItem => item.Employee.Name)
-
-        @Html.ActionLink("Edit", "EditEventEmployee", new { eventId = item.EventId }) |
-        @using (Html.BeginForm("DeleteEventEmployee", "Events", FormMethod.Post))
-        {
-            @Html.AntiForgeryToken()
-            @Html.Hidden("eventId", item.EventId)
-            <input type="submit" value="Delete" />
-        }
+        </div>
 
     </div>
 

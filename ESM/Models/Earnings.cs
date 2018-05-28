@@ -9,6 +9,7 @@ namespace ESM.Models
     {
         [Key]
         public Guid EarningId { get; set; }
+        [Display(Name = "Kwota")]
         public decimal Ammount { get; set; }
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]

@@ -7,8 +7,14 @@
         border-radius: 0;
     }
     .panel-body{
-        background-color: $primary--light;
+        background-color: $primary;
         color: $white;
         border-top: none !important;
+    }
+    .panel-title{
+        a{
+            @include padding-tb($offset--medium);
+            display: block;
+        }
     }
 }

@@ -284,6 +284,10 @@
     <Compile Include="ViewModels\Account\RegisterViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\ESM.mdf" />
+    <Content Include="App_Data\ESM_log.ldf">
+      <DependentUpon>ESM.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\croppie.css" />
     <Content Include="Content\font-awesome\fa-solid.css">
@@ -397,6 +401,8 @@
     <Content Include="Content\sass\components\_panel.scss" />
     <Content Include="Content\sass\components\_well.scss" />
     <Content Include="Content\sass\pages\_home.scss" />
+    <Content Include="Content\sass\modules\_events.scss" />
+    <Content Include="Content\sass\modules\_preloader.scss" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -494,7 +500,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Abstract\" />
-    <Folder Include="App_Data\" />
     <Folder Include="Views\Files\" />
   </ItemGroup>
   <ItemGroup>

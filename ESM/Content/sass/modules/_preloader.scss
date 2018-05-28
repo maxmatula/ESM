@@ -1,0 +1,67 @@
+﻿.js{
+    .preloader{
+       display: block;
+    }
+}
+
+.preloader {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    z-index: 9999;
+    background-color: $primary;
+    text-align: center;
+    top: 0;
+    left: 0;
+    display: none;
+
+    &:after {
+        content: '';
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+        margin-right: -0.25em;
+    }
+
+    .content {
+        box-sizing: border-box;
+        display: inline-block;
+        vertical-align: middle;
+        text-align: left;
+        font-size: 0;
+    }
+
+    .loader-circle {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        box-shadow: inset 0 0 0 1px rgba(255,255,255,.1);
+        margin-left: -60px;
+        margin-top: -60px;
+        // .animation(fade 1.2s infinite ease-in-out);
+    }
+
+    .loader-line-mask {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 60px;
+        height: 120px;
+        margin-left: -60px;
+        margin-top: -60px;
+        overflow: hidden;
+        transform-origin: 60px 60px;
+        -webkit-mask-image: -webkit-linear-gradient(top, rgba(0,0,0,1), rgba(0,0,0,0));
+        animation: rotate 1.2s infinite linear;
+
+        .loader-line {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,.5);
+        }
+    }
+}
