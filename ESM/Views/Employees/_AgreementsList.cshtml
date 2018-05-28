@@ -19,8 +19,8 @@
 
                 <tr>
                     <td>@agreement.Description</td>
-                    <td>@agreement.StartDate</td>
-                    <td>@agreement.EndDate</td>
+                    <td>@agreement.StartDate.ToShortDateString()</td>
+                    <td>@agreement.EndDate.Value.ToShortDateString()</td>
                     <td><a href="@Url.Action("GetFile", "Agreements", new { agreementId = agreement.AgreementId })">Zobacz umowę</a></td>
                 </tr>
             }
