@@ -12,20 +12,20 @@ namespace ESM.Controllers
     [Authorize]
     public class RecruitmentDocumentsController : Controller
     {
-        private readonly DirectoriesService directoriesService;
-        private readonly RecruitmentDocumentsService recruitmentDocumentsService;
-        public RecruitmentDocumentsController()
+        private readonly IDirectoriesService _directoriesService;
+        private readonly IRecruitmentDocumentsService _recruitmentDocumentsService;
+        public RecruitmentDocumentsController(IDirectoriesService directoriesService, IRecruitmentDocumentsService recruitmentDocumentsService)
         {
-            this.directoriesService = new DirectoriesService();
-            this.recruitmentDocumentsService = new RecruitmentDocumentsService();
+            _directoriesService = directoriesService;
+            _recruitmentDocumentsService = recruitmentDocumentsService;
         }
 
         public ActionResult GetFile(Guid recruitmentId)
         {
-            var owner = recruitmentDocumentsService.UserIsFileOwner(recruitmentId, User.Identity.GetUserId());
+            var owner = _recruitmentDocumentsService.UserIsFileOwner(recruitmentId, User.Identity.GetUserId());
             if (owner == true)
             {
-                var filepath = recruitmentDocumentsService.GetFile(recruitmentId);
+                var filepath = _recruitmentDocumentsService.GetFile(recruitmentId);
                 if (System.IO.File.Exists(filepath))
                 {
                     return File(filepath, "application/pdf");
@@ -50,9 +50,9 @@ namespace ESM.Controllers
             if (ModelState.IsValid)
             {
                 var employeeId = recruitment.EmployeeId;
-                var userPath = directoriesService.GetUserDirectory(User.Identity.GetUserId());
-                var filePath = recruitmentDocumentsService.UploadRecruitment(userPath, file);
-                var result = recruitmentDocumentsService.SaveRecruitmentToDb(filePath, recruitment);
+                var userPath = _directoriesService.GetUserDirectory(User.Identity.GetUserId());
+                var filePath = _recruitmentDocumentsService.UploadRecruitment(userPath, file);
+                var result = _recruitmentDocumentsService.SaveRecruitmentToDb(filePath, recruitment);
                 return RedirectToAction("Details", "Employees", new { id = employeeId });
             }
             return View(recruitment);

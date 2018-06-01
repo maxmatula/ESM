@@ -11,21 +11,23 @@ namespace ESM.Controllers
     public class AgreementsController : Controller
     {
 
-        private readonly AgreementsService agreementService;
-        private readonly DirectoriesService directoriesService;
+        private readonly IAgreementsService _agreementService;
+        private readonly IEventsService _eventsService;
+        private readonly IDirectoriesService _directoriesService;
 
-        public AgreementsController()
+        public AgreementsController(IAgreementsService agreementsService, IDirectoriesService directoriesService, IEventsService eventsService)
         {
-            this.agreementService = new AgreementsService();
-            this.directoriesService = new DirectoriesService();
+            _agreementService = agreementsService;
+            _directoriesService = directoriesService;
+            _eventsService = eventsService;
         }
 
         public ActionResult GetFile(Guid agreementId)
         {
-            var owner = agreementService.UserIsFileOwner(agreementId, User.Identity.GetUserId());
+            var owner = _agreementService.UserIsFileOwner(agreementId, User.Identity.GetUserId());
             if (owner == true)
             {
-                var filepath = agreementService.GetFile(agreementId);
+                var filepath = _agreementService.GetFile(agreementId);
                 if (System.IO.File.Exists(filepath))
                 {
                     return File(filepath, "application/pdf");
@@ -49,13 +51,23 @@ namespace ESM.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (agreement.EndDate != null)
+                {
+                    Event esmevent = new Event();
+                    string companyId = Session["currentCompanyId"].ToString();
+                    esmevent.EmployeeId = agreement.EmployeeId;
+                    esmevent.CompanyId = Guid.Parse(companyId);
+                    esmevent.Name = agreement.Description;
+                    esmevent.Description = "Koniec umowy o pracę";
+                    esmevent.EventDate = agreement.EndDate.Value;
+                    var resultEvent = _eventsService.CreateEmployeeEvent(esmevent);
+                }
                 var employeeId = agreement.EmployeeId;
-                var userPath = directoriesService.GetUserDirectory(User.Identity.GetUserId());
-                var filePath = agreementService.UploadAgreement(userPath, file);
-                var result = agreementService.SaveAgreementToDb(filePath, agreement);
+                var userPath = _directoriesService.GetUserDirectory(User.Identity.GetUserId());
+                var filePath = _agreementService.UploadAgreement(userPath, file);
+                var result = _agreementService.SaveAgreementToDb(filePath, agreement);
                 return RedirectToAction("Details", "Employees", new { id = employeeId });
             }
-
             return View(agreement);
         }
     }

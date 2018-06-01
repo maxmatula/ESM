@@ -19,7 +19,7 @@ namespace ESM.Services
             try
             {
                 employee.CompanyId = Guid.Parse(currentCompanyId);
-                if (picture != null)
+                if (!String.IsNullOrEmpty(picture))
                 {
                     var extension = picture.Substring(picture.IndexOf(':') + 1);
                     var extLength = extension.IndexOf(';');
@@ -64,7 +64,7 @@ namespace ESM.Services
             try
             {
                 employee.CompanyId = Guid.Parse(currentCompanyId);
-                if (picture != null)
+                if (!String.IsNullOrEmpty(picture))
                 {
                     var extension = picture.Substring(picture.IndexOf(':') + 1);
                     var extLength = extension.IndexOf(';');
@@ -96,7 +96,14 @@ namespace ESM.Services
             model.Certyfications = employee.Certyfications.OrderByDescending(x => x.AddDate).ToList();
             model.RecruitmentDocuments = employee.RecruitmentDocuments.OrderByDescending(x => x.AddDate).ToList();
             var earning = employee.Earnings.OrderByDescending(x => x.AddDate).FirstOrDefault();
-            model.CurrentEarnings = earning.Ammount.ToString("c");
+            if(earning != null)
+            {
+                model.CurrentEarnings = earning.Ammount.ToString("c");
+            }
+            else
+            {
+                model.CurrentEarnings = "0";
+            }
             return model;
         }
     }
