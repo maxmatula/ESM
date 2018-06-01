@@ -13,22 +13,22 @@ namespace ESM.Controllers
     [Authorize]
     public class EmployeesController : Controller
     {
-        private readonly ESMDbContext db;
-        private readonly IEmployeesService employeesService;
-        private readonly IDirectoriesService directoriesService;
+        private readonly ESMDbContext _db;
+        private readonly IEmployeesService _employeesService;
+        private readonly IDirectoriesService _directoriesService;
 
-        public EmployeesController()
+        public EmployeesController(IEmployeesService employeesService, IDirectoriesService directoriesService)
         {
-            this.db = new ESMDbContext();
-            this.employeesService = new EmployeesService();
-            this.directoriesService = new DirectoriesService();
+            _db = new ESMDbContext();
+            _employeesService = employeesService;
+            _directoriesService = directoriesService;
         }
 
         // GET: Employees
         public ActionResult Index(string searchString = null)
         {
             var currentCompanyId = Session["currentCompanyId"];
-            var employees = from emp in db.Employees
+            var employees = from emp in _db.Employees
                             where emp.CompanyId.ToString() == currentCompanyId.ToString()
                             select emp;
 
@@ -53,7 +53,7 @@ namespace ESM.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var employee = employeesService.GetById(id.Value);
+            var employee = _employeesService.GetById(id.Value);
             if (employee == null)
             {
                 return HttpNotFound();
@@ -77,7 +77,7 @@ namespace ESM.Controllers
             string currentCompanyId = Session["currentCompanyId"].ToString();
             if (ModelState.IsValid)
             {
-                var result = employeesService.Create(employee, currentCompanyId, picture);
+                var result = _employeesService.Create(employee, currentCompanyId, picture);
                 if (result == true)
                 {
                     return RedirectToAction("Index");
@@ -93,7 +93,7 @@ namespace ESM.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employee employee = db.Employees.Find(id);
+            Employee employee = _db.Employees.Find(id);
             if (employee == null)
             {
                 return HttpNotFound();
@@ -112,7 +112,7 @@ namespace ESM.Controllers
             string currentCompanyId = Session["currentCompanyId"].ToString();
             if (ModelState.IsValid)
             {
-                var result = employeesService.Edit(employee, currentCompanyId, picture);
+                var result = _employeesService.Edit(employee, currentCompanyId, picture);
                 return RedirectToAction("Index");
             }
             return View(employee);
@@ -125,7 +125,7 @@ namespace ESM.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employee employee = db.Employees.Find(id);
+            Employee employee = _db.Employees.Find(id);
             if (employee == null)
             {
                 return HttpNotFound();
@@ -138,13 +138,13 @@ namespace ESM.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            var result = employeesService.Delete(id);
+            var result = _employeesService.Delete(id);
             return RedirectToAction("Index");
         }
 
         public ActionResult GetPicture(Guid employeeId)
         {
-            Employee employee = db.Employees.FirstOrDefault(e => e.EmployeeId == employeeId);
+            Employee employee = _db.Employees.FirstOrDefault(e => e.EmployeeId == employeeId);
             if (employee != null && employee.PictureData != null)
             {
                 return File(employee.PictureData, employee.PictureMimeType);
@@ -159,7 +159,7 @@ namespace ESM.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
         }

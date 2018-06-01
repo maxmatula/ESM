@@ -27,7 +27,11 @@ function readFile(input) {
 }
 $('#upload').on('change', function () { readFile(this); });
 $('#form').on('submit', function (ev) {
-    $element.croppie('result', 'canvas').then(function (resp) {
-        $('#imagebase64').val(resp);
-    });
+    if (document.getElementById("upload").files.length === 0) {
+        $('#imagebase64').val(' ');
+    } else {
+        $element.croppie('result', 'canvas').then(function (resp) {
+            $('#imagebase64').val(resp);
+        });
+    }
 });

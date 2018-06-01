@@ -8,18 +8,18 @@ namespace ESM.Controllers
     [Authorize]
     public class EarningsController : Controller
     {
-        private readonly ESMDbContext db;
+        private readonly ESMDbContext _db;
 
         public EarningsController()
         {
-            this.db = new ESMDbContext();
+            _db = new ESMDbContext();
         }
 
         // GET: Earnings
         public ActionResult AddEarning(Guid? employeeId)
         {
             Earning earning = new Earning();
-            Employee employee = db.Employees.Find(employeeId);
+            Employee employee = _db.Employees.Find(employeeId);
             earning.EmployeeId = employee.EmployeeId;
             return View(earning);
         }
@@ -31,8 +31,8 @@ namespace ESM.Controllers
             var employeeId = earning.EmployeeId;
             if (ModelState.IsValid)
             {
-                db.Earnings.Add(earning);
-                db.SaveChanges();
+                _db.Earnings.Add(earning);
+                _db.SaveChanges();
                 return RedirectToAction("Details", "Employees", new { id = employeeId });
             }
             return View(earning);

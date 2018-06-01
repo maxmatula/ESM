@@ -11,11 +11,11 @@ namespace ESM.Controllers
     [Authorize]
     public class EventsController : Controller
     {
-        private readonly IEventsService eventsService;
+        private readonly IEventsService _eventsService;
 
-        public EventsController()
+        public EventsController(IEventsService eventsService)
         {
-            this.eventsService = new EventsService();
+            _eventsService = eventsService;
         }
 
 
@@ -24,7 +24,7 @@ namespace ESM.Controllers
             var companyId = Session["currentCompanyId"].ToString();
             if (companyId != null)
             {
-                var model = eventsService.EventListCompany(Guid.Parse(companyId));
+                var model = _eventsService.EventListCompany(Guid.Parse(companyId));
                 return View(model);
             }
             return HttpNotFound();
@@ -34,7 +34,7 @@ namespace ESM.Controllers
         {
             if (employeeId != null)
             {
-                var model = eventsService.EventListEmployee(employeeId.Value);
+                var model = _eventsService.EventListEmployee(employeeId.Value);
                 return View(model);
             }
             return HttpNotFound();
@@ -59,7 +59,7 @@ namespace ESM.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = eventsService.CreateCompanyEvent(esmevent);
+                var result = _eventsService.CreateCompanyEvent(esmevent);
                 if (result == true)
                 {
                     return RedirectToAction("Index", "Employees");
@@ -88,7 +88,7 @@ namespace ESM.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = eventsService.CreateEmployeeEvent(esmevent);
+                var result = _eventsService.CreateEmployeeEvent(esmevent);
                 if (result == true)
                 {
                     return RedirectToAction("Details", "Employees", new { id = esmevent.EmployeeId });
@@ -101,7 +101,7 @@ namespace ESM.Controllers
         {
             if (eventId != null)
             {
-                var esmevent = eventsService.FindById(eventId.Value);
+                var esmevent = _eventsService.FindById(eventId.Value);
                 return View(esmevent);
             }
             return HttpNotFound();
@@ -113,7 +113,7 @@ namespace ESM.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = eventsService.EditEvent(esmevent);
+                var result = _eventsService.EditEvent(esmevent);
                 if (result == true)
                 {
                     return RedirectToAction("Details", "Employees", new { id = esmevent.EmployeeId });
@@ -126,7 +126,7 @@ namespace ESM.Controllers
         {
             if (eventId != null)
             {
-                var esmevent = eventsService.FindById(eventId.Value);
+                var esmevent = _eventsService.FindById(eventId.Value);
                 return View(esmevent);
             }
             return HttpNotFound();
@@ -138,7 +138,7 @@ namespace ESM.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = eventsService.EditEvent(esmevent);
+                var result = _eventsService.EditEvent(esmevent);
                 if (result == true)
                 {
                     return RedirectToAction("Index", "Employees");
@@ -153,8 +153,8 @@ namespace ESM.Controllers
         {
             if (eventId != null)
             {
-                var esmevent = eventsService.FindById(eventId.Value);
-                var result = eventsService.DeleteEvent(eventId.Value);
+                var esmevent = _eventsService.FindById(eventId.Value);
+                var result = _eventsService.DeleteEvent(eventId.Value);
                 return RedirectToAction("Index", "Employees");
             }
             return HttpNotFound();
@@ -166,9 +166,9 @@ namespace ESM.Controllers
         {
             if (eventId != null)
             {
-                var esmevent = eventsService.FindById(eventId.Value);
+                var esmevent = _eventsService.FindById(eventId.Value);
                 var empId = esmevent.EmployeeId;
-                var result = eventsService.DeleteEvent(eventId.Value);
+                var result = _eventsService.DeleteEvent(eventId.Value);
                 return RedirectToAction("Details", "Employees", new { id = empId });
             }
             return HttpNotFound();

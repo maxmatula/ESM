@@ -13,13 +13,13 @@ namespace ESM.Controllers
     [Authorize]
     public class CompaniesController : Controller
     {
-        private readonly ESMDbContext db;
-        private readonly ICompaniesService companiesService;
+        private readonly ESMDbContext _db;
+        private readonly ICompaniesService _companiesService;
 
-        public CompaniesController()
+        public CompaniesController(ICompaniesService companiesService)
         {
-            this.db = ESMDbContext.Create();
-            this.companiesService = new CompaniesService();
+            _db = ESMDbContext.Create();
+            _companiesService = companiesService;
         }
 
         // GET: Companies/Details/5
@@ -29,7 +29,7 @@ namespace ESM.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Company company = db.Companies.Find(id);
+            Company company = _db.Companies.Find(id);
 
             if (company == null)
             {
@@ -51,11 +51,11 @@ namespace ESM.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Name,LogoData,LogoMimeType,Description")] Company company, UserCompanyRef userCompanyRef, string picture)
+        public ActionResult Create(Company company, UserCompanyRef userCompanyRef, string picture)
         {
             if (ModelState.IsValid)
             {
-                var result = companiesService.Create(company, userCompanyRef, User.Identity.GetUserId().ToString(), picture);
+                var result = _companiesService.Create(company, userCompanyRef, User.Identity.GetUserId().ToString(), picture);
                 return RedirectToAction("Index", "UserPanel");
             }
             return View(company);
@@ -68,7 +68,7 @@ namespace ESM.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Company company = db.Companies.Find(id);
+            Company company = _db.Companies.Find(id);
             if (company == null)
             {
                 return HttpNotFound();
@@ -81,11 +81,11 @@ namespace ESM.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CompanyId,Name,LogoData,LogoMimeType,Description")] Company company, string picture)
+        public ActionResult Edit(Company company, string picture)
         {
             if (ModelState.IsValid)
             {
-                var result = companiesService.Edit(company, picture);
+                var result = _companiesService.Edit(company, picture);
                 return RedirectToAction("Index", "UserPanel");
             }
             return View(company);
@@ -98,7 +98,7 @@ namespace ESM.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Company company = db.Companies.Find(id);
+            Company company = _db.Companies.Find(id);
             if (company == null)
             {
                 return HttpNotFound();
@@ -111,13 +111,13 @@ namespace ESM.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            var result = companiesService.Delete(id);
+            var result = _companiesService.Delete(id);
             return RedirectToAction("Index", "UserPanel");
         }
 
         public FileContentResult GetLogo(Guid companyId)
         {
-            Company company = db.Companies.FirstOrDefault(e => e.CompanyId == companyId);
+            Company company = _db.Companies.FirstOrDefault(e => e.CompanyId == companyId);
             if (company != null)
             {
                 return File(company.LogoData, company.LogoMimeType);
@@ -131,7 +131,7 @@ namespace ESM.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
         }

@@ -12,21 +12,21 @@ namespace ESM.Controllers
     [Authorize]
     public class CertyficationsController : Controller
     {
-        private readonly DirectoriesService directoriesService;
-        private readonly CertyficationsService certyficationsService;
+        private readonly IDirectoriesService _directoriesService;
+        private readonly ICertyficationsService _certyficationsService;
 
-        public CertyficationsController()
+        public CertyficationsController(IDirectoriesService directoriesService, ICertyficationsService certyficationsService)
         {
-            this.directoriesService = new DirectoriesService();
-            this.certyficationsService = new CertyficationsService();
+            _directoriesService = directoriesService;
+            _certyficationsService = certyficationsService;
         }
 
         public ActionResult GetFile(Guid certyficationId)
         {
-            var owner = certyficationsService.UserIsFileOwner(certyficationId, User.Identity.GetUserId());
+            var owner = _certyficationsService.UserIsFileOwner(certyficationId, User.Identity.GetUserId());
             if (owner == true)
             {
-                var filepath = certyficationsService.GetFile(certyficationId);
+                var filepath = _certyficationsService.GetFile(certyficationId);
                 if (System.IO.File.Exists(filepath))
                 {
                     return File(filepath, "application/pdf");
@@ -51,9 +51,9 @@ namespace ESM.Controllers
             if (ModelState.IsValid)
             {
                 var employeeId = certyfication.EmployeeId;
-                var userPath = directoriesService.GetUserDirectory(User.Identity.GetUserId());
-                var filePath = certyficationsService.UploadCertyfication(userPath, file);
-                var result = certyficationsService.SaveCertyficationToDb(filePath, certyfication);
+                var userPath = _directoriesService.GetUserDirectory(User.Identity.GetUserId());
+                var filePath = _certyficationsService.UploadCertyfication(userPath, file);
+                var result = _certyficationsService.SaveCertyficationToDb(filePath, certyfication);
                 return RedirectToAction("Details", "Employees", new { id = employeeId });
             }
             return View(certyfication);

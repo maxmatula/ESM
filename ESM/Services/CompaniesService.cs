@@ -18,7 +18,7 @@ namespace ESM.Services
                 userCompanyRef.UserId = userId;
                 userCompanyRef.CompanyId = company.CompanyId;
 
-                if (logo != null)
+                if (!String.IsNullOrEmpty(logo))
                 {
                     var extension = logo.Substring(logo.IndexOf(':') + 1);
                     var extLength = extension.IndexOf(';');
@@ -66,7 +66,7 @@ namespace ESM.Services
         {
             try
             {
-                if (logo != null)
+                if (!String.IsNullOrEmpty(logo))
                 {
                     var extension = logo.Substring(logo.IndexOf(':') + 1);
                     var extLength = extension.IndexOf(';');
