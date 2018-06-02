@@ -9,7 +9,7 @@ namespace ESM.Services
     { 
         EmployeeViewModel GetById(Guid id);
         bool Create(Employee employee, string currentCompanyId, string picture);
-        bool Edit(Employee employee, string currentCompanyId, string picture);
+        bool Edit(Employee employee, string picture);
         bool Delete(Guid id);
     }
 }

@@ -19,7 +19,7 @@ namespace ESM.Services
             try
             {
                 employee.CompanyId = Guid.Parse(currentCompanyId);
-                if (!String.IsNullOrEmpty(picture))
+                if (picture.Length > 10)
                 {
                     var extension = picture.Substring(picture.IndexOf(':') + 1);
                     var extLength = extension.IndexOf(';');
@@ -32,7 +32,7 @@ namespace ESM.Services
                     employee.PictureMimeType = extension;
                     employee.PictureData = bytes;
                 }
-
+                
                 db.Employees.Add(employee);
                 db.SaveChanges();
                 return true;
@@ -58,13 +58,11 @@ namespace ESM.Services
             }
         }
 
-        public bool Edit(Employee employee, string currentCompanyId, string picture)
+        public bool Edit(Employee employee, string picture)
         {
-
             try
             {
-                employee.CompanyId = Guid.Parse(currentCompanyId);
-                if (!String.IsNullOrEmpty(picture))
+                if (picture.Length > 10)
                 {
                     var extension = picture.Substring(picture.IndexOf(':') + 1);
                     var extLength = extension.IndexOf(';');
@@ -77,6 +75,7 @@ namespace ESM.Services
                     employee.PictureMimeType = extension;
                     employee.PictureData = bytes;
                 }
+
                 db.Entry(employee).State = EntityState.Modified;
                 db.SaveChanges();
                 return true;

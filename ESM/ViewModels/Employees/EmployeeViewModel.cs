@@ -19,7 +19,7 @@ namespace ESM.ViewModels.Employees
         [Display(Name = "Stanowisko")]
         public string Title { get; set; }
         [Display(Name = "PESEL")]
-        public int? IdentityNumber { get; set; } //pesel
+        public string IdentityNumber { get; set; } //pesel
         [Display(Name = "Adress")]
         public string Address { get; set; }
         [Display(Name = "Telefon")]
@@ -31,7 +31,7 @@ namespace ESM.ViewModels.Employees
         [Display(Name = "Nazwa banku")]
         public string BankName { get; set; }
         [Display(Name = "Numer konta")]
-        public int? BankAccountNumber { get; set; }
+        public string BankAccountNumber { get; set; }
         [Display(Name = "Obecne zarobki")]
         public string CurrentEarnings { get; set; }
         public byte[] PictureData { get; set; }

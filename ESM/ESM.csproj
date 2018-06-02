@@ -251,6 +251,18 @@
     <Compile Include="Migrations\201805261259564_employeeFieldsExtension3.Designer.cs">
       <DependentUpon>201805261259564_employeeFieldsExtension3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806021638423_employee3.cs" />
+    <Compile Include="Migrations\201806021638423_employee3.Designer.cs">
+      <DependentUpon>201806021638423_employee3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806021644123_employee4.cs" />
+    <Compile Include="Migrations\201806021644123_employee4.Designer.cs">
+      <DependentUpon>201806021644123_employee4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806021658320_employee5.cs" />
+    <Compile Include="Migrations\201806021658320_employee5.Designer.cs">
+      <DependentUpon>201806021658320_employee5.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Agreement.cs" />
     <Compile Include="Models\Calculator.cs" />
@@ -540,6 +552,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805261259564_employeeFieldsExtension3.resx">
       <DependentUpon>201805261259564_employeeFieldsExtension3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806021638423_employee3.resx">
+      <DependentUpon>201806021638423_employee3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806021644123_employee4.resx">
+      <DependentUpon>201806021644123_employee4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806021658320_employee5.resx">
+      <DependentUpon>201806021658320_employee5.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

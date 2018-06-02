@@ -14,10 +14,12 @@ namespace ESM.Models
         [Required]
         [Display(Name = "Imię")]
         [DataType(DataType.Text)]
+        [StringLength(50)]
         public string Name { get; set; }
         [Required]
         [Display(Name = "Nazwisko")]
         [DataType(DataType.Text)]
+        [StringLength(60)]
         public string Surname { get; set; }
         [Required]
         [DataType(DataType.Date), Display(Name = "Data urodzenia")]
@@ -26,26 +28,34 @@ namespace ESM.Models
         [Required]
         [Display(Name = "Stanowisko")]
         [DataType(DataType.Text)]
+        [StringLength(40)]
         public string Title { get; set; }
         [Display(Name = "PESEL")]
-        public int? IdentityNumber { get; set; } //pesel
+        [StringLength(20)]
+        public string IdentityNumber { get; set; } //pesel
         [Display(Name = "Adres")]
         [DataType(DataType.MultilineText)]
+        [StringLength(300)]
         public string Address { get; set; }
         [Display(Name = "Telefon")]
-        [DataType(DataType.PhoneNumber)]
+        [StringLength(12, ErrorMessage = "12 znaków jest maksymalną liczbą dla tego pola")]
         public string Phone { get; set; }
         [Display(Name = "Status związku")]
         [DataType(DataType.Text)]
+        [StringLength(20)]
         public string MaritalStatus { get; set; }
         [Display(Name = "Notatki")]
         [DataType(DataType.MultilineText)]
+        [StringLength(500, ErrorMessage = "Maksymalnie 500 znaków!")]
         public string AdditionalInfo { get; set; } //notatki
         [Display(Name = "Nazwa Banku")]
         [DataType(DataType.Text)]
+        [StringLength(50)]
         public string BankName { get; set; }
         [Display(Name = "Numer konta bankowego")]
-        public int? BankAccountNumber { get; set; }
+        [DataType(DataType.CreditCard)]
+        [StringLength(40)]
+        public string BankAccountNumber { get; set; }
         public byte[] PictureData { get; set; }
         [StringLength(50)]
         public string PictureMimeType { get; set; }
