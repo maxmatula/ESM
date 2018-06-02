@@ -24,7 +24,7 @@ namespace ESM.Models
 
         public Company()
         {
-            this.CompanyId = Guid.NewGuid();
+            CompanyId = Guid.NewGuid();
         }
     }
 }

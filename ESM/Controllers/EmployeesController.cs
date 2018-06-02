@@ -108,12 +108,13 @@ namespace ESM.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Employee employee, string picture)
         {
-
-            string currentCompanyId = Session["currentCompanyId"].ToString();
             if (ModelState.IsValid)
             {
-                var result = _employeesService.Edit(employee, currentCompanyId, picture);
-                return RedirectToAction("Index");
+                var result = _employeesService.Edit(employee, picture);
+                if (result == true)
+                {
+                    return RedirectToAction("Index");
+                }
             }
             return View(employee);
         }
