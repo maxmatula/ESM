@@ -3,9 +3,8 @@
 @{
     ViewBag.Title = "Szczegóły";
 }
-<div class="row">
+<div class="row employee-details">
     <div class="col-xs-12 col-sm-8 employees__container">
-        <h2>@Model.Name @Model.Surname</h2>
         <div class="row">
             <div class="col-xs-12 col-sm-6 text-center">
                 @if (Model.PictureData == null || Model.PictureData.Length == 0)
@@ -19,27 +18,26 @@
                 }
             </div>
             <div class="col-sm-6 col-xs-12">
-                <p>
-                    <strong>@Html.DisplayNameFor(model => model.Name): </strong>
-                    @Html.DisplayFor(model => model.Name)
-                </p>
-                <p>
-                    <strong>
-                        @Html.DisplayNameFor(model => model.Surname):
-                    </strong>
-                    @Html.DisplayFor(model => model.Surname)
-                </p>
-                <p>
-                    <strong>
-                        @Html.DisplayNameFor(model => model.BirthDate):
-                    </strong>
-                    @Html.DisplayFor(model => model.BirthDate)
-                </p>
-                <p>
-                    <strong>
-                        @Html.DisplayNameFor(model => model.Title):
-                    </strong>
+                <h2 class="text-center employee-details__name">@Model.Name<br /> <span class="employee-details__surname">@Model.Surname</span></h2>
+                <h4 class="text-center text-uppercase employee-details__title">
                     @Html.DisplayFor(model => model.Title)
+                </h4>
+                <div class="employee-details__info">
+                    <p>
+                        @Html.DisplayNameFor(model => model.BirthDate):
+                        <strong>
+                            @Html.DisplayFor(model => model.BirthDate)
+                        </strong>
+                    </p>
+                </div>
+                
+            </div>
+            <div class="col-xs-12 employee-details__earnings">
+                <p>
+                    Zarobki:
+                    <strong>
+                        @Html.DisplayFor(model => model.CurrentEarnings)
+                    </strong>
                 </p>
                 <p>
                     <strong>
@@ -57,6 +55,25 @@
             <div class="col-sm-12">
                 <div class="row">
                     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingOne">
+                                <h4 class="panel-title">
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseDetails" aria-expanded="true" aria-controls="collapseEarnings">
+                                        Dane szczegółowe
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseDetails" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                                <div class="panel-body">
+                                    <p>
+                                        @Html.DisplayNameFor(model => model.BirthDate):
+                                        <strong>
+                                            @Html.DisplayFor(model => model.BirthDate)
+                                        </strong>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                         <div class="panel panel-default">
                             <div class="panel-heading" role="tab" id="headingOne">
                                 <h4 class="panel-title">
