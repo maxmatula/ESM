@@ -43,6 +43,7 @@ namespace ESM.Models
         [Display(Name = "Status związku")]
         [DataType(DataType.Text)]
         [StringLength(20)]
+        [DisplayFormat(DataFormatString = "{0:###-###-###}", ApplyFormatInEditMode = true)]
         public string MaritalStatus { get; set; }
         [Display(Name = "Notatki")]
         [DataType(DataType.MultilineText)]

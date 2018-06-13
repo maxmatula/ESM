@@ -24,26 +24,20 @@
                 </h4>
                 <div class="employee-details__info">
                     <p>
-                        @Html.DisplayNameFor(model => model.BirthDate):
+                        @Html.DisplayNameFor(model => model.Phone):
                         <strong>
-                            @Html.DisplayFor(model => model.BirthDate)
+                            @Model.Phone
                         </strong>
                     </p>
                 </div>
-                
+
             </div>
             <div class="col-xs-12 employee-details__earnings">
                 <p>
-                    Zarobki:
+                    Obecne wynagrodzenie:
                     <strong>
-                        @Html.DisplayFor(model => model.CurrentEarnings)
+                        @Model.CurrentEarnings
                     </strong>
-                </p>
-                <p>
-                    <strong>
-                        Obecne wynagrodzenie:
-                    </strong>
-                    @Model.CurrentEarnings
                 </p>
             </div>
             <div class="col-xs-12">
@@ -69,6 +63,36 @@
                                         @Html.DisplayNameFor(model => model.BirthDate):
                                         <strong>
                                             @Html.DisplayFor(model => model.BirthDate)
+                                        </strong>
+                                    </p>
+                                    <p>
+                                        @Html.DisplayNameFor(model => model.MaritalStatus):
+                                        <strong>
+                                            @Html.DisplayFor(model => model.MaritalStatus)
+                                        </strong>
+                                    </p>
+                                    <p>
+                                        @Html.DisplayNameFor(model => model.Address):
+                                        <strong>
+                                            @Html.DisplayFor(model => model.Address)
+                                        </strong>
+                                    </p>
+                                    <p>
+                                        @Html.DisplayNameFor(model => model.IdentityNumber):
+                                        <strong>
+                                            @Html.DisplayFor(model => model.IdentityNumber)
+                                        </strong>
+                                    </p>
+                                    <p>
+                                        @Html.DisplayNameFor(model => model.BankName):
+                                        <strong>
+                                            @Html.DisplayFor(model => model.BankName)
+                                        </strong>
+                                    </p>
+                                    <p>
+                                        @Html.DisplayNameFor(model => model.BankAccountNumber):
+                                        <strong>
+                                            @Html.DisplayFor(model => model.BankAccountNumber)
                                         </strong>
                                     </p>
                                 </div>

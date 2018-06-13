@@ -263,6 +263,10 @@
     <Compile Include="Migrations\201806021658320_employee5.Designer.cs">
       <DependentUpon>201806021658320_employee5.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806131845410_PhoneEditEmplo.cs" />
+    <Compile Include="Migrations\201806131845410_PhoneEditEmplo.Designer.cs">
+      <DependentUpon>201806131845410_PhoneEditEmplo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Agreement.cs" />
     <Compile Include="Models\Calculator.cs" />
@@ -562,6 +566,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806021658320_employee5.resx">
       <DependentUpon>201806021658320_employee5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806131845410_PhoneEditEmplo.resx">
+      <DependentUpon>201806131845410_PhoneEditEmplo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
