@@ -514,6 +514,34 @@ input[type="file"] {
 .employees__container {
   padding-left: 60px; }
 
+.employee-details__name {
+  margin-top: 30px;
+  color: #ef6b94; }
+
+.employee-details__surname {
+  font-size: 110%; }
+
+.employee-details__title {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #5e4370;
+  border-width: 1px 0;
+  color: #deb144; }
+
+.employee-details__info {
+  font-size: 20px; }
+  .employee-details__info strong {
+    font-size: 110%;
+    color: #deb144; }
+
+.employee-details__earnings {
+  font-size: 22px; }
+  .employee-details__earnings strong {
+    font-size: 110%;
+    letter-spacing: 2px; }
+
 .crud-index__navbar {
   list-style-type: none;
   padding: 0; }

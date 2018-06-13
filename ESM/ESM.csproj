@@ -391,6 +391,7 @@
     <Content Include="Content\sass\pages\_home.scss" />
     <Content Include="Content\sass\modules\_events.scss" />
     <Content Include="Content\sass\modules\_preloader.scss" />
+    <Content Include="Content\sass\pages\_employee-details.scss" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
