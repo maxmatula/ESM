@@ -30,6 +30,9 @@ namespace ESM.Models
         [DataType(DataType.Text)]
         [StringLength(40)]
         public string Title { get; set; }
+        [DataType(DataType.EmailAddress)]
+        [Display(Name = "Email")]
+        public string Email { get; set; }
         [Display(Name = "PESEL")]
         [StringLength(20)]
         public string IdentityNumber { get; set; } //pesel
@@ -72,8 +75,6 @@ namespace ESM.Models
         {
             EmployeeId = Guid.NewGuid();
         }
-
-        
 
         //private DateTime _exitDate { get; set; } // data zakończenia umowy
 

@@ -7,13 +7,13 @@ namespace ESM.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class PhoneEditEmplo : IMigrationMetadata
+    public sealed partial class EmployeeEmail : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(PhoneEditEmplo));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(EmployeeEmail));
         
         string IMigrationMetadata.Id
         {
-            get { return "201806131845410_PhoneEditEmplo"; }
+            get { return "201806150723569_EmployeeEmail"; }
         }
         
         string IMigrationMetadata.Source

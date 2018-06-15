@@ -32,7 +32,7 @@ namespace ESM.Services
                     employee.PictureMimeType = extension;
                     employee.PictureData = bytes;
                 }
-                
+
                 db.Employees.Add(employee);
                 db.SaveChanges();
                 return true;
@@ -95,7 +95,7 @@ namespace ESM.Services
             model.Certyfications = employee.Certyfications.OrderByDescending(x => x.AddDate).ToList();
             model.RecruitmentDocuments = employee.RecruitmentDocuments.OrderByDescending(x => x.AddDate).ToList();
             var earning = employee.Earnings.OrderByDescending(x => x.AddDate).FirstOrDefault();
-            if(earning != null)
+            if (earning != null)
             {
                 model.CurrentEarnings = earning.Ammount.ToString("c");
             }

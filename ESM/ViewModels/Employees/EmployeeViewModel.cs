@@ -18,6 +18,9 @@ namespace ESM.ViewModels.Employees
         public DateTime BirthDate { get; set; }
         [Display(Name = "Stanowisko")]
         public string Title { get; set; }
+        [DataType(DataType.EmailAddress)]
+        [Display(Name = "Email")]
+        public string Email { get; set; }
         [Display(Name = "PESEL")]
         public string IdentityNumber { get; set; } //pesel
         [Display(Name = "Adress")]
