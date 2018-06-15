@@ -42,8 +42,9 @@
             </div>
             <div class="col-xs-12">
                 <p>
+                    <a href="#" onclick="location.history.back()">Powrót</a> |
                     @Html.ActionLink("Edytuj", "Edit", new { id = Model.EmployeeId }) |
-                    <a href="#" onclick="location.history.back()">Powrót</a>
+                    @Html.ActionLink("Usuń", "Delete", new { id = Model.EmployeeId })
                 </p>
             </div>
             <div class="col-sm-12">

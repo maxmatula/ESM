@@ -1,12 +1,9 @@
 ﻿@model ESM.Models.Employee
 
-@{
-    ViewBag.Title = "Usuwanie";
-}
 
-<h2>Usuń</h2>
+<h2>Usuń Pracownika</h2>
 
-<h3>Jesteś pewny, że chcesz usunąć ten rekord?</h3>
+<h3>Jesteś pewny, że chcesz usunąć tego pracownika?</h3>
 <div>
         <p>
             @Html.DisplayNameFor(model => model.Name)
@@ -29,7 +26,7 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <input type="submit" value="Usuń Pracownika" class="btn btn-default" /> |
             @Html.ActionLink("Powrót", "Index")
         </div>
     }
