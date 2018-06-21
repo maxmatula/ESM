@@ -37,6 +37,7 @@ namespace ESM.Controllers
             }
 
             Session["currentCompanyId"] = id;
+            Session["currCompName"] = company.Name;
             return RedirectToAction("Index", "Employees");
         }
 

@@ -55,13 +55,6 @@
                 <h5>@Html.DisplayFor(model => model.AdditionalInfo)</h5>
                 <br />
             </div>
-            <div class="col-xs-12">
-                <p>
-                    <a href="#" onclick="location.history.back()">Powrót</a> |
-                    @Html.ActionLink("Edytuj", "Edit", new { id = Model.EmployeeId }) |
-                    @Html.ActionLink("Usuń", "Delete", new { id = Model.EmployeeId })
-                </p>
-            </div>
             <div class="col-sm-12">
                 <div class="row">
                     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -178,7 +171,13 @@
                 </div>
             </div>
         </div>
-
+        <div class="col-xs-12">
+            <p>
+                <a href="#" onclick="location.history.back()">Powrót do listy</a> |
+                @Html.ActionLink("Edytuj Pracownika", "Edit", new { id = Model.EmployeeId }) |
+                @Html.ActionLink("Usuń Pracownika", "Delete", new { id = Model.EmployeeId }, new { @class = "text-danger"})
+            </p>
+        </div>
     </div>
     <aside class="main-sidebar col-sm-3">
         <a class="btn btn-primary btn-lg" href="@Url.Action("CreateEventEmployee", "Events", new { employeeId = Model.EmployeeId })"><i class="fas fa-plus"></i> Dodaj wydarzenie dla pracownika</a>
