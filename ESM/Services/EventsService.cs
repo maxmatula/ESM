@@ -76,13 +76,13 @@ namespace ESM.Services
         public List<Event> EventListCompany(Guid companyId)
         {
             var esmeventlist = db.Events.Where(x => x.CompanyId == companyId).ToList();
-            esmeventlist = esmeventlist.Where(x => x.EventDate <= DateTime.Now.AddDays(31)).OrderByDescending(x => x.EventDate).ToList();
+            esmeventlist = esmeventlist.Where(x => x.EventDate <= DateTime.Now.AddDays(60)).OrderBy(x => x.EventDate).ToList();
             return esmeventlist;
         }
 
         public List<Event> EventListEmployee(Guid employeeId)
         {
-            var esmeventlist = db.Events.Where(x => x.EmployeeId == employeeId).OrderByDescending(x => x.EventDate).ToList();
+            var esmeventlist = db.Events.Where(x => x.EmployeeId == employeeId).OrderBy(x => x.EventDate).ToList();
             return esmeventlist;
         }
 

@@ -16,6 +16,10 @@
             <div class="item_info col-sm-8">
                 <h5>@Html.DisplayFor(modelItem => item.Name)</h5>
                 <h6 class="item__desc">@Html.DisplayFor(modelItem => item.Description)</h6>
+                @if (item.Employee != null)
+                {
+                    <span class="text-uppercase item__employee"><h6>Pracownik: <strong>@Html.DisplayFor(modelItem => item.Employee.Name) @Html.DisplayFor(modelItem => item.Employee.Surname)</strong></h6></span>
+                }
             </div>
             <div class="col-xs-12">
                 <small class="item__action-btns">

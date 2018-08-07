@@ -43,12 +43,13 @@ namespace ESM.Services
             }
         }
 
-        public bool Delete(Guid id)
+        public bool MoveToArchive(Guid id)
         {
             try
             {
                 Employee employee = db.Employees.Find(id);
-                db.Employees.Remove(employee);
+                employee.IsInArchive = true;
+                db.Entry(employee).State = EntityState.Modified;
                 db.SaveChanges();
                 return true;
             }
@@ -104,6 +105,22 @@ namespace ESM.Services
                 model.CurrentEarnings = "0";
             }
             return model;
+        }
+
+        public bool Restore(Guid id)
+        {
+            try
+            {
+                Employee employee = db.Employees.Find(id);
+                employee.IsInArchive = false;
+                db.Entry(employee).State = EntityState.Modified;
+                db.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

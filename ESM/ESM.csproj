@@ -267,6 +267,10 @@
     <Compile Include="Migrations\201806150723569_EmployeeEmail.Designer.cs">
       <DependentUpon>201806150723569_EmployeeEmail.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808070930100_EmployeeArchive.cs" />
+    <Compile Include="Migrations\201808070930100_EmployeeArchive.Designer.cs">
+      <DependentUpon>201808070930100_EmployeeArchive.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Agreement.cs" />
     <Compile Include="Models\Calculator.cs" />
@@ -513,6 +517,10 @@
     <Content Include="Views\Events\CreateEventEmployee.cshtml" />
     <Content Include="Views\Events\EditEventEmployee.cshtml" />
     <Content Include="Views\Events\EditEventCompany.cshtml" />
+    <Content Include="Views\Employees\Archive.cshtml" />
+    <Content Include="Views\Shared\_EmployeesListArchive.cshtml" />
+    <Content Include="Views\Employees\DetailsArchive.cshtml" />
+    <Content Include="Views\Employees\Restore.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Abstract\" />
@@ -569,6 +577,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806150723569_EmployeeEmail.resx">
       <DependentUpon>201806150723569_EmployeeEmail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808070930100_EmployeeArchive.resx">
+      <DependentUpon>201808070930100_EmployeeArchive.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

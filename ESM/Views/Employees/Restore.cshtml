@@ -1,10 +1,10 @@
 ﻿@model ESM.Models.Employee
 
 
-<h2>Przenieś pracownika do archiwum</h2>
+<h2>Przywróc pracownika</h2>
 <hr />
 
-<h3>Jesteś pewny, że chcesz przenieść tego pracownika do archiwum?</h3>
+<h3>Jesteś pewny, że chcesz przywrócić tego pracownika do listy aktywnych?</h3>
 <div>
     <img class="employee__image img-circle img-responsive" width="200" height="200"
          src="@Url.Action("GetPicture", "Employees", new { employeeId = Model.EmployeeId})"
@@ -27,7 +27,7 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Przenieś Pracownika" class="btn btn-default" /> |
+            <input type="submit" value="Przywróc Pracownika" class="btn btn-default" /> |
             @Html.ActionLink("Powrót", "Index")
         </div>
     }

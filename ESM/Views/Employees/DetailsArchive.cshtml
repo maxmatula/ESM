@@ -120,7 +120,7 @@
                             </div>
                             <div id="collapseEarnings" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                                 <div class="panel-body">
-                                    <a href="@Url.Action("AddEarning", "Earnings", new { employeeId = Model.EmployeeId }, null)"><i class="fa fa-pencil-alt"></i> Zmień wynagrodzenie</a>
+                                    
                                     @Html.Partial("_EarningsList", Model.Earnings)
                                 </div>
                             </div>
@@ -135,7 +135,7 @@
                             </div>
                             <div id="collapseAgreement" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                                 <div class="panel-body">
-                                    <a href="@Url.Action("AddAgreement", "Agreements", new { employeeId = Model.EmployeeId }, null)"><i class="fa fa-pencil-alt"></i> Dodaj umowę</a>
+                                    
                                     @Html.Partial("_AgreementsList", Model.Agreements)
                                 </div>
                             </div>
@@ -150,7 +150,7 @@
                             </div>
                             <div id="collapseCertyfications" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                                 <div class="panel-body">
-                                    <a href="@Url.Action("AddCertyfication", "Certyfications", new { employeeId = Model.EmployeeId }, null)"><i class="fa fa-pencil-alt"></i> Dodaj certyfikat</a>
+                                    
                                     @Html.Partial("_CertyficationsList", Model.Certyfications)
                                 </div>
                             </div>
@@ -165,7 +165,6 @@
                             </div>
                             <div id="collapseRecruitmentDocuments" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                                 <div class="panel-body">
-                                    <a href="@Url.Action("AddRecruitmentDocument", "RecruitmentDocuments", new { employeeId = Model.EmployeeId }, null)"><i class="fa fa-pencil-alt"></i> Dodaj dokument</a>
                                     @Html.Partial("_RecruitmentDocumentsList", Model.RecruitmentDocuments)
                                 </div>
                             </div>
@@ -177,8 +176,7 @@
         <div class="col-xs-12">
             <p>
                 <a href="#" onclick="location.history.back()">Powrót do listy</a> |
-                @Html.ActionLink("Edytuj Pracownika", "Edit", new { id = Model.EmployeeId }) |
-                @Html.ActionLink("Przenieś Pracownika do Archwium", "Delete", new { id = Model.EmployeeId }, new { @class = "text-danger"})
+                @Html.ActionLink("Przywróc Pracownika", "Restore", new { id = Model.EmployeeId }, new { @class = "text-danger"})
             </p>
         </div>
     </div>
