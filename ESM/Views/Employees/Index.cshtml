@@ -1,14 +1,12 @@
-﻿
-
-<div class="employees col-sm-9">
+﻿<div class="employees col-sm-special">
     <div class="row">
-        <div class="col-sm-8">
+        <div class="col-sm-12">
             <h2 class="text-center text-uppercase employee-details__name">@Session["currCompName"] - Pracownicy</h2>
+            <a href="@Url.Action("Archive","Employees")" class="btn btn-link btn-sm">Archiwum Pracowników</a>
+
             <hr />
         </div>
-        <div class="fa-pull-right col-sm-3">
-            <a href="@Url.Action("Archive","Employees")" class="btn btn-primary">Archiwum Pracowników</a>
-        </div>
+        
     </div>
     <a href="@Url.Action("Create","Employees")" class="btn btn-primary">Dodaj pracownika</a>
     @Html.Partial("_SearchForm")

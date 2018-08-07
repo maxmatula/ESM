@@ -175,8 +175,8 @@
         </div>
         <div class="col-xs-12">
             <p>
-                <a href="#" onclick="location.history.back()">Powrót do listy</a> |
-                @Html.ActionLink("Przywróc Pracownika", "Restore", new { id = Model.EmployeeId }, new { @class = "text-danger"})
+                @Html.ActionLink("Powrót", "Archive", "Employees") |
+                @Html.ActionLink("Przywróc Pracownika", "Restore", new { id = Model.EmployeeId }, new { @class = "text-danger" })
             </p>
         </div>
     </div>

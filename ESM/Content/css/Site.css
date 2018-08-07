@@ -577,3 +577,6 @@ input[type="file"] {
     border-bottom: 1px solid #fff;
 }
 
+.col-sm-special {
+    width: 70%;
+}
