@@ -8,6 +8,8 @@ using Microsoft.Owin.Security;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Net;
+using System;
 
 namespace ESM.Controllers
 {
@@ -110,6 +112,17 @@ namespace ESM.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Logout()
         {
+            HttpCookie aCookie;
+            string cookieName;
+            int limit = Request.Cookies.Count;
+            for (int i = 0; i < limit; i++)
+            {
+                cookieName = Request.Cookies[i].Name;
+                aCookie = new HttpCookie(cookieName);
+                aCookie.Expires = DateTime.Now.AddDays(-2);
+                Response.SetCookie(aCookie);
+            }
+
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             Session.Abandon();
             return RedirectToAction("Index", "Home");

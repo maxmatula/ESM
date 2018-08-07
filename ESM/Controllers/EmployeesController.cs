@@ -27,7 +27,7 @@ namespace ESM.Controllers
         // GET: Employees
         public ActionResult Index(string searchString = null)
         {
-            var currentCompanyId = Session["currentCompanyId"];
+            var currentCompanyId = Guid.Parse(Request.Cookies["currentCompanyId"].Value);
             var employees = from emp in _db.Employees
                             where emp.CompanyId.ToString() == currentCompanyId.ToString()
                             select emp;
@@ -50,7 +50,7 @@ namespace ESM.Controllers
         // GET: Employees Archive
         public ActionResult Archive(string searchString = null)
         {
-            var currentCompanyId = Session["currentCompanyId"];
+            var currentCompanyId = Guid.Parse(Request.Cookies["currentCompanyId"].Value);
             var employees = from emp in _db.Employees
                             where emp.CompanyId.ToString() == currentCompanyId.ToString()
                             select emp;
@@ -113,7 +113,7 @@ namespace ESM.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Employee employee, string picture)
         {
-            string currentCompanyId = Session["currentCompanyId"].ToString();
+            string currentCompanyId = Response.Cookies["currentCompanyId"].Value;
             if (ModelState.IsValid)
             {
                 var result = _employeesService.Create(employee, currentCompanyId, picture);

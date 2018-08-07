@@ -36,7 +36,8 @@ namespace ESM.Controllers
                 return HttpNotFound();
             }
 
-            Session["currentCompanyId"] = id;
+            Response.Cookies["currentCompanyId"].Value = id.ToString();
+            Response.Cookies["currentCompanyId"].Expires = DateTime.Now.AddDays(1);
             Session["currCompName"] = company.Name;
             return RedirectToAction("Index", "Employees");
         }
