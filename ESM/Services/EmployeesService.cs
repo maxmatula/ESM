@@ -98,7 +98,7 @@ namespace ESM.Services
             var earning = employee.Earnings.OrderByDescending(x => x.AddDate).FirstOrDefault();
             if (earning != null)
             {
-                model.CurrentEarnings = earning.Ammount.ToString("c");
+                model.CurrentEarnings = earning.PartialEarnings.Sum(x => x.Ammount).ToString("c");
             }
             else
             {

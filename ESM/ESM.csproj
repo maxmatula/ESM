@@ -271,6 +271,10 @@
     <Compile Include="Migrations\201808070930100_EmployeeArchive.Designer.cs">
       <DependentUpon>201808070930100_EmployeeArchive.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808080635181_PartialEarnings.cs" />
+    <Compile Include="Migrations\201808080635181_PartialEarnings.Designer.cs">
+      <DependentUpon>201808080635181_PartialEarnings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Agreement.cs" />
     <Compile Include="Models\Calculator.cs" />
@@ -280,6 +284,7 @@
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\AppUser.cs" />
     <Compile Include="Models\Event.cs" />
+    <Compile Include="Models\PartialEarning.cs" />
     <Compile Include="Models\RecruitmentDocument.cs" />
     <Compile Include="Models\UserCompanyRef.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -580,6 +585,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808070930100_EmployeeArchive.resx">
       <DependentUpon>201808070930100_EmployeeArchive.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808080635181_PartialEarnings.resx">
+      <DependentUpon>201808080635181_PartialEarnings.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

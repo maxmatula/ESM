@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -9,19 +10,27 @@ namespace ESM.Models
     {
         [Key]
         public Guid EarningId { get; set; }
-        [Display(Name = "Kwota")]
-        public decimal Ammount { get; set; }
+
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime AddDate { get; set; }
-        [ForeignKey("Employee")]
+
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime ChangeDate { get; set; }
+
         public Guid EmployeeId { get; set; }
         public virtual Employee Employee { get; set; }
 
+        public Guid? AgreementId { get; set; }
+
+        public ICollection<PartialEarning> PartialEarnings { get; set; }
+
         public Earning()
         {
-            this.EarningId = Guid.NewGuid();
-            this.AddDate = DateTime.Now;
+            EarningId = Guid.NewGuid();
+            AddDate = DateTime.Now;
+            AgreementId = null;
         }
     }
 }
