@@ -533,11 +533,11 @@
     <Content Include="Views\Employees\DetailsArchive.cshtml" />
     <Content Include="Views\Employees\Restore.cshtml" />
     <Content Include="Views\Earnings\Details.cshtml" />
+    <Content Include="Views\PartialEarnings\AddPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Abstract\" />
     <Folder Include="Views\Files\" />
-    <Folder Include="Views\PartialEarnings\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -9,7 +9,10 @@ namespace ESM.Models
     {
         [Key]
         public Guid PartialEarningId { get; set; }
+
+        [Display(Name = "Nazwa składowej:")]
         public string Name { get; set; }
+        [Display(Name = "Kwota:")]
         public decimal Ammount { get; set; }
 
         public Guid EarningId { get; set; }

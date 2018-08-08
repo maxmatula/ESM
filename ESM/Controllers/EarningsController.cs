@@ -18,7 +18,6 @@ namespace ESM.Controllers
             _db = new ESMDbContext();
         }
 
-        [Route("Employees/Details/{employeeId}/{controller}/Details/{id}")]
         public ActionResult Details(Guid? id)
         {
             if (id == null)
@@ -31,6 +30,8 @@ namespace ESM.Controllers
             {
                 return HttpNotFound();
             }
+
+            ViewBag.Total = earning.PartialEarnings.Sum(x => x.Ammount).ToString("c");
 
             return View(earning);
         }
