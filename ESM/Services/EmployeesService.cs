@@ -97,6 +97,16 @@ namespace ESM.Services
             model.Agreements = employee.Agreements.OrderByDescending(x => x.AddDate).ToList();
             model.Certyfications = employee.Certyfications.OrderByDescending(x => x.AddDate).ToList();
             model.RecruitmentDocuments = employee.RecruitmentDocuments.OrderByDescending(x => x.AddDate).ToList();
+            var earning = employee.Earnings.OrderByDescending(x => x.ChangeDate).FirstOrDefault();
+            if (earning == null)
+            {
+                model.CurrentEarnings = 0.ToString("c");
+            }
+            else
+            {
+                model.CurrentEarnings = earning.PartialEarnings.Sum(x => x.Ammount).ToString("c");
+            }
+
             return model;
         }
 
