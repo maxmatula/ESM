@@ -532,6 +532,7 @@
     <Content Include="Views\Shared\_EmployeesListArchive.cshtml" />
     <Content Include="Views\Employees\DetailsArchive.cshtml" />
     <Content Include="Views\Employees\Restore.cshtml" />
+    <Content Include="Views\Earnings\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Abstract\" />

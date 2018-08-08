@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Data.Entity;
+using System.Linq;
+using System.Net;
 using System.Web.Mvc;
 using ESM.DAL;
 using ESM.Models;
@@ -13,6 +16,23 @@ namespace ESM.Controllers
         public EarningsController()
         {
             _db = new ESMDbContext();
+        }
+
+        [Route("Employees/Details/{employeeId}/{controller}/Details/{id}")]
+        public ActionResult Details(Guid? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Earning earning = _db.Earnings.Include(g => g.PartialEarnings).FirstOrDefault(x => x.EarningId == id);
+
+            if (earning == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(earning);
         }
 
         // GET: Earnings

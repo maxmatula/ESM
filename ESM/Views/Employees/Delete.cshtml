@@ -26,9 +26,9 @@
     {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Przenieś Pracownika" class="btn btn-default" /> |
-            @Html.ActionLink("Powrót", "Index")
-        </div>
+    <div class="form-actions no-color">
+        <input type="submit" value="Przenieś Pracownika" class="btn btn-default" /> |
+        @Html.ActionLink("Powrót", "Details", "Employees", new { id = Model.EmployeeId }, null)
+    </div>
     }
 </div>

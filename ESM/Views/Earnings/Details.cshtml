@@ -1,0 +1,26 @@
+﻿@model ESM.Models.Earning
+
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <td>Składowa</td>
+                <td>Kwota</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var part in Model.PartialEarnings)
+            {
+                <tr>
+                    <td>@part.Name</td>
+                    <td>@part.Ammount.ToString("c")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <br />
+    <p>
+        @Html.ActionLink("Powrót", "Details", "Employees", new { id = Model.EmployeeId }, null)
+    </p>
+</div>
+

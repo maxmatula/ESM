@@ -130,9 +130,9 @@
     </div>
 }
 
-<div>
-    @Html.ActionLink("Powrót", "Index")
-</div>
+    <div>
+        @Html.ActionLink("Powrót", "Details", "Employees", new { id = Model.EmployeeId }, null)
+    </div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
