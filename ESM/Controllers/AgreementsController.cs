@@ -54,7 +54,7 @@ namespace ESM.Controllers
                 if (agreement.EndDate != null)
                 {
                     Event esmevent = new Event();
-                    string companyId = Response.Cookies["currentCompanyId"].Value;
+                    string companyId = Request.Cookies["currentCompanyId"].Value;
                     esmevent.EmployeeId = agreement.EmployeeId;
                     esmevent.CompanyId = Guid.Parse(companyId);
                     esmevent.Name = agreement.Description;

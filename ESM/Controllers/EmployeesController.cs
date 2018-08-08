@@ -113,7 +113,7 @@ namespace ESM.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Employee employee, string picture)
         {
-            string currentCompanyId = Response.Cookies["currentCompanyId"].Value;
+            string currentCompanyId = Request.Cookies["currentCompanyId"].Value;
             if (ModelState.IsValid)
             {
                 var result = _employeesService.Create(employee, currentCompanyId, picture);

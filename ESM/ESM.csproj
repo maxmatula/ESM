@@ -204,6 +204,7 @@
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PartialEarningsController.cs" />
     <Compile Include="Controllers\RecruitmentDocumentsController.cs" />
     <Compile Include="Controllers\UserPanelController.cs" />
     <Compile Include="DAL\IdentityModels.cs" />
@@ -275,6 +276,10 @@
     <Compile Include="Migrations\201808080635181_PartialEarnings.Designer.cs">
       <DependentUpon>201808080635181_PartialEarnings.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808080757120_PartialEarnings2.cs" />
+    <Compile Include="Migrations\201808080757120_PartialEarnings2.Designer.cs">
+      <DependentUpon>201808080757120_PartialEarnings2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Agreement.cs" />
     <Compile Include="Models\Calculator.cs" />
@@ -303,6 +308,7 @@
     <Compile Include="Services\IRecruitmentDocumentsService.cs" />
     <Compile Include="Services\RecruitmentDocumentsService.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\Earnings\EarningForDisplayDto.cs" />
     <Compile Include="ViewModels\Employees\EmployeeViewModel.cs" />
     <Compile Include="ViewModels\Account\LoginViewModel.cs" />
     <Compile Include="ViewModels\Account\RegisterViewModel.cs" />
@@ -530,6 +536,7 @@
   <ItemGroup>
     <Folder Include="Abstract\" />
     <Folder Include="Views\Files\" />
+    <Folder Include="Views\PartialEarnings\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -588,6 +595,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808080635181_PartialEarnings.resx">
       <DependentUpon>201808080635181_PartialEarnings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808080757120_PartialEarnings2.resx">
+      <DependentUpon>201808080757120_PartialEarnings2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

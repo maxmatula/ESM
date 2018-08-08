@@ -37,7 +37,9 @@ namespace ESM.Controllers
             }
 
             Response.Cookies["currentCompanyId"].Value = id.ToString();
-            Response.Cookies["currentCompanyId"].Expires = DateTime.Now.AddDays(1);
+            Response.Cookies["currentCompanyId"].Expires = DateTime.Now.AddDays(2);
+            Response.SetCookie(Response.Cookies["currentCompanyId"]);
+
             Session["currCompName"] = company.Name;
             return RedirectToAction("Index", "Employees");
         }

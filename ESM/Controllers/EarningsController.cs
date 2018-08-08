@@ -26,7 +26,7 @@ namespace ESM.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddEarning([Bind(Include = "Ammount, EmployeeId")] Earning earning)
+        public ActionResult AddEarning(Earning earning)
         {
             var employeeId = earning.EmployeeId;
             if (ModelState.IsValid)

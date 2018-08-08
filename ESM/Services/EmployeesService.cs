@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using AutoMapper;
 using ESM.DAL;
 using ESM.Models;
+using ESM.ViewModels.Earnings;
 using ESM.ViewModels.Employees;
 
 namespace ESM.Services
@@ -89,21 +90,13 @@ namespace ESM.Services
 
         public EmployeeViewModel GetById(Guid id)
         {
-            var employee = db.Employees.Find(id);
+            var employee = db.Employees.Include(y => y.Earnings.Select(g => g.PartialEarnings)).FirstOrDefault(x => x.EmployeeId == id);
             var model = Mapper.Map<EmployeeViewModel>(employee);
-            model.Earnings = employee.Earnings.OrderByDescending(x => x.AddDate).ToList();
+            var earningsData = employee.Earnings.OrderByDescending(x => x.AddDate).ToList();
+            model.Earnings = Mapper.Map<List<EarningForDisplayDto>>(earningsData);
             model.Agreements = employee.Agreements.OrderByDescending(x => x.AddDate).ToList();
             model.Certyfications = employee.Certyfications.OrderByDescending(x => x.AddDate).ToList();
             model.RecruitmentDocuments = employee.RecruitmentDocuments.OrderByDescending(x => x.AddDate).ToList();
-            var earning = employee.Earnings.OrderByDescending(x => x.AddDate).FirstOrDefault();
-            if (earning != null)
-            {
-                model.CurrentEarnings = earning.PartialEarnings.Sum(x => x.Ammount).ToString("c");
-            }
-            else
-            {
-                model.CurrentEarnings = "0";
-            }
             return model;
         }
 

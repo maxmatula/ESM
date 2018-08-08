@@ -1,4 +1,5 @@
 ﻿using ESM.Models;
+using ESM.ViewModels.Earnings;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -41,7 +42,7 @@ namespace ESM.ViewModels.Employees
         public string PictureMimeType { get; set; }
         public Guid CompanyId { get; set; }
         public Company Companies { get; set; }
-        public List<Earning> Earnings { get; set; }
+        public List<EarningForDisplayDto> Earnings { get; set; }
         public List<RecruitmentDocument> RecruitmentDocuments { get; set; }
         public List<Certyfication> Certyfications { get; set; }
         public List<Agreement> Agreements { get; set; }

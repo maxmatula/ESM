@@ -1,4 +1,4 @@
-﻿@model List<ESM.Models.Earning>
+﻿@model List<ESM.ViewModels.Earnings.EarningForDisplayDto>
 
 <div>
     @if (Model.Count().Equals(0))
@@ -17,7 +17,7 @@
 
                 <tr>
                     <td>@earning.Ammount.ToString("c")</td>
-                    <td>@earning.AddDate.ToShortDateString()</td>
+                    <td>@earning.ChangeDate.ToShortDateString()</td>
                 </tr>
             }
         </table>
