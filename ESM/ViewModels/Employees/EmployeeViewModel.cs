@@ -3,6 +3,7 @@ using ESM.ViewModels.Earnings;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace ESM.ViewModels.Employees
 {
@@ -46,5 +47,7 @@ namespace ESM.ViewModels.Employees
         public List<RecruitmentDocument> RecruitmentDocuments { get; set; }
         public List<Certyfication> Certyfications { get; set; }
         public List<Agreement> Agreements { get; set; }
+        
+
     }
 }

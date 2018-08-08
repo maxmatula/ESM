@@ -98,6 +98,12 @@ namespace ESM.Services
             model.Certyfications = employee.Certyfications.OrderByDescending(x => x.AddDate).ToList();
             model.RecruitmentDocuments = employee.RecruitmentDocuments.OrderByDescending(x => x.AddDate).ToList();
             var earning = employee.Earnings.OrderByDescending(x => x.ChangeDate).FirstOrDefault();
+
+            foreach (var earn in model.Earnings)
+            {
+                earn.SelectAgreements = model.Agreements.Where(x => x.EarningId == null).ToList();
+            }
+
             if (earning == null)
             {
                 model.CurrentEarnings = 0.ToString("c");

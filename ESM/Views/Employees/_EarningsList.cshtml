@@ -11,14 +11,63 @@
             <tr>
                 <th>Zarobki</th>
                 <th>Data zmiany</th>
+                <th></th>
+                <th></th>
             </tr>
             @foreach (var earning in Model)
             {
 
-            <tr>
-                <td><a href="@Url.Action("Details", "Earnings", new { id = earning.EarningId })">@earning.Ammount.ToString("c")</a></td>
-                <td>@earning.ChangeDate.ToShortDateString()</td>
-            </tr>
+                <tr>
+                    <td><a href="@Url.Action("Details", "Earnings", new { id = earning.EarningId })">@earning.Ammount.ToString("c")</a></td>
+                    <td>@earning.ChangeDate.ToShortDateString()</td>
+                    <td>
+                        @if (earning.AgreementId == null)
+                        {
+                            if (earning.SelectAgreements.Count < 1)
+                            {
+
+                            }
+                            else
+                            {
+                                using (Html.BeginForm("ConnectAgreement", "Earnings", FormMethod.Post))
+                                {
+                                    <div class="row>">
+                                        <div class="col-xs-9">
+                                            @Html.AntiForgeryToken()
+                                            @Html.Hidden("earningId", earning.EarningId)
+                                            @Html.DropDownList("agreementId", new SelectList(earning.SelectAgreements,
+                                                 "AgreementId", "Description"), new { @class = "form-control"})
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <button type="submit" role="button" class="btn btn-link"><i class="fas fa-arrow-alt-circle-right"></i>  Przypnij</button>
+                                        </div>
+                                    </div>
+                                }
+                            }
+
+                        }
+                        else
+                        {
+                                    <a href="@Url.Action("GetFile", "Agreements", new { agreementId = earning.AgreementId })">Zobacz umowę</a>
+                        }
+                    </td>
+                    <td>
+                        @if (earning.AgreementId != null)
+                        {
+                            using (Html.BeginForm("DisconnectAgreement", "Earnings", FormMethod.Post))
+                            {
+                                <div class="row>">
+                                    <div class="col-xs-12">
+                                        @Html.AntiForgeryToken()
+                                        @Html.Hidden("earningId", earning.EarningId)
+                                        @Html.Hidden("agreementId", earning.AgreementId)
+                                        <button type="submit" role="button" class="btn btn-link"><i class="fas fa-trash-alt"></i>  Odepnij</button>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </td>
+                </tr>
             }
         </table>
     }

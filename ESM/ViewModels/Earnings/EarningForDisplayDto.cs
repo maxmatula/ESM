@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace ESM.ViewModels.Earnings
 {
@@ -24,5 +25,9 @@ namespace ESM.ViewModels.Earnings
         public Guid? AgreementId { get; set; }
 
         public List<PartialEarning> PartialEarnings { get; set; }
+
+        public Guid SelectedAgreementId { get; set; }
+        public List<Agreement> SelectAgreements { get; set; }
+
     }
 }

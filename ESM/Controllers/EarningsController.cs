@@ -58,5 +58,57 @@ namespace ESM.Controllers
             }
             return View(earning);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ConnectAgreement(Guid? earningId, Guid? agreementId)
+        {
+            if (ModelState.IsValid)
+            {
+                if(earningId != null && agreementId != null)
+                {
+                    var earning = _db.Earnings.Find(earningId);
+                    var agreement = _db.Agreements.Find(agreementId);
+
+                    earning.AgreementId = agreementId;
+                    agreement.EarningId = earningId;
+
+                    _db.Entry(earning).State = EntityState.Modified;
+                    _db.Entry(agreement).State = EntityState.Modified;
+                    _db.SaveChanges();
+
+                    return RedirectToAction("Details", "Employees", new { id = earning.EmployeeId });
+                }
+                
+            }
+
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DisconnectAgreement(Guid? earningId, Guid? agreementId)
+        {
+            if (ModelState.IsValid)
+            {
+                if (earningId != null && agreementId != null)
+                {
+                    var earning = _db.Earnings.Find(earningId);
+                    var agreement = _db.Agreements.Find(agreementId);
+
+                    earning.AgreementId = null;
+                    agreement.EarningId = null;
+
+                    _db.Entry(earning).State = EntityState.Modified;
+                    _db.Entry(agreement).State = EntityState.Modified;
+                    _db.SaveChanges();
+
+                    return RedirectToAction("Details", "Employees", new { id = earning.EmployeeId });
+                }
+
+            }
+
+            return View();
+        }
     }
 }
