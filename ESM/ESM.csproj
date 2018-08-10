@@ -204,6 +204,7 @@
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NotesController.cs" />
     <Compile Include="Controllers\PartialEarningsController.cs" />
     <Compile Include="Controllers\RecruitmentDocumentsController.cs" />
     <Compile Include="Controllers\UserPanelController.cs" />
@@ -280,6 +281,14 @@
     <Compile Include="Migrations\201808080757120_PartialEarnings2.Designer.cs">
       <DependentUpon>201808080757120_PartialEarnings2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808100807155_Notes.cs" />
+    <Compile Include="Migrations\201808100807155_Notes.Designer.cs">
+      <DependentUpon>201808100807155_Notes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808100835224_Notes2.cs" />
+    <Compile Include="Migrations\201808100835224_Notes2.Designer.cs">
+      <DependentUpon>201808100835224_Notes2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Agreement.cs" />
     <Compile Include="Models\Calculator.cs" />
@@ -289,6 +298,7 @@
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\AppUser.cs" />
     <Compile Include="Models\Event.cs" />
+    <Compile Include="Models\Note.cs" />
     <Compile Include="Models\PartialEarning.cs" />
     <Compile Include="Models\RecruitmentDocument.cs" />
     <Compile Include="Models\UserCompanyRef.cs" />
@@ -536,6 +546,10 @@
     <Content Include="Views\PartialEarnings\AddPartial.cshtml" />
     <Content Include="Views\Employees\_EarningsListArchive.cshtml" />
     <Content Include="Views\Earnings\DetailsArchive.cshtml" />
+    <Content Include="Views\Employees\_NotesList.cshtml" />
+    <Content Include="Views\Notes\AddNote.cshtml" />
+    <Content Include="Views\Notes\EditNote.cshtml" />
+    <Content Include="Views\Notes\NotesListArchive.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Abstract\" />
@@ -601,6 +615,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808080757120_PartialEarnings2.resx">
       <DependentUpon>201808080757120_PartialEarnings2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808100807155_Notes.resx">
+      <DependentUpon>201808100807155_Notes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808100835224_Notes2.resx">
+      <DependentUpon>201808100835224_Notes2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

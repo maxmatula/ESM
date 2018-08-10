@@ -50,13 +50,25 @@
                         @Model.CurrentEarnings
                     </strong>
                 </p>
+                <hr />
             </div>
-            <div class="col-xs-12 employee-details__earnings">
-                <h4 class="page-header">
-                    Notatki:
-                </h4>
-                <h5>@Html.DisplayFor(model => model.AdditionalInfo)</h5>
-                <br />
+            <div class="col-sm-12 employee-details__earnings">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <h3>Notatki:</h3>
+                        <hr />
+                    </div>
+                    <div class="col-xs-6">
+                        <small class="notatki_buttony_gorne">
+                            <button class="btn btn-primary">@Html.ActionLink("Dodaj notatkę", "AddNote", "Notes", new { employeeid = Model.EmployeeId }, null)</button>
+                            <button class="btn btn-primary">@Html.ActionLink("Archiwum", "NotesListArchive", "Notes", new { employeeid = Model.EmployeeId }, null)</button>
+                        </small>
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    @Html.Partial("_NotesList", Model.Notes)
+                    <br />
+                </div>
             </div>
             <div class="col-sm-12">
                 <div class="row">

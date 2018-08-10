@@ -580,3 +580,41 @@ input[type="file"] {
 .col-sm-special {
     width: 70%;
 }
+
+.note_container {
+    background: #201a27;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.note {
+    font-size: 14px;
+}
+.note_content {
+    padding: 7px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #2d2436;
+}
+
+.notatki_buttony_gorne {
+    float: right;
+    margin: 5px;
+    margin-bottom: 10px;
+}
+
+.note_buttons {
+    float: right;
+    display: -webkit-inline-box;
+}
+
+.note_date {
+    margin-top: 10px;
+    float: left;
+    font-size: 14px;
+    display: block;
+}
+
+.btn-mr {
+    margin-right: 8px;
+}
+

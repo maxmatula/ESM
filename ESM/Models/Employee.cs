@@ -58,11 +58,6 @@ namespace ESM.Models
         [DisplayFormat(DataFormatString = "{0:###-###-###}", ApplyFormatInEditMode = true)]
         public string MaritalStatus { get; set; }
 
-        [Display(Name = "Notatki")]
-        [DataType(DataType.MultilineText)]
-        [StringLength(500, ErrorMessage = "Maksymalnie 500 znaków!")]
-        public string AdditionalInfo { get; set; } //notatki
-
         [Display(Name = "Nazwa Banku")]
         [DataType(DataType.Text)]
         [StringLength(50)]
@@ -79,6 +74,7 @@ namespace ESM.Models
         public string PictureMimeType { get; set; }
 
         public bool IsInArchive { get; set; } //czy pracownik w archiwum
+        public DateTime MoveToArchiveTime { get; set; }
 
         [ForeignKey("Companies")]
         public Guid CompanyId { get; set; }
@@ -87,6 +83,7 @@ namespace ESM.Models
         public virtual ICollection<RecruitmentDocument> RecruitmentDocuments { get; set; }
         public virtual ICollection<Certyfication> Certyfications { get; set; }
         public virtual ICollection<Agreement> Agreements { get; set; }
+        public virtual ICollection<Note> Notes { get; set; }
 
         public Employee()
         {
@@ -94,7 +91,7 @@ namespace ESM.Models
             IsInArchive = false;
         }
 
-        //private DateTime _exitDate { get; set; } // data zakończenia umowy
+        
 
     }
 }

@@ -50,6 +50,7 @@ namespace ESM.Services
             {
                 Employee employee = db.Employees.Find(id);
                 employee.IsInArchive = true;
+                employee.MoveToArchiveTime = DateTime.Now;
                 db.Entry(employee).State = EntityState.Modified;
                 db.SaveChanges();
                 return true;
@@ -97,6 +98,7 @@ namespace ESM.Services
             model.Agreements = employee.Agreements.OrderByDescending(x => x.AddDate).ToList();
             model.Certyfications = employee.Certyfications.OrderByDescending(x => x.AddDate).ToList();
             model.RecruitmentDocuments = employee.RecruitmentDocuments.OrderByDescending(x => x.AddDate).ToList();
+            model.Notes = employee.Notes.Where(y => y.IsInArchive == false).OrderByDescending(x => x.CreatedAt).ToList();
             var earning = employee.Earnings.OrderByDescending(x => x.ChangeDate).FirstOrDefault();
 
             foreach (var earn in model.Earnings)
