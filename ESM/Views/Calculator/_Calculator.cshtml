@@ -3,7 +3,7 @@
     <form method="get" class="form" data-ajax="true" autocomplete="off" data-ajax-target="#calculator-section" data-ajax-update="#calculator-section">
         <fieldset class="form-group">
             <legend class="h3">Podaj kwotę brutto</legend>
-            @Html.TextBox("brutto", null, new { @class = "form-control input-lg", placeholder = "Brutto..." })
+            @Html.TextBox("brutto", null, new { @class = "form-control input-lg", placeholder = "Brutto...", type = "number", step = "0.01" })
             <button class="search-form__submit"></button>
         </fieldset>
         <fieldset class="form-group">

@@ -36,6 +36,24 @@ namespace ESM.Controllers
             return View(earning);
         }
 
+        public ActionResult DetailsArchive(Guid? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Earning earning = _db.Earnings.Include(g => g.PartialEarnings).FirstOrDefault(x => x.EarningId == id);
+
+            if (earning == null)
+            {
+                return HttpNotFound();
+            }
+
+            ViewBag.Total = earning.PartialEarnings.Sum(x => x.Ammount).ToString("c");
+
+            return View(earning);
+        }
+
         // GET: Earnings
         public ActionResult AddEarning(Guid? employeeId)
         {

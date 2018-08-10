@@ -44,6 +44,7 @@ namespace ESM.Controllers
             {
                 return PartialView("_EmployeesList", employees.ToList());
             }
+
             return View(employees.ToList());
         }
 
@@ -77,11 +78,18 @@ namespace ESM.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             var employee = _employeesService.GetById(id.Value);
             if (employee == null)
             {
                 return HttpNotFound();
             }
+
+            if (employee.IsInArchive == true)
+            {
+                return RedirectToAction("DetailsArchive", "Employees", new { id = employee.EmployeeId });
+            }
+
             return View(employee);
         }
 

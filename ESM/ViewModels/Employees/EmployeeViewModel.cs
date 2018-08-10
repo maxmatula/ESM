@@ -41,6 +41,7 @@ namespace ESM.ViewModels.Employees
         public string CurrentEarnings { get; set; }
         public byte[] PictureData { get; set; }
         public string PictureMimeType { get; set; }
+        public bool IsInArchive { get; set; }
         public Guid CompanyId { get; set; }
         public Company Companies { get; set; }
         public List<EarningForDisplayDto> Earnings { get; set; }

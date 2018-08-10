@@ -534,6 +534,8 @@
     <Content Include="Views\Employees\Restore.cshtml" />
     <Content Include="Views\Earnings\Details.cshtml" />
     <Content Include="Views\PartialEarnings\AddPartial.cshtml" />
+    <Content Include="Views\Employees\_EarningsListArchive.cshtml" />
+    <Content Include="Views\Earnings\DetailsArchive.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Abstract\" />

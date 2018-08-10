@@ -121,7 +121,7 @@
                             <div id="collapseEarnings" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                                 <div class="panel-body">
                                     
-                                    @Html.Partial("_EarningsList", Model.Earnings)
+                                    @Html.Partial("_EarningsListArchive", Model.Earnings)
                                 </div>
                             </div>
                         </div>
@@ -181,7 +181,6 @@
         </div>
     </div>
     <aside class="main-sidebar col-sm-3">
-        <a class="btn btn-primary btn-lg" href="@Url.Action("CreateEventEmployee", "Events", new { employeeId = Model.EmployeeId })"><i class="fas fa-plus"></i> Dodaj wydarzenie dla pracownika</a>
         <div class="col-xs-12 events">
             <h4 class="page-header">Wydarzenia pracownika</h4>
             @Html.Action("EmployeeEvents", "Events", new { employeeId = Model.EmployeeId })
