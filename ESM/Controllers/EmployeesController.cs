@@ -2,11 +2,11 @@
 using System.Data;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using ESM.Models;
 using ESM.DAL;
 using ESM.Services;
+using ESM.ViewModels.Employees;
 
 namespace ESM.Controllers
 {
@@ -28,16 +28,12 @@ namespace ESM.Controllers
         public ActionResult Index(string searchString = null)
         {
             var currentCompanyId = Guid.Parse(Request.Cookies["currentCompanyId"].Value);
-            var employees = from emp in _db.Employees
-                            where emp.CompanyId.ToString() == currentCompanyId.ToString()
-                            select emp;
+            var employees = _employeesService.GetEmployees(currentCompanyId);
             employees = employees.Where(x => x.IsInArchive == false);
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                employees = employees.Where(x => x.Name.Contains(searchString)
-                    || x.Surname.Contains(searchString)
-                    || x.Title.Contains(searchString));
+                employees = _employeesService.SearchEmployees(searchString, employees);
             }
 
             if (Request.IsAjaxRequest())
@@ -52,16 +48,12 @@ namespace ESM.Controllers
         public ActionResult Archive(string searchString = null)
         {
             var currentCompanyId = Guid.Parse(Request.Cookies["currentCompanyId"].Value);
-            var employees = from emp in _db.Employees
-                            where emp.CompanyId.ToString() == currentCompanyId.ToString()
-                            select emp;
+            var employees = _employeesService.GetEmployees(currentCompanyId);
             employees = employees.Where(x => x.IsInArchive == true);
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                employees = employees.Where(x => x.Name.Contains(searchString)
-                    || x.Surname.Contains(searchString)
-                    || x.Title.Contains(searchString));
+                employees = _employeesService.SearchEmployees(searchString, employees);
             }
 
             if (Request.IsAjaxRequest())
@@ -79,7 +71,8 @@ namespace ESM.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var employee = _employeesService.GetById(id.Value);
+            EmployeeViewModel employee = _employeesService.GetById(id.Value);
+
             if (employee == null)
             {
                 return HttpNotFound();
@@ -100,7 +93,8 @@ namespace ESM.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var employee = _employeesService.GetById(id.Value);
+            EmployeeViewModel employee = _employeesService.GetById(id.Value);
+
             if (employee == null)
             {
                 return HttpNotFound();
@@ -140,7 +134,8 @@ namespace ESM.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employee employee = _db.Employees.Find(id);
+            var employee = _employeesService.GetEmployeeById(id.Value);
+
             if (employee == null)
             {
                 return HttpNotFound();
@@ -173,7 +168,8 @@ namespace ESM.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employee employee = _db.Employees.Find(id);
+            var employee = _employeesService.GetEmployeeById(id.Value);
+
             if (employee == null)
             {
                 return HttpNotFound();
@@ -197,7 +193,8 @@ namespace ESM.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employee employee = _db.Employees.Find(id);
+            var employee = _employeesService.GetEmployeeById(id.Value);
+
             if (employee == null)
             {
                 return HttpNotFound();
@@ -216,7 +213,8 @@ namespace ESM.Controllers
 
         public ActionResult GetPicture(Guid employeeId)
         {
-            Employee employee = _db.Employees.FirstOrDefault(e => e.EmployeeId == employeeId);
+            var employee = _employeesService.GetEmployeeById(employeeId);
+
             if (employee != null && employee.PictureData != null)
             {
                 return File(employee.PictureData, employee.PictureMimeType);

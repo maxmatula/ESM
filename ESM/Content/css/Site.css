@@ -587,9 +587,13 @@ input[type="file"] {
     margin-bottom: 10px;
 }
 
-.note {
-    font-size: 14px;
-}
+    .note_container:hover{
+        background: #1c1721;
+    }
+
+    .note {
+        font-size: 14px;
+    }
 .note_content {
     padding: 7px;
     padding-bottom: 15px;
@@ -620,4 +624,8 @@ input[type="file"] {
 
 .bg-alert {
     background: #ca4036;
+}
+
+.mr-auto {
+    padding: 7px;
 }

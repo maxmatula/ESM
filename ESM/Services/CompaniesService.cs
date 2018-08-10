@@ -88,5 +88,12 @@ namespace ESM.Services
 
 
         }
+
+        public Company FindByid(Guid id)
+        {
+            var company = db.Companies.FirstOrDefault(x => x.CompanyId == id);
+
+            return company;
+        }
     }
 }

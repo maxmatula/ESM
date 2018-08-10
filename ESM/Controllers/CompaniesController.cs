@@ -29,7 +29,8 @@ namespace ESM.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Company company = _db.Companies.Find(id);
+
+            var company = _companiesService.FindByid(id.Value);
 
             if (company == null)
             {
@@ -72,7 +73,8 @@ namespace ESM.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Company company = _db.Companies.Find(id);
+            var company = _companiesService.FindByid(id.Value);
+
             if (company == null)
             {
                 return HttpNotFound();
@@ -102,7 +104,8 @@ namespace ESM.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Company company = _db.Companies.Find(id);
+            var company = _companiesService.FindByid(id.Value);
+
             if (company == null)
             {
                 return HttpNotFound();
@@ -121,7 +124,8 @@ namespace ESM.Controllers
 
         public FileContentResult GetLogo(Guid companyId)
         {
-            Company company = _db.Companies.FirstOrDefault(e => e.CompanyId == companyId);
+            var company = _companiesService.FindByid(companyId);
+
             if (company != null)
             {
                 return File(company.LogoData, company.LogoMimeType);
@@ -131,6 +135,7 @@ namespace ESM.Controllers
                 return null;
             }
         }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Web;
-using System.Web.Mvc;
 using AutoMapper;
 using ESM.DAL;
 using ESM.Models;
@@ -132,6 +130,29 @@ namespace ESM.Services
             {
                 return false;
             }
+        }
+
+        public IQueryable<Employee> GetEmployees(Guid companyId)
+        {
+            var employees = db.Employees.Where(x => x.CompanyId == companyId);
+
+            return employees;                
+        }
+
+        public IQueryable<Employee> SearchEmployees(string searchString, IQueryable<Employee> employees)
+        {
+            var filteredEmployees = employees.Where(x => x.Name.Contains(searchString)
+                    || x.Surname.Contains(searchString)
+                    || x.Title.Contains(searchString));
+
+            return filteredEmployees;
+        }
+
+        public Employee GetEmployeeById(Guid id)
+        {
+            var employee = db.Employees.FirstOrDefault(x => x.EmployeeId == id);
+
+            return employee;
         }
     }
 }
