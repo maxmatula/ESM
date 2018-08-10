@@ -618,3 +618,6 @@ input[type="file"] {
     margin-right: 8px;
 }
 
+.bg-alert {
+    background: #ca4036;
+}
