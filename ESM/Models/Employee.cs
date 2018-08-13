@@ -24,10 +24,10 @@ namespace ESM.Models
         [StringLength(60)]
         public string Surname { get; set; }
 
-        [Required]
+
         [DataType(DataType.Date), Display(Name = "Data urodzenia")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        public DateTime BirthDate { get; set; }
+        public DateTime? BirthDate { get; set; }
 
         [Required]
         [Display(Name = "Stanowisko")]
@@ -74,7 +74,7 @@ namespace ESM.Models
         public string PictureMimeType { get; set; }
 
         public bool IsInArchive { get; set; } //czy pracownik w archiwum
-        public DateTime MoveToArchiveTime { get; set; }
+        public DateTime? MoveToArchiveTime { get; set; }
 
         [ForeignKey("Companies")]
         public Guid CompanyId { get; set; }

@@ -155,7 +155,7 @@ namespace ESM.Controllers
                 var result = _employeesService.Edit(employee, picture);
                 if (result == true)
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Details", "Employees", new { id = employee.EmployeeId });
                 }
             }
             return View(employee);

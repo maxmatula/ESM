@@ -20,10 +20,10 @@ namespace ESM.Services
                 db.SaveChanges();
                 return true;
             }
-            catch
+            catch (Exception e)
             {
                 return false;
-                throw new Exception("Can't create event for company!");
+                throw new Exception("Error: ", e);
             }
         }
 
@@ -35,10 +35,10 @@ namespace ESM.Services
                 db.SaveChanges();
                 return true;
             }
-            catch
+            catch (Exception e)
             {
                 return false;
-                throw new Exception("Can't create event for employee!");
+                throw new Exception("Error: ", e);
             }
         }
 
@@ -51,10 +51,10 @@ namespace ESM.Services
                 db.SaveChanges();
                 return true;
             }
-            catch
+            catch (Exception e)
             {
                 return false;
-                throw new Exception("Can't find or delete event");
+                throw new Exception("Error: ", e);
             }
         }
 
@@ -66,10 +66,10 @@ namespace ESM.Services
                 db.SaveChanges();
                 return true;
             }
-            catch
+            catch (Exception e)
             {
                 return false;
-                throw new Exception("Can't edit event");
+                throw new Exception("Error: ", e);
             }
         }
 
@@ -88,7 +88,7 @@ namespace ESM.Services
 
         public Event FindById(Guid eventId)
         {
-            var esmevent = db.Events.Find(eventId);
+            var esmevent = db.Events.FirstOrDefault(x => x.EventId == eventId);
             return esmevent;
         }
     }

@@ -99,12 +99,19 @@ namespace ESM.Controllers
 
         public ActionResult EditEventEmployee(Guid? eventId)
         {
-            if (eventId != null)
+            if (eventId == null)
             {
-                var esmevent = _eventsService.FindById(eventId.Value);
-                return View(esmevent);
+                return HttpNotFound();
             }
-            return HttpNotFound();
+
+            var esmevent = _eventsService.FindById(eventId.Value);
+
+            if (esmevent == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(esmevent);
         }
 
         [HttpPost]

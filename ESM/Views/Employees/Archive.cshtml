@@ -3,6 +3,7 @@
 <div class="employees col-sm-9">
     <div class="company__name__header">
         <h2 class="text-center text-uppercase employee-details__name">@Session["currCompName"] - Archiwum</h2>
+        <a href="@Url.Action("Index","Employees")" class="btn btn-link btn-sm">Lista Aktywnych Pracowników</a>
     </div>
     <br />
     @Html.Partial("_SearchForm")

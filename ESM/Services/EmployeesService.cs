@@ -36,9 +36,10 @@ namespace ESM.Services
                 db.SaveChanges();
                 return true;
             }
-            catch
+            catch (Exception e)
             {
                 return false;
+                throw new Exception("Error: ", e);
             }
         }
 
@@ -53,9 +54,10 @@ namespace ESM.Services
                 db.SaveChanges();
                 return true;
             }
-            catch
+            catch (Exception e)
             {
                 return false;
+                throw new Exception("Error: ", e);
             }
         }
 
@@ -81,9 +83,10 @@ namespace ESM.Services
                 db.SaveChanges();
                 return true;
             }
-            catch
+            catch (Exception e)
             {
                 return false;
+                throw new Exception("Error: ", e);
             }
         }
 
@@ -126,9 +129,10 @@ namespace ESM.Services
                 db.SaveChanges();
                 return true;
             }
-            catch
+            catch (Exception e)
             {
                 return false;
+                throw new Exception("Error: ", e);
             }
         }
 

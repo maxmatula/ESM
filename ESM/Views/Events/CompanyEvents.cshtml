@@ -18,19 +18,26 @@
                 <h6 class="item__desc">@Html.DisplayFor(modelItem => item.Description)</h6>
                 @if (item.Employee != null)
                 {
-                    <span class="text-uppercase item__employee"><h6>Pracownik: <strong>@Html.DisplayFor(modelItem => item.Employee.Name) @Html.DisplayFor(modelItem => item.Employee.Surname)</strong></h6></span>
+                    <span class="text-uppercase item__employee"><h6>Pracownik: <a href="@Url.Action("Details", "Employees", new { id = item.EmployeeId })"><strong>@Html.DisplayFor(modelItem => item.Employee.Name) @Html.DisplayFor(modelItem => item.Employee.Surname)</strong></a></h6></span>
                 }
             </div>
             <div class="col-xs-12">
-                <small class="item__action-btns">
-                    <a href="@Url.Action("EditEventCompany", "Events",  new { eventId = item.EventId })"><i class="fas fa-pencil-alt"></i> Edytuj</a>
-                    @using (Html.BeginForm("DeleteEventCompany", "Events", FormMethod.Post))
-                    {
-                        @Html.AntiForgeryToken()
-                        @Html.Hidden("eventId", item.EventId)
-                        <button type="submit" role="button" class="btn btn-link"><i class="fas fa-trash-alt"></i>  Usuń</button>
-                    }
-                </small>
+                @if (item.EmployeeId != null)
+                {
+                    <p></p>
+                }
+                else
+                {
+                    <small class="item__action-btns">
+                        <a href="@Url.Action("EditEventCompany", "Events",  new { eventId = item.EventId })"><i class="fas fa-pencil-alt"></i> Edytuj</a>
+                        @using (Html.BeginForm("DeleteEventCompany", "Events", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.Hidden("eventId", item.EventId)
+                            <button type="submit" role="button" class="btn btn-link"><i class="fas fa-trash-alt"></i>  Usuń</button>
+                        }
+                    </small>
+                }
             </div>
 
         </div>

@@ -289,6 +289,18 @@
     <Compile Include="Migrations\201808100835224_Notes2.Designer.cs">
       <DependentUpon>201808100835224_Notes2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808131034000_Notes3.cs" />
+    <Compile Include="Migrations\201808131034000_Notes3.Designer.cs">
+      <DependentUpon>201808131034000_Notes3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808131036444_Notes4.cs" />
+    <Compile Include="Migrations\201808131036444_Notes4.Designer.cs">
+      <DependentUpon>201808131036444_Notes4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808131040512_Notes5.cs" />
+    <Compile Include="Migrations\201808131040512_Notes5.Designer.cs">
+      <DependentUpon>201808131040512_Notes5.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Agreement.cs" />
     <Compile Include="Models\Calculator.cs" />
@@ -621,6 +633,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808100835224_Notes2.resx">
       <DependentUpon>201808100835224_Notes2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808131034000_Notes3.resx">
+      <DependentUpon>201808131034000_Notes3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808131036444_Notes4.resx">
+      <DependentUpon>201808131036444_Notes4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808131040512_Notes5.resx">
+      <DependentUpon>201808131040512_Notes5.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

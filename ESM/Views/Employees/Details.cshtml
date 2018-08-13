@@ -86,7 +86,10 @@
                                     <p>
                                         @Html.DisplayNameFor(model => model.BirthDate):
                                         <strong>
-                                            @Html.DisplayFor(model => model.BirthDate)
+                                            @if (Model.BirthDate != null && @Model.BirthDate.ToString("dd.MM.yyyy") != "01.01.0001")
+                                            {
+                                                @Model.BirthDate.ToString("dd.MM.yyyy")
+                                            }
                                         </strong>
                                     </p>
                                     <p>
