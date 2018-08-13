@@ -1,0 +1,43 @@
+﻿@model ESM.Models.Earning
+
+<div>
+    <div>
+       
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <td><strong>Składowa</strong></td>
+                <td></td>
+                <td><strong>Kwota</strong></td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var part in Model.PartialEarnings)
+            {
+                <tr>
+                    <td>@part.Name</td>
+                    <td></td>
+                    <td>@part.Ammount.ToString("c")</td>
+                    <td>
+                       
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td></td>
+                <td>Suma:</td>
+                <td><strong>@ViewBag.Total</strong></td>
+                <td></td>
+            </tr>
+        </tfoot>
+    </table>
+    <br />
+    <p>
+        @Html.ActionLink("Powrót", "DetailsArchive", "Employees", new { id = Model.EmployeeId }, null)
+    </p>
+</div>
+

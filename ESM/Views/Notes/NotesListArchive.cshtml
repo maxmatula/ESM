@@ -1,0 +1,49 @@
+﻿@model List<ESM.Models.Note>
+
+
+<div class="col-xs-8">
+    @if (Model.Count < 1)
+    {
+        <p>Brak notatek</p>
+    }
+    else
+    {
+        <div class="row">
+
+            @foreach (var note in Model)
+            {
+                <div class="col-xs-12 note_container">
+                    <div class="row">
+                        <div class="note col-xs-12">
+                            <div class="note_content">
+                                <p>@note.Content</p>
+                            </div>
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="row">
+                                <div class="mr-auto">
+                                    <div class="col-xs-6">
+                                        <div class="note_date">
+                                            <p>Dodano: @note.CreatedAt.ToString("dd.MM.yyyy")</p>
+                                        </div>
+                                    </div>
+                                    <div class=" col-xs-6">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Powrót", "Details", "Employees", new { id = ViewBag.EmployeeId }, null)
+    </div>
+</div>
+
+
+

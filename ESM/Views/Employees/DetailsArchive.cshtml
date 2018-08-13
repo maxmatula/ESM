@@ -1,0 +1,189 @@
+﻿@model ESM.ViewModels.Employees.EmployeeViewModel
+
+@{
+    ViewBag.Title = "Szczegóły";
+}
+<div class="row employee-details">
+    <div class="col-xs-12 col-sm-8 employees__container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 text-center">
+                @if (Model.PictureData == null || Model.PictureData.Length == 0)
+                {
+                    <span class="form-control-static">Brak zdjęcia</span>
+                }
+                else
+                {
+                    <img class="image-thumbnail" width="300" height="300"
+                         src="@Url.Action("GetPicture", "Employees", new { Model.EmployeeId })" />
+                }
+            </div>
+            <div class="col-sm-6 col-xs-12">
+                <h2 class="text-center employee-details__name">@Model.Name<br /> <span class="employee-details__surname">@Model.Surname</span></h2>
+                <h4 class="text-center text-uppercase employee-details__title">
+                    @Html.DisplayFor(model => model.Title)
+                </h4>
+                <div class="employee-details__info">
+                    <p>
+                        @Html.DisplayNameFor(model => model.Phone):
+                        <strong>
+                            @if (Model.Phone != null)
+                            {
+                                @String.Format("{0: ### ### ###}", long.Parse(Model.Phone))
+                            }
+                        </strong>
+                    </p>
+                </div>
+                <div class="employee-details__info">
+                    <p>
+                        @Html.DisplayNameFor(model => model.Email):
+                        <strong>
+                            @Model.Email
+                        </strong>
+                    </p>
+                </div>
+
+            </div>
+            <div class="col-xs-12 employee-details__earnings">
+                <p>
+                    Obecne wynagrodzenie:
+                    <strong>
+                        @Model.CurrentEarnings
+                    </strong>
+                </p>
+            </div>
+            <div class="col-xs-12 employee-details__earnings">
+                <h4 class="page-header">
+                    Notatki:
+                </h4>
+                Tutaj wejdą notatki
+                <br />
+            </div>
+            <div class="col-sm-12">
+                <div class="row">
+                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingOne">
+                                <h4 class="panel-title">
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseDetails" aria-expanded="true" aria-controls="collapseEarnings">
+                                        Dane szczegółowe
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseDetails" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                                <div class="panel-body">
+                                    <p>
+                                        @Html.DisplayNameFor(model => model.BirthDate):
+                                        <strong>
+                                            @Html.DisplayFor(model => model.BirthDate)
+                                        </strong>
+                                    </p>
+                                    <p>
+                                        @Html.DisplayNameFor(model => model.MaritalStatus):
+                                        <strong>
+                                            @Html.DisplayFor(model => model.MaritalStatus)
+                                        </strong>
+                                    </p>
+                                    <p>
+                                        @Html.DisplayNameFor(model => model.Address):
+                                        <strong>
+                                            @Html.DisplayFor(model => model.Address)
+                                        </strong>
+                                    </p>
+                                    <p>
+                                        @Html.DisplayNameFor(model => model.IdentityNumber):
+                                        <strong>
+                                            @Html.DisplayFor(model => model.IdentityNumber)
+                                        </strong>
+                                    </p>
+                                    <p>
+                                        @Html.DisplayNameFor(model => model.BankName):
+                                        <strong>
+                                            @Html.DisplayFor(model => model.BankName)
+                                        </strong>
+                                    </p>
+                                    <p>
+                                        @Html.DisplayNameFor(model => model.BankAccountNumber):
+                                        <strong>
+                                            @Html.DisplayFor(model => model.BankAccountNumber)
+                                        </strong>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingOne">
+                                <h4 class="panel-title">
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseEarnings" aria-expanded="true" aria-controls="collapseEarnings">
+                                        Wynagrodzenie
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseEarnings" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                                <div class="panel-body">
+                                    
+                                    @Html.Partial("_EarningsListArchive", Model.Earnings)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingOne">
+                                <h4 class="panel-title">
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseAgreement" aria-expanded="true" aria-controls="collapseAgreement">
+                                        Umowy
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseAgreement" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                                <div class="panel-body">
+                                    
+                                    @Html.Partial("_AgreementsList", Model.Agreements)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingOne">
+                                <h4 class="panel-title">
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseCertyfications" aria-expanded="true" aria-controls="collapseCertyfications">
+                                        Certyfikaty
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseCertyfications" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                                <div class="panel-body">
+                                    
+                                    @Html.Partial("_CertyficationsList", Model.Certyfications)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingOne">
+                                <h4 class="panel-title">
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseRecruitmentDocuments" aria-expanded="true" aria-controls="ccollapseRecruitmentDocuments">
+                                        Dokumenty rekrutacyjne
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseRecruitmentDocuments" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                                <div class="panel-body">
+                                    @Html.Partial("_RecruitmentDocumentsList", Model.RecruitmentDocuments)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12">
+            <p>
+                @Html.ActionLink("Powrót", "Archive", "Employees") |
+                @Html.ActionLink("Przywróc Pracownika", "Restore", new { id = Model.EmployeeId }, new { @class = "text-danger" })
+            </p>
+        </div>
+    </div>
+    <aside class="main-sidebar col-sm-3">
+        <div class="col-xs-12 events">
+            <h4 class="page-header">Wydarzenia pracownika</h4>
+            @Html.Action("EmployeeEvents", "Events", new { employeeId = Model.EmployeeId })
+        </div>
+    </aside>
+</div>

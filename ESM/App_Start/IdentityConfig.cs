@@ -33,6 +33,24 @@ namespace ESM
 
             var manager = new ESMUserManager(store);
 
+            manager.UserValidator = new UserValidator<AppUser>(manager)
+            {
+                RequireUniqueEmail = true
+            };
+
+            manager.PasswordValidator = new PasswordValidator
+            {
+                RequiredLength = 7,
+                RequireNonLetterOrDigit = false,
+                RequireDigit = true,
+                RequireLowercase = true,
+                RequireUppercase = true,
+            };
+
+            manager.UserLockoutEnabledByDefault = true;
+            manager.DefaultAccountLockoutTimeSpan = TimeSpan.FromMinutes(5);
+            manager.MaxFailedAccessAttemptsBeforeLockout = 5;
+
             return manager;
         }
 

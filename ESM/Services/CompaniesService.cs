@@ -37,9 +37,10 @@ namespace ESM.Services
                 db.SaveChanges();
                 return true;
             }
-            catch
+            catch (Exception e)
             {
                 return false;
+                throw new Exception("Error: ", e);
             }
 
         }
@@ -53,9 +54,10 @@ namespace ESM.Services
                 db.SaveChanges();
                 return true;
             }
-            catch
+            catch (Exception e)
             {
                 return false;
+                throw new Exception("Error: ", e);
             }
         }
 
@@ -81,12 +83,20 @@ namespace ESM.Services
                 db.SaveChanges();
                 return true;
             }
-            catch
+            catch (Exception e)
             {
                 return false;
+                throw new Exception("Error: ", e);
             }
 
 
+        }
+
+        public Company FindByid(Guid id)
+        {
+            var company = db.Companies.FirstOrDefault(x => x.CompanyId == id);
+
+            return company;
         }
     }
 }

@@ -1,20 +1,23 @@
-﻿
+﻿<div class="employees col-sm-special">
+    <div class="row">
+        <div class="col-sm-12">
+            <h2 class="text-center text-uppercase employee-details__name">@Session["currCompName"] - Pracownicy</h2>
+            <a href="@Url.Action("Archive","Employees")" class="btn btn-link btn-sm">Archiwum Pracowników</a>
 
-<div class="employees col-sm-9">
-    <div class="company__name__header">
-        <h2 class="text-center text-uppercase employee-details__name">@Session["currCompName"]</h2>
+            <hr />
+        </div>
+        
     </div>
-    <br />
-    <a href="@Url.Action("Create","Employees")" class="btn btn-primary btn-lg">Dodaj pracownika</a>
+    <a href="@Url.Action("Create","Employees")" class="btn btn-primary">Dodaj pracownika</a>
     @Html.Partial("_SearchForm")
     <br />
     @Html.Partial("_EmployeesList")
 </div>
 
 <aside class="main-sidebar col-sm-3">
-    <a class="btn btn-primary btn-lg" href="@Url.Action("CreateEventCompany", "Events")"><i class="fas fa-plus"></i> Dodaj wydarzenie dla firmy</a>
-    <div class="col-xs-12 events">
-        <h4 class="page-header">Wydarzenia firmy: <span class="employee-details__name">@Session["currCompName"]</span></h4>
-        @Html.Action("CompanyEvents", "Events")
-    </div>
+        <a class="btn btn-primary btn-lg" href="@Url.Action("CreateEventCompany", "Events")"><i class="fas fa-plus"></i> Dodaj wydarzenie dla firmy</a>
+        <div class="col-xs-12 events">
+            <h4 class="page-header">Wydarzenia firmy: <span class="employee-details__name">@Session["currCompName"]</span></h4>
+            @Html.Action("CompanyEvents", "Events")
+        </div>
 </aside>

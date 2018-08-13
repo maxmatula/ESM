@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Web;
-using System.Web.Mvc;
 using AutoMapper;
 using ESM.DAL;
 using ESM.Models;
+using ESM.ViewModels.Earnings;
 using ESM.ViewModels.Employees;
 
 namespace ESM.Services
@@ -37,24 +36,28 @@ namespace ESM.Services
                 db.SaveChanges();
                 return true;
             }
-            catch
+            catch (Exception e)
             {
                 return false;
+                throw new Exception("Error: ", e);
             }
         }
 
-        public bool Delete(Guid id)
+        public bool MoveToArchive(Guid id)
         {
             try
             {
                 Employee employee = db.Employees.Find(id);
-                db.Employees.Remove(employee);
+                employee.IsInArchive = true;
+                employee.MoveToArchiveTime = DateTime.Now;
+                db.Entry(employee).State = EntityState.Modified;
                 db.SaveChanges();
                 return true;
             }
-            catch
+            catch (Exception e)
             {
                 return false;
+                throw new Exception("Error: ", e);
             }
         }
 
@@ -80,30 +83,80 @@ namespace ESM.Services
                 db.SaveChanges();
                 return true;
             }
-            catch
+            catch (Exception e)
             {
                 return false;
+                throw new Exception("Error: ", e);
             }
         }
 
         public EmployeeViewModel GetById(Guid id)
         {
-            var employee = db.Employees.Find(id);
+            var employee = db.Employees.Include(y => y.Earnings.Select(g => g.PartialEarnings)).FirstOrDefault(x => x.EmployeeId == id);
             var model = Mapper.Map<EmployeeViewModel>(employee);
-            model.Earnings = employee.Earnings.OrderByDescending(x => x.AddDate).ToList();
+            var earningsData = employee.Earnings.OrderByDescending(x => x.AddDate).ToList();
+            model.Earnings = Mapper.Map<List<EarningForDisplayDto>>(earningsData);
             model.Agreements = employee.Agreements.OrderByDescending(x => x.AddDate).ToList();
             model.Certyfications = employee.Certyfications.OrderByDescending(x => x.AddDate).ToList();
             model.RecruitmentDocuments = employee.RecruitmentDocuments.OrderByDescending(x => x.AddDate).ToList();
-            var earning = employee.Earnings.OrderByDescending(x => x.AddDate).FirstOrDefault();
-            if (earning != null)
+            model.Notes = employee.Notes.Where(y => y.IsInArchive == false).OrderByDescending(x => x.CreatedAt).ToList();
+            var earning = employee.Earnings.OrderByDescending(x => x.ChangeDate).FirstOrDefault();
+
+            foreach (var earn in model.Earnings)
             {
-                model.CurrentEarnings = earning.Ammount.ToString("c");
+                earn.SelectAgreements = model.Agreements.Where(x => x.EarningId == null).ToList();
+            }
+
+            if (earning == null)
+            {
+                model.CurrentEarnings = 0.ToString("c");
             }
             else
             {
-                model.CurrentEarnings = "0";
+                model.CurrentEarnings = earning.PartialEarnings.Sum(x => x.Ammount).ToString("c");
             }
+
             return model;
+        }
+
+        public bool Restore(Guid id)
+        {
+            try
+            {
+                Employee employee = db.Employees.Find(id);
+                employee.IsInArchive = false;
+                db.Entry(employee).State = EntityState.Modified;
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+                throw new Exception("Error: ", e);
+            }
+        }
+
+        public IQueryable<Employee> GetEmployees(Guid companyId)
+        {
+            var employees = db.Employees.Where(x => x.CompanyId == companyId);
+
+            return employees;                
+        }
+
+        public IQueryable<Employee> SearchEmployees(string searchString, IQueryable<Employee> employees)
+        {
+            var filteredEmployees = employees.Where(x => x.Name.Contains(searchString)
+                    || x.Surname.Contains(searchString)
+                    || x.Title.Contains(searchString));
+
+            return filteredEmployees;
+        }
+
+        public Employee GetEmployeeById(Guid id)
+        {
+            var employee = db.Employees.FirstOrDefault(x => x.EmployeeId == id);
+
+            return employee;
         }
     }
 }

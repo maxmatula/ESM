@@ -1,33 +1,34 @@
 ﻿@model ESM.Models.Employee
 
 
-<h2>Usuń Pracownika</h2>
+<h2>Przenieś pracownika do archiwum</h2>
+<hr />
 
-<h3>Jesteś pewny, że chcesz usunąć tego pracownika?</h3>
+<h3>Jesteś pewny, że chcesz przenieść tego pracownika do archiwum?</h3>
 <div>
-        <p>
-            @Html.DisplayNameFor(model => model.Name)
-            @Html.DisplayFor(model => model.Name)
-        </p>
-        <p>
-            @Html.DisplayNameFor(model => model.Surname)
-            @Html.DisplayFor(model => model.Surname)
-        </p>
-        <p>
-            @Html.DisplayNameFor(model => model.BirthDate)
-            @Html.DisplayFor(model => model.BirthDate)
-        </p>
-        <p>
-            @Html.DisplayNameFor(model => model.Title)
-            @Html.DisplayFor(model => model.Title)
-        </p>
+    <img class="employee__image img-circle img-responsive" width="200" height="200"
+         src="@Url.Action("GetPicture", "Employees", new { employeeId = Model.EmployeeId})"
+         alt="" />
+    <p>
+        Imię:
+        <strong>@Html.DisplayFor(model => model.Name)</strong>
+    </p>
+    <p>
+        Nazwisko:
+        <strong>@Html.DisplayFor(model => model.Surname)</strong>
+    </p>
+    <p>
+        Stanowisko:
+        <strong>@Html.DisplayFor(model => model.Title)</strong>
+    </p>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Usuń Pracownika" class="btn btn-default" /> |
-            @Html.ActionLink("Powrót", "Index")
-        </div>
+    <div class="form-actions no-color">
+        <input type="submit" value="Przenieś Pracownika" class="btn btn-default" /> |
+        @Html.ActionLink("Powrót", "Details", "Employees", new { id = Model.EmployeeId }, null)
+    </div>
     }
 </div>

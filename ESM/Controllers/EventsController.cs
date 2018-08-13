@@ -21,7 +21,7 @@ namespace ESM.Controllers
 
         public ActionResult CompanyEvents()
         {
-            var companyId = Session["currentCompanyId"].ToString();
+            var companyId = Request.Cookies["currentCompanyId"].Value;
             if (companyId != null)
             {
                 var model = _eventsService.EventListCompany(Guid.Parse(companyId));
@@ -43,7 +43,7 @@ namespace ESM.Controllers
 
         public ActionResult CreateEventCompany()
         {
-            var companyId = Session["currentCompanyId"].ToString();
+            var companyId = Request.Cookies["currentCompanyId"].Value;
             if (companyId != null)
             {
                 Event esmevent = new Event();
@@ -73,7 +73,7 @@ namespace ESM.Controllers
         {
             if (employeeId != null)
             {
-                string companyId = Session["currentCompanyId"].ToString();
+                string companyId = Request.Cookies["currentCompanyId"].Value;
                 Event esmevent = new Event();
                 esmevent.CompanyId = Guid.Parse(companyId);
                 esmevent.EmployeeId = employeeId;
@@ -99,12 +99,19 @@ namespace ESM.Controllers
 
         public ActionResult EditEventEmployee(Guid? eventId)
         {
-            if (eventId != null)
+            if (eventId == null)
             {
-                var esmevent = _eventsService.FindById(eventId.Value);
-                return View(esmevent);
+                return HttpNotFound();
             }
-            return HttpNotFound();
+
+            var esmevent = _eventsService.FindById(eventId.Value);
+
+            if (esmevent == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(esmevent);
         }
 
         [HttpPost]

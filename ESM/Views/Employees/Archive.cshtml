@@ -1,0 +1,20 @@
+﻿
+
+<div class="employees col-sm-9">
+    <div class="company__name__header">
+        <h2 class="text-center text-uppercase employee-details__name">@Session["currCompName"] - Archiwum</h2>
+        <a href="@Url.Action("Index","Employees")" class="btn btn-link btn-sm">Lista Aktywnych Pracowników</a>
+    </div>
+    <br />
+    @Html.Partial("_SearchForm")
+    <br />
+    @Html.Partial("_EmployeesListArchive")
+</div>
+
+<aside class="main-sidebar col-sm-3">
+    <a class="btn btn-primary btn-lg" href="@Url.Action("CreateEventCompany", "Events")"><i class="fas fa-plus"></i> Dodaj wydarzenie dla firmy</a>
+    <div class="col-xs-12 events">
+        <h4 class="page-header">Wydarzenia firmy: <span class="employee-details__name">@Session["currCompName"]</span></h4>
+        @Html.Action("CompanyEvents", "Events")
+    </div>
+</aside>

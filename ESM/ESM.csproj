@@ -204,6 +204,8 @@
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NotesController.cs" />
+    <Compile Include="Controllers\PartialEarningsController.cs" />
     <Compile Include="Controllers\RecruitmentDocumentsController.cs" />
     <Compile Include="Controllers\UserPanelController.cs" />
     <Compile Include="DAL\IdentityModels.cs" />
@@ -267,6 +269,38 @@
     <Compile Include="Migrations\201806150723569_EmployeeEmail.Designer.cs">
       <DependentUpon>201806150723569_EmployeeEmail.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808070930100_EmployeeArchive.cs" />
+    <Compile Include="Migrations\201808070930100_EmployeeArchive.Designer.cs">
+      <DependentUpon>201808070930100_EmployeeArchive.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808080635181_PartialEarnings.cs" />
+    <Compile Include="Migrations\201808080635181_PartialEarnings.Designer.cs">
+      <DependentUpon>201808080635181_PartialEarnings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808080757120_PartialEarnings2.cs" />
+    <Compile Include="Migrations\201808080757120_PartialEarnings2.Designer.cs">
+      <DependentUpon>201808080757120_PartialEarnings2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808100807155_Notes.cs" />
+    <Compile Include="Migrations\201808100807155_Notes.Designer.cs">
+      <DependentUpon>201808100807155_Notes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808100835224_Notes2.cs" />
+    <Compile Include="Migrations\201808100835224_Notes2.Designer.cs">
+      <DependentUpon>201808100835224_Notes2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808131034000_Notes3.cs" />
+    <Compile Include="Migrations\201808131034000_Notes3.Designer.cs">
+      <DependentUpon>201808131034000_Notes3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808131036444_Notes4.cs" />
+    <Compile Include="Migrations\201808131036444_Notes4.Designer.cs">
+      <DependentUpon>201808131036444_Notes4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808131040512_Notes5.cs" />
+    <Compile Include="Migrations\201808131040512_Notes5.Designer.cs">
+      <DependentUpon>201808131040512_Notes5.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Agreement.cs" />
     <Compile Include="Models\Calculator.cs" />
@@ -276,6 +310,8 @@
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\AppUser.cs" />
     <Compile Include="Models\Event.cs" />
+    <Compile Include="Models\Note.cs" />
+    <Compile Include="Models\PartialEarning.cs" />
     <Compile Include="Models\RecruitmentDocument.cs" />
     <Compile Include="Models\UserCompanyRef.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -294,6 +330,7 @@
     <Compile Include="Services\IRecruitmentDocumentsService.cs" />
     <Compile Include="Services\RecruitmentDocumentsService.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\Earnings\EarningForDisplayDto.cs" />
     <Compile Include="ViewModels\Employees\EmployeeViewModel.cs" />
     <Compile Include="ViewModels\Account\LoginViewModel.cs" />
     <Compile Include="ViewModels\Account\RegisterViewModel.cs" />
@@ -513,6 +550,18 @@
     <Content Include="Views\Events\CreateEventEmployee.cshtml" />
     <Content Include="Views\Events\EditEventEmployee.cshtml" />
     <Content Include="Views\Events\EditEventCompany.cshtml" />
+    <Content Include="Views\Employees\Archive.cshtml" />
+    <Content Include="Views\Shared\_EmployeesListArchive.cshtml" />
+    <Content Include="Views\Employees\DetailsArchive.cshtml" />
+    <Content Include="Views\Employees\Restore.cshtml" />
+    <Content Include="Views\Earnings\Details.cshtml" />
+    <Content Include="Views\PartialEarnings\AddPartial.cshtml" />
+    <Content Include="Views\Employees\_EarningsListArchive.cshtml" />
+    <Content Include="Views\Earnings\DetailsArchive.cshtml" />
+    <Content Include="Views\Employees\_NotesList.cshtml" />
+    <Content Include="Views\Notes\AddNote.cshtml" />
+    <Content Include="Views\Notes\EditNote.cshtml" />
+    <Content Include="Views\Notes\NotesListArchive.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Abstract\" />
@@ -569,6 +618,30 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806150723569_EmployeeEmail.resx">
       <DependentUpon>201806150723569_EmployeeEmail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808070930100_EmployeeArchive.resx">
+      <DependentUpon>201808070930100_EmployeeArchive.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808080635181_PartialEarnings.resx">
+      <DependentUpon>201808080635181_PartialEarnings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808080757120_PartialEarnings2.resx">
+      <DependentUpon>201808080757120_PartialEarnings2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808100807155_Notes.resx">
+      <DependentUpon>201808100807155_Notes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808100835224_Notes2.resx">
+      <DependentUpon>201808100835224_Notes2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808131034000_Notes3.resx">
+      <DependentUpon>201808131034000_Notes3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808131036444_Notes4.resx">
+      <DependentUpon>201808131036444_Notes4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808131040512_Notes5.resx">
+      <DependentUpon>201808131040512_Notes5.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

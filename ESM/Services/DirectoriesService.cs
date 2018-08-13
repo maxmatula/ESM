@@ -25,9 +25,9 @@ namespace ESM.Services
 
                 return userDirectory;
             }
-            catch
+            catch (Exception e)
             {
-                throw new Exception("Directory error! Can't get user directory!");
+                throw new Exception("Error: ", e);
             }
 
         }

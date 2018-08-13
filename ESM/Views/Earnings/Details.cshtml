@@ -1,0 +1,51 @@
+﻿@model ESM.Models.Earning
+
+<div>
+    <div>
+        <button class="btn btn btn-primary">
+            @Html.ActionLink("Dodaj składową", "AddPartial", "PartialEarnings", new { earningId = Model.EarningId }, null)
+        </button>
+        <hr />
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <td><strong>Składowa</strong></td>
+                <td></td>
+                <td><strong>Kwota</strong></td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var part in Model.PartialEarnings)
+            {
+                <tr>
+                    <td>@part.Name</td>
+                    <td></td>
+                    <td>@part.Ammount.ToString("c")</td>
+                    <td>
+                        @using (Html.BeginForm("DeletePartial", "PartialEarnings", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.Hidden("partialId", part.PartialEarningId)
+                            <button type="submit" role="button" class="btn btn-link"><i class="fas fa-trash-alt"></i>  Usuń</button>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td></td>
+                <td>Suma:</td>
+                <td><strong>@ViewBag.Total</strong></td>
+                <td></td>
+            </tr>
+        </tfoot>
+    </table>
+    <br />
+    <p>
+        @Html.ActionLink("Powrót", "Details", "Employees", new { id = Model.EmployeeId }, null)
+    </p>
+</div>
+

@@ -13,5 +13,6 @@ namespace ESM.Services
         bool Create(Company company, UserCompanyRef userCompanyRef, string userId, string logo);
         bool Edit(Company company, string logo);
         bool Delete(Guid id);
+        Company FindByid(Guid id);
     }
 }

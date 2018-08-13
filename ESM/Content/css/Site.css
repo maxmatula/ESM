@@ -9,6 +9,11 @@ body {
   color: #fff;
   background-color: #2d2436; }
 
+    body::-webkit-scrollbar {
+        width: 0px; /* remove scrollbar space */
+        background: transparent; /* optional: just make scrollbar invisible */
+    }
+
 a, button {
   transition: 0.3s; }
   a:hover, a:focus, button:hover, button:focus {
@@ -20,8 +25,11 @@ a {
     color: #ef6b94; }
 
 .main-content {
-  padding: 15px;
-  display: none; }
+    padding: 15px;
+    display: none;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
 
 .fluid-content {
   width: 100%;
@@ -190,13 +198,26 @@ legend {
     margin: 0; }
 
 .main-sidebar {
-  background-color: #201a27;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  right: 0;
-  padding-top: 15px;
-  padding-bottom: 15px; }
+    background-color: #201a27;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.main-sidebar::-webkit-scrollbar {
+    width: 0px; /* remove scrollbar space */
+    background: transparent; /* optional: just make scrollbar invisible */
+}
+
+.main-content::-webkit-scrollbar {
+    width: 0px; /* remove scrollbar space */
+    background: transparent; /* optional: just make scrollbar invisible */
+}
 
 .search-form__wrapper {
   position: relative; }
@@ -556,3 +577,55 @@ input[type="file"] {
     border-bottom: 1px solid #fff;
 }
 
+.col-sm-special {
+    width: 70%;
+}
+
+.note_container {
+    background: #201a27;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+    .note_container:hover{
+        background: #1c1721;
+    }
+
+    .note {
+        font-size: 14px;
+    }
+.note_content {
+    padding: 7px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #2d2436;
+}
+
+.notatki_buttony_gorne {
+    float: right;
+    margin: 5px;
+    margin-bottom: 10px;
+}
+
+.note_buttons {
+    float: right;
+    display: -webkit-inline-box;
+}
+
+.note_date {
+    margin-top: 10px;
+    float: left;
+    font-size: 14px;
+    display: block;
+}
+
+.btn-mr {
+    margin-right: 8px;
+}
+
+.bg-alert {
+    background: #ca4036;
+}
+
+.mr-auto {
+    padding: 7px;
+}

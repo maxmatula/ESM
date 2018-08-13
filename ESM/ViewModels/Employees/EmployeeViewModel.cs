@@ -1,7 +1,9 @@
 ﻿using ESM.Models;
+using ESM.ViewModels.Earnings;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace ESM.ViewModels.Employees
 {
@@ -29,8 +31,6 @@ namespace ESM.ViewModels.Employees
         public string Phone { get; set; }
         [Display(Name = "Status cywilny")]
         public string MaritalStatus { get; set; }
-        [Display(Name = "Notatki")]
-        public string AdditionalInfo { get; set; } //notatki
         [Display(Name = "Nazwa banku")]
         public string BankName { get; set; }
         [Display(Name = "Numer konta")]
@@ -39,11 +39,13 @@ namespace ESM.ViewModels.Employees
         public string CurrentEarnings { get; set; }
         public byte[] PictureData { get; set; }
         public string PictureMimeType { get; set; }
+        public bool IsInArchive { get; set; }
         public Guid CompanyId { get; set; }
         public Company Companies { get; set; }
-        public List<Earning> Earnings { get; set; }
+        public List<EarningForDisplayDto> Earnings { get; set; }
         public List<RecruitmentDocument> RecruitmentDocuments { get; set; }
         public List<Certyfication> Certyfications { get; set; }
         public List<Agreement> Agreements { get; set; }
+        public List<Note> Notes { get; set; }
     }
 }

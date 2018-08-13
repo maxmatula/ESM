@@ -22,10 +22,10 @@ namespace ESM.Services
                 }
                 return filepath;
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return filepath = "";
-                throw new Exception("Nie można odnaleźć pliku");
+                throw new Exception("Nie można odnaleźć pliku", e);
             }
         }
 
@@ -38,10 +38,10 @@ namespace ESM.Services
                 db.SaveChanges();
                 return true;
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return false;
-                throw;
+                throw new Exception("Error: ", e);
             }
         }
 
@@ -61,10 +61,10 @@ namespace ESM.Services
                 return returnPath;
 
             }
-            catch
+            catch (Exception e)
             {
                 return returnPath = "";
-                throw new Exception("File upload failed!");
+                throw new Exception("File upload failed!", e);
             }
         }
 

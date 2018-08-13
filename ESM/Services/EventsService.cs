@@ -20,10 +20,10 @@ namespace ESM.Services
                 db.SaveChanges();
                 return true;
             }
-            catch
+            catch (Exception e)
             {
                 return false;
-                throw new Exception("Can't create event for company!");
+                throw new Exception("Error: ", e);
             }
         }
 
@@ -35,10 +35,10 @@ namespace ESM.Services
                 db.SaveChanges();
                 return true;
             }
-            catch
+            catch (Exception e)
             {
                 return false;
-                throw new Exception("Can't create event for employee!");
+                throw new Exception("Error: ", e);
             }
         }
 
@@ -51,10 +51,10 @@ namespace ESM.Services
                 db.SaveChanges();
                 return true;
             }
-            catch
+            catch (Exception e)
             {
                 return false;
-                throw new Exception("Can't find or delete event");
+                throw new Exception("Error: ", e);
             }
         }
 
@@ -66,29 +66,29 @@ namespace ESM.Services
                 db.SaveChanges();
                 return true;
             }
-            catch
+            catch (Exception e)
             {
                 return false;
-                throw new Exception("Can't edit event");
+                throw new Exception("Error: ", e);
             }
         }
 
         public List<Event> EventListCompany(Guid companyId)
         {
             var esmeventlist = db.Events.Where(x => x.CompanyId == companyId).ToList();
-            esmeventlist = esmeventlist.Where(x => x.EventDate <= DateTime.Now.AddDays(31)).OrderByDescending(x => x.EventDate).ToList();
+            esmeventlist = esmeventlist.Where(x => x.EventDate <= DateTime.Now.AddDays(60)).OrderBy(x => x.EventDate).ToList();
             return esmeventlist;
         }
 
         public List<Event> EventListEmployee(Guid employeeId)
         {
-            var esmeventlist = db.Events.Where(x => x.EmployeeId == employeeId).OrderByDescending(x => x.EventDate).ToList();
+            var esmeventlist = db.Events.Where(x => x.EmployeeId == employeeId).OrderBy(x => x.EventDate).ToList();
             return esmeventlist;
         }
 
         public Event FindById(Guid eventId)
         {
-            var esmevent = db.Events.Find(eventId);
+            var esmevent = db.Events.FirstOrDefault(x => x.EventId == eventId);
             return esmevent;
         }
     }

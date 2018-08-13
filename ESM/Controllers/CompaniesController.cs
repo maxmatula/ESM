@@ -29,14 +29,18 @@ namespace ESM.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Company company = _db.Companies.Find(id);
+
+            var company = _companiesService.FindByid(id.Value);
 
             if (company == null)
             {
                 return HttpNotFound();
             }
 
-            Session["currentCompanyId"] = id;
+            Response.Cookies["currentCompanyId"].Value = id.ToString();
+            Response.Cookies["currentCompanyId"].Expires = DateTime.Now.AddDays(2);
+            Response.SetCookie(Response.Cookies["currentCompanyId"]);
+
             Session["currCompName"] = company.Name;
             return RedirectToAction("Index", "Employees");
         }
@@ -69,7 +73,8 @@ namespace ESM.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Company company = _db.Companies.Find(id);
+            var company = _companiesService.FindByid(id.Value);
+
             if (company == null)
             {
                 return HttpNotFound();
@@ -99,7 +104,8 @@ namespace ESM.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Company company = _db.Companies.Find(id);
+            var company = _companiesService.FindByid(id.Value);
+
             if (company == null)
             {
                 return HttpNotFound();
@@ -118,7 +124,8 @@ namespace ESM.Controllers
 
         public FileContentResult GetLogo(Guid companyId)
         {
-            Company company = _db.Companies.FirstOrDefault(e => e.CompanyId == companyId);
+            var company = _companiesService.FindByid(companyId);
+
             if (company != null)
             {
                 return File(company.LogoData, company.LogoMimeType);
@@ -128,6 +135,7 @@ namespace ESM.Controllers
                 return null;
             }
         }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

@@ -8,6 +8,8 @@ using Microsoft.Owin.Security;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Net;
+using System;
 
 namespace ESM.Controllers
 {
@@ -110,6 +112,17 @@ namespace ESM.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Logout()
         {
+            HttpCookie aCookie;
+            string cookieName;
+            int limit = Request.Cookies.Count;
+            for (int i = 0; i < limit; i++)
+            {
+                cookieName = Request.Cookies[i].Name;
+                aCookie = new HttpCookie(cookieName);
+                aCookie.Expires = DateTime.Now.AddDays(-2);
+                Response.SetCookie(aCookie);
+            }
+
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             Session.Abandon();
             return RedirectToAction("Index", "Home");
@@ -130,9 +143,6 @@ namespace ESM.Controllers
             return View();
         }
 
-
-
-
         /// <summary>
         /// Obsługuje proces rejestracji
         /// </summary>
@@ -146,10 +156,7 @@ namespace ESM.Controllers
             if (ModelState.IsValid)
             {
                 var user = new AppUser { UserName = model.Email, Email = model.Email, Name = model.Name, Surname = model.Surname };
-                UserStore<AppUser> Store = new UserStore<AppUser>(new ESMDbContext());
-                ESMUserManager userManager = new ESMUserManager(Store);
-
-                var result = await userManager.CreateAsync(user, model.Password);
+                var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
                     var resultRole = await UserManager.AddToRoleAsync(user.Id, "User");

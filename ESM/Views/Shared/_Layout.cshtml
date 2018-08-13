@@ -28,7 +28,7 @@
     </div>
     <div class="container-fluid">
         <div class="row">
-            <header class="main-header col-lg-2">
+            <header class="main-header col-xs-2">
                 <div class="main-header__brand">
                     <a href="@Url.Action("Index","UserPanel")">
                         <img src="~/Images/esm logo.png" alt="ESM" class="img-responsive" />
@@ -47,10 +47,9 @@
 
 
                 </div>
-
                 <nav class="main-header__links">
                     <ul>
-                        <li><a href="@Url.Action("Index","UserPanel")"><i class="fas fa-suitcase"></i> Firma</a></li>
+                        <li><a href="@Url.Action("Index","UserPanel")"><i class="fas fa-suitcase"></i> Lista Firm</a></li>
                         <li><a href="@Url.Action("Index","Calculator")"><i class="fas fa-calculator"></i> Kalkulator wynagrodzeń</a></li>
                         <li><a href="javascript:document.getElementById('logoutForm').submit()"><i class="fas fa-power-off "></i> Wyloguj</a></li>
                     </ul>
@@ -62,7 +61,7 @@
                     <p>MM&GW Solutions &copy; @DateTime.Now.Year</p>
                 </div>
             </header>
-            <main class="col-lg-10 col-lg-offset-2 main-content">
+            <main class="col-xs-10 col-xs-offset-2 main-content">
                 @RenderBody()
             </main>
         </div>

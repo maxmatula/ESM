@@ -1,0 +1,34 @@
+﻿@model ESM.Models.Employee
+
+
+<h2>Przywróc pracownika</h2>
+<hr />
+
+<h3>Jesteś pewny, że chcesz przywrócić tego pracownika do listy aktywnych?</h3>
+<div>
+    <img class="employee__image img-circle img-responsive" width="200" height="200"
+         src="@Url.Action("GetPicture", "Employees", new { employeeId = Model.EmployeeId})"
+         alt="" />
+    <p>
+        Imię:
+        <strong>@Html.DisplayFor(model => model.Name)</strong>
+    </p>
+    <p>
+        Nazwisko:
+        <strong>@Html.DisplayFor(model => model.Surname)</strong>
+    </p>
+    <p>
+        Stanowisko:
+        <strong>@Html.DisplayFor(model => model.Title)</strong>
+    </p>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Przywróc Pracownika" class="btn btn-default" /> |
+            @Html.ActionLink("Powrót", "Index")
+        </div>
+    }
+</div>
